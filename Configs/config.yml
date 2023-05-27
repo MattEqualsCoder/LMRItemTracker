@@ -1,0 +1,647 @@
+﻿Items:
+  - Key: coin-chests
+    Names:
+      - Text: coin-chests
+  - Key: giltoriyo-ladder
+    Names:
+      - Text: Giltoriyo ladder
+  - Key: alsedana-ladder
+    Names:
+      - Text: alsedana ladder
+  - Key: w-main-chain
+    Names:
+      - Text: Chain whip
+  - Key: w-main-flail
+    Names:
+      - Text: Flail whip
+  - Key: w-main-knife
+    Names:
+      - Text: Knife
+  - Key: w-main-keysword
+    Names:
+      - Text: Key Sword
+  - Key: w-main-axe
+    Names:
+      - Text: Axe
+  - Key: w-main-katana
+    Names:
+      - Text: Katana
+  - Key: w-sub-shuriken
+    Names:
+      - Text: Shuriken
+  - Key: w-sub-rshuriken
+    Names:
+      - Text: Rolling Shuriken
+  - Key: w-sub-spear
+    Names:
+      - Text: Earth Spear
+  - Key: w-sub-flare
+    Names:
+      - Text: Flare Gun
+  - Key: w-sub-bomb
+    Names:
+      - Text: Bomb
+  - Key: w-sub-chakram
+    Names:
+      - Text: Chakram
+  - Key: w-sub-caltrops
+    Names:
+      - Text: Caltrops
+  - Key: w-sub-pistol
+    Names:
+      - Text: Pistol
+  - Key: w-jewel-guidance
+    Names:
+      - Text: Guidance Ankh Jewel
+  - Key: w-jewel-maus
+    Names:
+      - Text: Mausoleum of the Giants Ankh Jewel
+  - Key: w-jewel-sun
+    Names:
+      - Text: Temple of the Sun Ankh Jewel
+  - Key: w-jewel-spring
+    Names:
+      - Text: Spring in the Sky Ankh Jewel
+  - Key: w-jewel-ruin
+    Names:
+      - Text: Tower of Ruin Ankh Jewel
+  - Key: w-jewel-birth
+    Names:
+      - Text: Chamber of Birth Ankh Jewel
+  - Key: w-jewel-twins
+    Names:
+      - Text: Twin Labyrinths Ankh Jewel
+  - Key: w-jewel-dimension
+    Names:
+      - Text: Dimensional Corridor Ankh Jewel
+  - Key: w-scanner
+    Names:
+      - Text: Hand Scanner
+  - Key: w-djed
+    Names:
+      - Text: Djed Pillar
+  - Key: w-doll
+    Names:
+      - Text: Mini Doll
+  - Key: w-magatama
+    Names:
+      - Text: Magatama Jewel
+  - Key: w-cog
+    Names:
+      - Text: Cog of the Soul
+  - Key: w-lamp
+    Names:
+      - Text: Lamp of Time
+  - Key: w-pochettekey
+    Names:
+      - Text: Pochette Key
+  - Key: w-dragonbone
+    Names:
+      - Text: Dragon Bone
+  - Key: w-cskull
+    Names:
+      - Text: Crystal Skull
+  - Key: w-vessel
+    Names:
+      - Text: Vessel
+  - Key: w-pepper
+    Names:
+      - Text: Pepper
+  - Key: w-woman
+    Names:
+      - Text: Woman Statue
+  - Key: w-endless-key
+    Names:
+      - Text: Key of Eternity
+  - Key: w-serpent
+    Names:
+      - Text: Serpent Staff
+  - Key: invus-talisman
+    Names:
+      - Text: Talisman
+  - Key: w-talisman
+    Names:
+      - Text: Talisman
+  - Key: w-water-case
+    Names:
+      - Text: Waterproof Case
+  - Key: w-heat-case
+    Names:
+      - Text: Heatproof Case
+  - Key: w-shell-horn
+    Names:
+      - Text: Shell Horn
+  - Key: w-glove
+    Names:
+      - Text: Glove
+  - Key: w-grail
+    Names:
+      - Text: Holy Grail
+  - Key: w-isispendant
+    Names:
+      - Text: Isis Pendant
+  - Key: w-crucifix
+    Names:
+      - Text: Crucifix
+  - Key: w-helmet
+    Names:
+      - Text: Helmet
+  - Key: w-grapple
+    Names:
+      - Text: Grapple Claw
+  - Key: w-mirror
+    Names:
+      - Text: Bronze Mirror
+  - Key: w-eye-truth
+    Names:
+      - Text: Eye of Truth
+  - Key: w-ring
+    Names:
+      - Text: Ring
+  - Key: w-scale
+    Names:
+      - Text: Scalesphere
+  - Key: w-gauntlet
+    Names:
+      - Text: Gauntlet
+  - Key: w-anchor
+    Names:
+      - Text: Anchor
+  - Key: w-plane
+    Names:
+      - Text: Plane Model
+  - Key: w-ocarina
+    Names:
+      - Text: Philosophers' Ocarina
+  - Key: w-feather
+    Names:
+      - Text: Feather
+  - Key: w-book
+    Names:
+      - Text: Book of the Dead
+  - Key: w-clothes
+    Names:
+      - Text: Fairy Clothes
+  - Key: w-scriptures
+    Names:
+      - Text: Scriptures
+  - Key: w-hermes
+    Names:
+      - Text: Hermes' Boots
+  - Key: w-fruit
+    Names:
+      - Text: Fruit of Eden
+  - Key: w-twin-statue
+    Names:
+      - Text: Twin Statue
+  - Key: w-bracelet
+    Names:
+      - Text: Bracelet
+  - Key: w-perfume
+    Names:
+      - Text: Perfume
+  - Key: w-spaulder
+    Names:
+      - Text: Spaulder
+      - Text: Shoulder rest of the fighting spirit
+        Weight: 0.1
+  - Key: w-dimension-key
+    Names:
+      - Text: Dimensional Key
+  - Key: w-icecape
+    Names:
+      - Text: Ice Cape
+      - Text: Ice Cloak
+  - Key: w-seal1
+    Names:
+      - Text: Origin Seal
+  - Key: w-seal2
+    Names:
+      - Text: Birth Seal
+  - Key: w-seal3
+    Names:
+      - Text: Life Seal
+  - Key: w-seal4
+    Names:
+      - Text: Death Seal
+  - Key: w-orb-guidance
+    Names:
+      - Text: Gate of Guidance Sacred Orb
+  - Key: w-orb-surface
+    Names:
+      - Text: Surface Sacred Orb
+  - Key: w-orb-maus
+    Names:
+      - Text: Mausoleum of the Giants Sacred Orb
+  - Key: w-orb-sun
+    Names:
+      - Text: Temple of the Sun Sacred Orb
+  - Key: w-orb-spring
+    Names:
+      - Text: Spring in the Sky Sacred Orb
+  - Key: w-orb-extinct
+    Names:
+      - Text: Chamber of Extinction Sacred Orb
+  - Key: w-orb-twins
+    Names:
+      - Text: Twin Labyrinths Sacred Orb
+  - Key: w-orb-shrine
+    Names:
+      - Text: Shrine of the Mother Sacred Orb
+  - Key: w-orb-ruin
+    Names:
+      - Text: Tower of Ruin Sacred Orb
+  - Key: w-orb-dimension
+    Names:
+      - Text: Dimensional Corridor Sacred Orb
+  - Key: w-map-surface
+    Names:
+      - Text: Surface Map
+  - Key: w-map-guidance
+    Names:
+      - Text: Guidance Gate Map
+  - Key: w-map-maus
+    Names:
+      - Text: Mausoleum of the Giants Map
+  - Key: w-map-sun
+    Names:
+      - Text: Temple of the Sun Map
+  - Key: w-map-spring
+    Names:
+      - Text: Spring of the Sky Map
+  - Key: w-map-inferno
+    Names:
+      - Text: Inferno Cavern Map
+  - Key: w-map-extinct
+    Names:
+      - Text: Chamber of Extinction Map
+  - Key: w-map-twins
+    Names:
+      - Text: Twin Labyrinths Map
+  - Key: w-map-endless
+    Names:
+      - Text: Endless Corridor Map
+  - Key: w-map-shrine
+    Names:
+      - Text: Shrine of the Mother Map
+  - Key: w-map-illusion
+    Names:
+      - Text: Confusion Gate Map
+  - Key: w-map-grave
+    Names:
+      - Text: Graveyard of the Giants Map
+  - Key: w-map-moon
+    Names:
+      - Text: Temple of Moonlight Map
+  - Key: w-map-goddess
+    Names:
+      - Text: Tower of the Goddess Map
+  - Key: w-map-ruins
+    Names:
+      - Text: Tower of Ruin Map
+  - Key: w-map-birth
+    Names:
+      - Text: Chamber of Birth Map
+  - Key: w-map-dimensional
+    Names:
+      - Text: Dimensional Corridor Map
+  - Key: w-soft-yagomap
+    Names:
+      - Text: Yagoo Map Reader
+      - Text: Map Reader
+      - Text: Map Software
+  - Key: w-soft-yagostr
+    Names:
+      - Text: Yagoo Map Street
+      - Text: Map Street
+      - Text: Street Software
+  - Key: w-soft-reader
+    Names:
+      - Text: Glyph Reader
+      - Text: Glyph Software
+  - Key: w-soft-xmailer
+    Names:
+      - Text: x mailer
+      - Text: xelpud mailer
+      - Text: G-Mail
+  - Key: w-soft-bunemon
+    Names:
+      - Text: Text Trax
+  - Key: w-soft-bunplus
+    Names:
+      - Text: Additional Text Memory
+  - Key: w-soft-torude
+    Names:
+      - Text: Snapshots Software
+  - Key: w-soft-guild
+    Names:
+      - Text: Guild Software
+      - Text: Shop Chime
+  - Key: w-soft-mantra
+    Names:
+      - Text: Mantra Software
+  - Key: w-soft-emusic
+    Names:
+      - Text: Enga Musica
+      - Text: Ancient iTunes
+  - Key: w-soft-beolamu
+    Names:
+      - Text: Beo La-Mulana
+      - Text: Sony Walkman
+  - Key: w-soft-deathv
+    Names:
+      - Text: Death Village Software
+  - Key: w-soft-randc
+    Names:
+      - Text: Rose and Camillia Software
+  - Key: w-soft-capstar
+    Names:
+      - Text: Space Capster Software
+  - Key: w-soft-move
+    Names:
+      - Text: Lonely House Moving Software
+  - Key: w-soft-mekuri
+    Names:
+      - Text: Mekuri Master Software
+  - Key: w-soft-bounce
+    Names:
+      - Text: Bounce Shot Software
+  - Key: w-soft-miracle
+    Names:
+      - Text: Miracle Witch Software
+  - Key: w-soft-mirai
+    Names:
+      - Text: Future Development Company Software
+  - Key: w-soft-lamulana
+    Names:
+      - Text: La-Mulana Software
+  - Key: boss-amphisbaena
+    Names:
+      - Text: Amphisbaena
+      - Text: King Konda
+  - Key: boss-sakit
+    Names:
+      - Text: Sakit
+  - Key: boss-ellmac
+    Names:
+      - Text: Ellmac
+  - Key: boss-bahamut
+    Names:
+      - Text: Bahamut
+  - Key: boss-viy
+    Names:
+      - Text: Viy
+  - Key: boss-palenque
+    Names:
+      - Text: Palenque
+  - Key: boss-baphomet
+    Names:
+      - Text: Baphomet
+  - Key: boss-tiamat
+    Names:
+      - Text: Tiamat
+  - Key: w-treasures
+    Names:
+      - Text: Treasures
+  - Key: w-diary
+    Names:
+      - Text: Diary
+  - Key: w-mulanatalisman
+    Names:
+      - Text: Mulana Talisman
+  - Key: w-forbidden
+    Names:
+      - Text: w-forbidden
+  - Key: w-msx2
+    Names:
+      - Text: w-msx2
+  - Key: w-medicine-yellow
+    Names:
+      - Text: w-medicine-yellow
+  - Key: w-medicine-green
+    Names:
+      - Text: w-medicine-green
+  - Key: w-medicine-red
+    Names:
+      - Text: w-medicine-red
+  - Key: w-maternity
+    Names:
+      - Text: Mulana Talisman
+  - Key: fairypointsactive
+    Names:
+      - Text: fairypointsactive
+  - Key: mantra-amphisbaena
+    Names:
+      - Text: mantra-amphisbaena
+  - Key: mantra-sakit
+    Names:
+      - Text: mantra-sakit
+  - Key: mantra-ellmac
+    Names:
+      - Text: mantra-ellmac
+  - Key: mantra-bahamut
+    Names:
+      - Text: mantra-bahamut
+  - Key: mantra-viy
+    Names:
+      - Text: mantra-viy
+  - Key: mantra-palenque
+    Names:
+      - Text: mantra-palenque
+  - Key: mantra-baphomet
+    Names:
+      - Text: mantra-baphomet
+  - Key: mantra-tiamat
+    Names:
+      - Text: mantra-tiamat
+  - Key: mantra-keysword
+    Names:
+      - Text: mantra-keysword
+  - Key: rosetta-count
+    Names:
+      - Text: rosetta-count
+  - Key: learnt-lamulanese
+    Names:
+      - Text: learnt-lamulanese
+  - Key: game-started
+    Names:
+      - Text: game-started
+  - Key: orb-count
+    Names:
+      - Text: orb-count
+  - Key: orb-guidance
+    Names:
+      - Text: Gate of Guidance Sacred Orb
+  - Key: orb-surface
+    Names:
+      - Text: Surface Sacred Orb
+  - Key: orb-maus
+    Names:
+      - Text: Mausoleum of the Giants Sacred Orb
+  - Key: orb-sun
+    Names:
+      - Text: Temple of the Sun Sacred Orb
+  - Key: orb-spring
+    Names:
+      - Text: Spring in the Sky Sacred Orb
+  - Key: orb-extinct
+    Names:
+      - Text: Chamber of Extinction Sacred Orb
+  - Key: orb-twins
+    Names:
+      - Text: Twin Labyrinths Sacred Orb
+  - Key: orb-shrine-f
+    Names:
+      - Text: Shrine of the Mother Sacred Orb
+  - Key: orb-ruin
+    Names:
+      - Text: Tower of Ruin Sacred Orb
+  - Key: orb-dimension
+    Names:
+      - Text: Dimensional Corridor Sacred Orb
+  - Key: w-map-a94
+    Names:
+      - Text: w-map-a94
+  - Key: w-map-a95
+    Names:
+      - Text: w-map-a95
+  - Key: w-map-a96
+    Names:
+      - Text: w-map-a96
+  - Key: w-map-a97
+    Names:
+      - Text: w-map-a97
+  - Key: w-map-a98
+    Names:
+      - Text: w-map-a98
+  - Key: w-map-a99
+    Names:
+      - Text: w-map-a99
+  - Key: w-map-a9a
+    Names:
+      - Text: w-map-a9a
+  - Key: w-map-a9b
+    Names:
+      - Text: w-map-a9b
+  - Key: w-map-a9c
+    Names:
+      - Text: w-map-a9c
+  - Key: w-map-a9d
+    Names:
+      - Text: w-map-a9d
+  - Key: w-map-a9e
+    Names:
+      - Text: w-map-a9e
+  - Key: w-map-a9f
+    Names:
+      - Text: w-map-a9f
+  - Key: w-map-aa0
+    Names:
+      - Text: w-map-aa0
+  - Key: w-map-aa1
+    Names:
+      - Text: w-map-aa1
+  - Key: w-map-aa2
+    Names:
+      - Text: w-map-aa2
+  - Key: w-map-aa3
+    Names:
+      - Text: w-map-aa3
+  - Key: whip
+    Names:
+      - Text: whip
+  - Key: shield-buckler
+    Names:
+      - Text: Buckler Shield
+  - Key: shield-silver
+    Names:
+      - Text: Silver Shield
+  - Key: shield-angel
+    Names:
+      - Text: Angel Shield
+  - Key: recent-buckler
+    Names:
+      - Text: Buckler Shield
+  - Key: recent-silver
+    Names:
+      - Text: Silver Shield
+  - Key: recent-angel
+    Names:
+      - Text: Angel Shield
+  - Key: recent-fake
+    Names:
+      - Text: Fake Silver Shield
+  - Key: ankh-jewels
+    Names:
+      - Text: Ankh Jewel
+  - Key: invus-lamp-lit
+    Names:
+      - Text: invus-lamp-lit
+  - Key: maps
+    Names:
+      - Text: maps
+  - Key: invtr-treasures
+    Names:
+      - Text: invtr-treasures
+  - Key: invus-diary
+    Names:
+      - Text: invus-diary
+  - Key: shield-fake
+    Names:
+      - Text: shield-fake
+  - Key: invus-lamp-unlit
+    Names:
+      - Text: invus-lamp-unlit
+  - Key: invtr-grailbr
+    Names:
+      - Text: invtr-grailbr
+  - Key: invtr-grailfull
+    Names:
+      - Text: invtr-grailfull
+  - Key: weights
+    Names:
+      - Text: weights
+  - Key: coins
+    Names:
+      - Text: coins
+  - Key: ammo-shuriken
+    Names:
+      - Text: ammo-shuriken
+  - Key: ammo-roll-shuriken
+    Names:
+      - Text: ammo-roll-shuriken
+  - Key: ammo-spear
+    Names:
+      - Text: ammo-spear
+  - Key: ammo-flare
+    Names:
+      - Text: ammo-flare
+  - Key: ammo-bomb
+    Names:
+      - Text: ammo-bomb
+  - Key: ammo-chakram
+    Names:
+      - Text: ammo-chakram
+  - Key: ammo-caltrop
+    Names:
+      - Text: ammo-caltrop
+  - Key: ammo-clip
+    Names:
+      - Text: ammo-clip
+  - Key: ammo-mystery-73
+    Names:
+      - Text: ammo-mystery-73
+  - Key: ammo-bullet
+    Names:
+      - Text: ammo-bullet
+  - Key: death-tracker
+    Names:
+      - Text: death-tracker
+Responses:
+  BasicItemTracked: 
+  - Text: Tracked {0}
+  - Text: You got {0}
+  BossDefeated: 
+  - Text: Defeated boss {0}
+  MultiStepItemTracked: 
+  - Text: Multi step item {0} is now a {1}

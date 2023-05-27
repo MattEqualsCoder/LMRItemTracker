@@ -4,12 +4,12 @@ namespace LMRItemTracker
 {
     class MultiStateTrackerBox : System.Windows.Forms.PictureBox
     {
-        public System.Drawing.Bitmap[] CollectedImages { get; set; }
-        public System.Drawing.Image ShadedImage { get; set; }
-        public System.Drawing.Image SolidImage { get; set; }
+        public System.Drawing.Bitmap[]? CollectedImages { get; set; }
+        public System.Drawing.Image? ShadedImage { get; set; }
+        public System.Drawing.Image? SolidImage { get; set; }
 
-        private bool[] Collected;
-
+        private bool[]? Collected;
+        
         public MultiStateTrackerBox()
         {
             Collected = null;
@@ -18,29 +18,33 @@ namespace LMRItemTracker
             ShadedImage = null;
             SolidImage = null;
 
-            Paint += new System.Windows.Forms.PaintEventHandler(HandlePaint);
+            Paint += HandlePaint;
         }
 
         public void ToggleState(bool isCollected, int index)
         {
-            if(Collected == null)
+            if(Collected == null && CollectedImages != null)
             {
                 Collected = new bool[CollectedImages.Length];
             }
-            Collected[index] = isCollected;
+            Collected![index] = isCollected;
             Redraw();
         }
 
         private void DetermineImage()
         {
+            
             bool collectedAny = false;
-            for (int i = 0; i < Collected.Length; i++)
+            if (Collected != null && CollectedImages != null)
             {
-                if(Collected[i])
+                for (int i = 0; i < Collected.Length; i++)
                 {
-                    BackgroundImage = CollectedImages[i];
-                    collectedAny = true;
-                    break;
+                    if(Collected[i])
+                    {
+                        BackgroundImage = CollectedImages[i];
+                        collectedAny = true;
+                        break;
+                    }
                 }
             }
 
@@ -75,7 +79,7 @@ namespace LMRItemTracker
         {
             if (InvokeRequired)
             {
-                Invoke(new System.Action(() =>
+                Invoke(new Action(() =>
                 {
                     DetermineImage();
                     Refresh();

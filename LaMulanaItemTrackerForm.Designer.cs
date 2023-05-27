@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using LMRItemTracker.Configs;
+using LMRItemTracker.VoiceTracker;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace LMRItemTracker
 {
@@ -3099,7 +3104,31 @@ namespace LMRItemTracker
         [STAThread]
         static void Main(string[] args)
         {
-            Application.Run(new LMRItemTracker.LaMulanaItemTrackerForm());
+            var _host = Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging =>
+                {
+                    logging.AddFile($"%LocalAppData%\\LMRItemTracker\\lmr-tracker-{DateTime.UtcNow:yyyyMMdd}.log",
+                        options =>
+                        {
+                            options.Append = true;
+                            options.FileSizeLimitBytes = 1024 * 1024 * 20;
+                            options.MaxRollingFiles = 5;
+                        });
+                })
+                .ConfigureServices((context, services) => ConfigureServices(services))
+                .Start();
+
+            var form = _host.Services.GetRequiredService<LaMulanaItemTrackerForm>();
+            Application.Run(form);
+        }
+
+        protected static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<ConfigService>();
+            services.AddSingleton<LaMulanaItemTrackerForm>();
+            services.AddSingleton<TextToSpeechService>();
+            services.AddSingleton<VoiceRecognitionService>();
+            services.AddSingleton<TrackerService>();
         }
 
         private ColorDialog textColorDialog;

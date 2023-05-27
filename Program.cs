@@ -6,6 +6,7 @@ using LiveSplit.ComponentUtil;
 using System.Xml.Linq;
 using System.ComponentModel;
 using System.IO;
+using LMRItemTracker.EyeOfTruth.Shared;
 
 namespace LMRItemTracker
 {

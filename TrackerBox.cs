@@ -8,11 +8,11 @@ namespace LMRItemTracker
         public bool ForeCollected { get; set; }
         public bool RedrawOnStateChange { get; set; }
 
-        public System.Drawing.Image CollectedImage { get; set; }
-        public System.Drawing.Image ShadedImage { get; set; }
-        public System.Drawing.Image SolidImage { get; set; }
+        public System.Drawing.Image? CollectedImage { get; set; }
+        public System.Drawing.Image? ShadedImage { get; set; }
+        public System.Drawing.Image? SolidImage { get; set; }
 
-        public System.Drawing.Image ForeImage { get; set; }
+        public System.Drawing.Image? ForeImage { get; set; }
 
         public TrackerBox()
         {
@@ -25,7 +25,7 @@ namespace LMRItemTracker
 
             ForeImage = null;
 
-            Paint += new System.Windows.Forms.PaintEventHandler(HandlePaint);
+            Paint += HandlePaint;
         }
 
         public void ToggleState(bool isCollected)

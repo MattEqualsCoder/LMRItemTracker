@@ -5,8 +5,8 @@
         private static System.Drawing.Size NO_AMMO_HEIGHT = new System.Drawing.Size(40, 40);
         private static System.Drawing.Size AMMO_HEIGHT = new System.Drawing.Size(40, 56);
 
-        public TrackerBox Item { get; set; }
-        public PistolAmmoTrackerLabel Label { get; set; }
+        public TrackerBox? Item { get; set; }
+        public PistolAmmoTrackerLabel? Label { get; set; }
 
         public PistolPanel()
         {
@@ -16,13 +16,13 @@
 
         public void UpdateCount(int newCount, bool isClip)
         {
-            Label.UpdateCount(newCount, isClip);
+            Label?.UpdateCount(newCount, isClip);
             Redraw();
         }
 
         public void ToggleState(bool isAdd)
         {
-            Item.ToggleState(isAdd);
+            Item?.ToggleState(isAdd);
             Redraw();
         }
 
@@ -33,14 +33,14 @@
                 Invoke(new System.Action(() =>
                 {
                     UpdatePanel();
-                    Item.Redraw();
+                    Item?.Redraw();
                     Refresh();
                 }));
             }
             else
             {
                 UpdatePanel();
-                Item.Redraw();
+                Item?.Redraw();
                 Refresh();
             }
 
@@ -52,12 +52,12 @@
             {
                 Size = NO_AMMO_HEIGHT;
             }
-            else if (Item.Collected)
+            else if (Item?.Collected == true && Label != null)
             {
                 Size = AMMO_HEIGHT;
                 Label.Visible = true;
             }
-            else if (!"hide".Equals(Properties.Settings.Default.BackgroundMode))
+            else if (!"hide".Equals(Properties.Settings.Default.BackgroundMode) && Label != null)
             {
                 Size = AMMO_HEIGHT;
                 Label.Visible = false;
@@ -67,7 +67,7 @@
                 Size = NO_AMMO_HEIGHT;
             }
 
-            if (!Item.Collected && "hide".Equals(Properties.Settings.Default.BackgroundMode))
+            if (Item?.Collected == true && "hide".Equals(Properties.Settings.Default.BackgroundMode))
             {
                 Visible = false;
             }
