@@ -136,6 +136,14 @@ public class SchrodingersString : Collection<SchrodingersString.Possibility>
 
     private double GetTotalWeight() => Items.Sum(x => x.Weight);
     
+    public void Merge(SchrodingersString other)
+    {
+        foreach (var possibility in other.Where(x => !Contains(x)))
+        {
+            base.Add(possibility);
+        }
+    }
+    
     /// <summary>
     /// Represents one possibility of a <see cref="SchrodingersString"/>.
     /// </summary>
@@ -222,7 +230,7 @@ public class SchrodingersString : Collection<SchrodingersString.Possibility>
         {
             if (other is Possibility otherPossibility)
             {
-                return Text.Equals(otherPossibility.Text) && Weight == otherPossibility.Weight;
+                return Text.Equals(otherPossibility.Text) && Math.Abs(Weight - otherPossibility.Weight) <= 0.1;
             }
             return false;
         }

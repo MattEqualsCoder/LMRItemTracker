@@ -69,6 +69,9 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Humanizer, Version=2.14.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>packages\Humanizer.Core.2.14.1\lib\netstandard2.0\Humanizer.dll</HintPath>
+    </Reference>
     <Reference Include="LiveSplit.Core">
       <HintPath>LiveSplit.Core.dll</HintPath>
     </Reference>
@@ -222,6 +225,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs\CustomConfig.cs" />
+    <Compile Include="Configs\CustomPrompt.cs" />
+    <Compile Include="Configs\ItemsConfig.cs" />
+    <Compile Include="Configs\ItemType.cs" />
+    <Compile Include="Configs\LocationConfig.cs" />
+    <Compile Include="Configs\MergeableConfig.cs" />
+    <Compile Include="Configs\RollupResponses.cs" />
+    <Compile Include="Configs\RegionConfig.cs" />
+    <Compile Include="Configs\RegionsConfig.cs" />
     <Compile Include="Configs\ResponseConfig.cs" />
     <Compile Include="Configs\ConfigService.cs" />
     <Compile Include="Configs\ItemConfig.cs" />
@@ -270,7 +282,15 @@
     <Compile Include="TrackerLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="VoiceTracker\GrammarBuilder2.cs" />
+    <Compile Include="TrackerSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackerSettingsForm.Designer.cs">
+      <DependentUpon>TrackerSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VoiceTracker\GrammarBuilder.cs" />
+    <Compile Include="VoiceTracker\HintService.cs" />
+    <Compile Include="VoiceTracker\MetaService.cs" />
     <Compile Include="VoiceTracker\TextToSpeechService.cs" />
     <Compile Include="VoiceTracker\TrackerService.cs" />
     <Compile Include="VoiceTracker\VoiceRecognitionService.cs" />
@@ -287,6 +307,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Configs\yaml\custom.yml" />
+    <EmbeddedResource Include="Configs\yaml\items.yml" />
+    <EmbeddedResource Include="Configs\yaml\locations.yml" />
+    <EmbeddedResource Include="Configs\yaml\responses.yml" />
     <EmbeddedResource Include="LaMulanaItemTrackerForm.resx">
       <DependentUpon>LaMulanaItemTrackerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -295,6 +319,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackerSettingsForm.resx">
+      <DependentUpon>TrackerSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1107,10 +1134,13 @@
     <None Include="Resources\Icon_keyfairy_solid.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Configs\config.yml" />
+    <Compile Include="Configs\SchrodingersString.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configs\SchrodingersString.cs" />
+    <Compile Include="Configs\LocationsConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Configs\yaml\regions.yml" />
   </ItemGroup>
   <Import Project="EyeOfTruth.Shared\EyeOfTruth.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

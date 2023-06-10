@@ -1,0 +1,157 @@
+﻿# This file contains the list of responses that Tracker will say when stuff happens, either automatically or when prompted
+# by the user.
+
+# Lines for when an item is collected
+# Type: Weighted Possibilities
+# {0} is replaced with the item's name
+# {1} is replaced with the item's name with an article in front of it
+BasicItemTracked:
+- Text: "Tracked {0}"
+- Text: "You got {1}"
+  
+# Lines for when a boss has been defeated
+# Type: Weighted Possibilities
+# {0} is replaced with the boss's name
+BossDefeated:
+- Text: "Defeated boss {0}"
+
+# Lines for when a player has died
+# Type: Rollup Responses
+# {0} is replaced with the number of deaths
+# {1} is replaced with the number of deaths with any suffix (1st, 2nd, 3rd, etc.)
+PlayerDied:
+  1: 
+    - Text: "Wow, only your first death?"
+  2:
+    - Text: "Good job on {0} deaths"
+    - Text: "I'm proud of you for getting your {1} death"
+ 
+# Lines for picking up an item with multiple copies after the first one. Currently only used for ankh jewels.
+# Type: Rollup Responses
+# {0} is replaced with the singular name of the item
+# {1} is replaced with the plural name of the item
+# {2} is replaced with the number of items collected
+# {3} is replaced with the number of items collected with any suffix (1st, 2nd, 3rd, etc.)
+MultiItemTracked:
+  1:
+    - Text: "Congrats on your first {0}"
+  2:
+    - Text: "Congrats on getting {2} {1}"
+    - Text: "Congrats on getting your {3} {0}"
+  
+# Lines for when you first start playing the game
+# Type: Weighted Possibilities
+StartedGame:
+- Text: "So it begins"
+  
+# Lines for when hints are enabled
+# Type: Weighted Possibilities
+EnabledHints:
+- Text: "Toggled hints on"
+  
+# Lines for when spoilers are enabled
+# Type: Weighted Possibilities
+EnabledSpoilers:
+- Text: "Toggled spoilers on"
+  
+# Lines for when either spoilers or hints are disabled
+# Type: Weighted Possibilities
+DisabledHintsAndSpoilers:
+- Text: "Disabled hints and spoilers " 
+  
+# Lines for when you've run out of available hints for and item or location and will need to enable spoilers
+# Type: Weighted Possibilities
+NoHintsAvailable:
+- Text: "I don't have any hints for {0}"
+- Text: "You'll want to enable spoilers to find out about {0}"
+  
+# Lines for when asking for a hint for where you can find an item
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the item
+# {1} is replaced with the name of the location where the item can be found
+HintItem:
+- Text: "You can find {0} at {1}"
+- Text: "You'll want to go to {1} for {0}"
+  
+# Lines for what's at a specific location
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the item(s) at a location. If spoilers are enabled, this will be the
+      # actual name of the item. If hints are enabled and the item has hints, then it will use the name
+      # the hint.
+# {1} is replaced with the name of the location
+HintLocation:
+- Text: "You can find {0} at {1}"
+- Text: "{1} contains {0}"
+  
+# Lines for when asking for a hint when hints are disabled
+# Type: Weighted Possibilities
+NeedToEnableHints:
+- Text: "If you need help, say Hey Tracker Enable Hints or Hey Tracker Enable Spoilers"
+  
+# Lines for giving a hint when location has at least one progression/potentially progression/ankh jewel
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the location
+LocationHasProgressionItem:
+- Text: "{0} has something you'll most likely need"
+
+# Lines for giving a hint when a location has at least one nice to have item
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the location
+LocationHasNiceToHaveItem:
+- Text: "You'll find something nice at {0}, but it's not required"
+
+# Lines for giving a hint when a location doesn't have anything good
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the location
+LocationHasUselessItem:
+- Text: "You don't need to bother with {0}"
+
+# Lines for giving a hint when a region doesn't have anything good
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the region
+RegionHasNothingUseful:
+- Text: "You won't find anything useful in {0}"
+
+# Lines for giving a hint when a region has progression items, including ankh jewels
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the region
+# {1} is replaced with a phrase like "1 item" or "3 items"
+RegionHasProgression:
+- Text: "{0} has {1} that you might need to finish the game"
+
+# Lines for giving a hint when a region has something nice in it
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the region
+# {1} is replaced with a phrase like "1 item" or "3 items"
+RegionHasSomethingNice:
+- Text: "{0} has {1} that could be nice, but they won't get you anywhere"
+
+# Lines for giving a spoiler for the items in a region
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the region
+# {1} is replaced with the item names
+RegionItems:
+- Text: "You can find {1} in {0}"
+
+# Lines for giving a hint at where ankh jewels are
+# Type: Weighted Possibilities
+# {0} is replaced with the region name the hint is for
+# {1} is replaced with a phase like "an ankh jewel" or "3 ankh jewels"
+HintAnkhJewel:
+- Text: "You can find {1} in {0}"
+
+# Lines for giving spoilers at the locations of the ankh jewels
+# Type: Weighted Possibilities
+# {0} is replaced with the list of locations for ankh jewels
+AnkhJewelLocations:
+- Text: "You can find Ankh Jewels at the following locations: {0}"
+
+# Lines for when tracker does not recognize a phase
+# Type: Weighted Possibilities
+UnrecognizedLine:
+- Text: "What was that?"
+
+# Lines for when nothing has happened between 8-12 minutes
+# Type: Weighted Possibilities
+IdleMessage:
+- Text: "Are we going to be here all day?"

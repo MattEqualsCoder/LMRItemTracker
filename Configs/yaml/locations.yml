@@ -1,0 +1,978 @@
+﻿# Config file for locations in the game that can have items
+
+# Fields
+# ------
+# Key (string): Unique name for locations found in the spoiler file. Used for merging the same item between different config files.  Do not modify.
+# Names (weighted possibilities): Different names tracker will refer to an location by when speaking
+# Hints (list of strings): A list of generic ways to refer to an location when a person is asking where an item is
+#     When asking for hints, Tracker will start at the first one, then will go down the list when asking for more hints.
+#     Ideally, hints should be shared between different locations so that people won't be able to discern a location by
+#     a single hint.
+# Region (string): The region the location is contained in
+
+# Example
+# Locations:
+#   - Key: "Anchor location"
+#     Names:
+#       - Text: "Anchor location"
+#     Hints:
+#       - "someone's abode"
+#       - "a place where you can get more than one item"
+#       - "somewhere in the Gate of Illusion"
+#     Region: "Gate of Illusion"
+
+Locations:
+  - Key: "Anchor location"
+    Names:
+      - Text: "Anchor location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Angel Shield location"
+    Names:
+      - Text: "Angel Shield location"
+    Hints:
+      - "somewhere in the Dimensional Corridor"
+    Region: "Dimensional Corridor"
+  - Key: "Ankh Jewel (Dimensional Corridor) location"
+    Names:
+      - Text: "Ankh Jewel (Dimensional Corridor) location"
+    Hints:
+      - "somewhere in the Dimensional Corridor"
+    Region: "Dimensional Corridor"
+  - Key: "Ankh Jewel (Gate of Guidance) location"
+    Names:
+      - Text: "Ankh Jewel (Gate of Guidance) location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Ankh Jewel (Mausoleum of the Giants) location"
+    Names:
+      - Text: "Ankh Jewel (Mausoleum of the Giants) location"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "Ankh Jewel (Spring in the Sky) location"
+    Names:
+      - Text: "Ankh Jewel (Spring in the Sky) location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Ankh Jewel (Temple of the Sun) location"
+    Names:
+      - Text: "Ankh Jewel (Temple of the Sun) location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Ankh Jewel (Tower of Ruin) location"
+    Names:
+      - Text: "Ankh Jewel (Tower of Ruin) location"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "Ankh Jewel (Twin Labyrinths) location"
+    Names:
+      - Text: "Ankh Jewel (Twin Labyrinths) location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Axe location"
+    Names:
+      - Text: "Axe location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "beolamu.exe location"
+    Names:
+      - Text: "beolamu.exe location"
+    Hints:
+      - "somewhere in the Dimensional Corridor"
+    Region: "Dimensional Corridor"
+  - Key: "Birth Seal location"
+    Names:
+      - Text: "Birth Seal location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Bomb location"
+    Names:
+      - Text: "Bomb location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Book of the Dead location"
+    Names:
+      - Text: "Book of the Dead location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "bounce.exe location"
+    Names:
+      - Text: "bounce.exe location"
+    Hints:
+      - "somewhere in the Shrine of the Mother"
+    Region: "Shrine of the Mother"
+  - Key: "Bronze Mirror location"
+    Names:
+      - Text: "Bronze Mirror location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "bunplus.com location"
+    Names:
+      - Text: "bunplus.com location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Caltrops location"
+    Names:
+      - Text: "Caltrops location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Chain Whip location"
+    Names:
+      - Text: "Chain Whip location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Chakram location"
+    Names:
+      - Text: "Chakram location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Chamber of Birth (Hanuman's Room) coin chest location"
+    Names:
+      - Text: "Chamber of Birth (Hanuman's Room) coin chest location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Chamber of Birth (Surrounding Wall of Spikes) coin chest location"
+    Names:
+      - Text: "Chamber of Birth (Surrounding Wall of Spikes) coin chest location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Chamber of Birth (Vishnu's Room) coin chest location"
+    Names:
+      - Text: "Chamber of Birth (Vishnu's Room) coin chest location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Chamber of Extinction (Darkness Approach) coin chest location"
+    Names:
+      - Text: "Chamber of Extinction (Darkness Approach) coin chest location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Cog of the Soul location"
+    Names:
+      - Text: "Cog of the Soul location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Crucifix location"
+    Names:
+      - Text: "Crucifix location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Crystal Skull location (Cursed)"
+    Names:
+      - Text: "Crystal Skull location (Cursed)"
+    Hints:
+      - "somewhere in the Shrine of the Mother"
+    Region: "Shrine of the Mother"
+  - Key: "Death Seal location"
+    Names:
+      - Text: "Death Seal location"
+    Hints:
+      - "somewhere in the Shrine of the Mother"
+    Region: "Shrine of the Mother"
+  - Key: "deathv.exe location"
+    Names:
+      - Text: "deathv.exe location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Diary location"
+    Names:
+      - Text: "Diary location"
+    Hints:
+      - "somewhere in the Shrine of the Mother"
+    Region: "Shrine of the Mother"
+  - Key: "Dimensional Corridor (Anshar's Room) coin chest location"
+    Names:
+      - Text: "Dimensional Corridor (Anshar's Room) coin chest location"
+    Hints:
+      - "somewhere in the Dimensional Corridor"
+    Region: "Dimensional Corridor"
+  - Key: "Dimensional Key location (Cursed)"
+    Names:
+      - Text: "Dimensional Key location (Cursed)"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Djed Pillar location (Cursed)"
+    Names:
+      - Text: "Djed Pillar location (Cursed)"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "Earth Spear location"
+    Names:
+      - Text: "Earth Spear location"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "emusic.exe location"
+    Names:
+      - Text: "emusic.exe location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Endless Corridor (Third Endless Corridor) coin chest location"
+    Names:
+      - Text: "Endless Corridor (Third Endless Corridor) coin chest location"
+    Hints:
+      - "somewhere in the Endless Corridor"
+    Region: "Endless Corridor"
+  - Key: "Exploding Chest trap location"
+    Names:
+      - Text: "Exploding Chest trap location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Eye of Truth location"
+    Names:
+      - Text: "Eye of Truth location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Fairy Clothes location"
+    Names:
+      - Text: "Fairy Clothes location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Feather location"
+    Names:
+      - Text: "Feather location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Flail Whip location"
+    Names:
+      - Text: "Flail Whip location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Flare Gun location"
+    Names:
+      - Text: "Flare Gun location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Fruit of Eden location"
+    Names:
+      - Text: "Fruit of Eden location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Gate of Guidance (Gate of Giant Faces) coin chest location"
+    Names:
+      - Text: "Gate of Guidance (Gate of Giant Faces) coin chest location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Gate of Guidance (Room of Courage) coin chest location"
+    Names:
+      - Text: "Gate of Guidance (Room of Courage) coin chest location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Gate of Illusion (Entrance of Illusion) coin chest location"
+    Names:
+      - Text: "Gate of Illusion (Entrance of Illusion) coin chest location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Gate of Illusion (Mausoleum of Fairies) coin chest location"
+    Names:
+      - Text: "Gate of Illusion (Mausoleum of Fairies) coin chest location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Gauntlet location"
+    Names:
+      - Text: "Gauntlet location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Glove location"
+    Names:
+      - Text: "Glove location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Grapple Claw location"
+    Names:
+      - Text: "Grapple Claw location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Graveyard of the Giants (First Tomb) coin chest location"
+    Names:
+      - Text: "Graveyard of the Giants (First Tomb) coin chest location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Graveyard of the Giants (Path to the Graveyard) trap location"
+    Names:
+      - Text: "Graveyard of the Giants (Path to the Graveyard) trap location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Holy Grail location"
+    Names:
+      - Text: "Holy Grail location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Ice Cape location"
+    Names:
+      - Text: "Ice Cape location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Inferno Cavern (Echidna's Chamber) coin chest location"
+    Names:
+      - Text: "Inferno Cavern (Echidna's Chamber) coin chest location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Inferno Cavern (Twin's Footstool) coin chest location"
+    Names:
+      - Text: "Inferno Cavern (Twin's Footstool) coin chest location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Inferno Cavern (Twin's Footstool) trap location"
+    Names:
+      - Text: "Inferno Cavern (Twin's Footstool) trap location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Isis' Pendant location"
+    Names:
+      - Text: "Isis' Pendant location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Katana location"
+    Names:
+      - Text: "Katana location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Key of Eternity location"
+    Names:
+      - Text: "Key of Eternity location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Key Sword location"
+    Names:
+      - Text: "Key Sword location"
+    Hints:
+      - "somewhere in the Endless Corridor"
+    Region: "Endless Corridor"
+  - Key: "Knife location"
+    Names:
+      - Text: "Knife location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "lamulana.exe location"
+    Names:
+      - Text: "lamulana.exe location"
+    Hints:
+      - "somewhere in the Gate of Time"
+    Region: "Gate of Time"
+  - Key: "Life Seal location"
+    Names:
+      - Text: "Life Seal location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Magatama Jewel location (Cursed)"
+    Names:
+      - Text: "Magatama Jewel location (Cursed)"
+    Hints:
+      - "somewhere in the Dimensional Corridor"
+    Region: "Dimensional Corridor"
+  - Key: "mantra.exe location"
+    Names:
+      - Text: "mantra.exe location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Map (Chamber of Birth) location"
+    Names:
+      - Text: "Map (Chamber of Birth) location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Map (Chamber of Extinction) location"
+    Names:
+      - Text: "Map (Chamber of Extinction) location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Map (Dimensional Corridor) location"
+    Names:
+      - Text: "Map (Dimensional Corridor) location"
+    Hints:
+      - "somewhere in the Dimensional Corridor"
+    Region: "Dimensional Corridor"
+  - Key: "Map (Endless Corridor) location"
+    Names:
+      - Text: "Map (Endless Corridor) location"
+    Hints:
+      - "somewhere in the Endless Corridor"
+    Region: "Endless Corridor"
+  - Key: "Map (Gate of Guidance) location"
+    Names:
+      - Text: "Map (Gate of Guidance) location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Map (Gate of Illusion) location"
+    Names:
+      - Text: "Map (Gate of Illusion) location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Map (Graveyard of the Giants) location"
+    Names:
+      - Text: "Map (Graveyard of the Giants) location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Map (Inferno Cavern) location"
+    Names:
+      - Text: "Map (Inferno Cavern) location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Map (Mausoleum of the Giants) location"
+    Names:
+      - Text: "Map (Mausoleum of the Giants) location"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "Map (Shrine of the Mother) location"
+    Names:
+      - Text: "Map (Shrine of the Mother) location"
+    Hints:
+      - "somewhere in the Shrine of the Mother"
+    Region: "Shrine of the Mother"
+  - Key: "Map (Spring in the Sky) location"
+    Names:
+      - Text: "Map (Spring in the Sky) location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Map (Surface) location"
+    Names:
+      - Text: "Map (Surface) location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Map (Temple of Moonlight) location"
+    Names:
+      - Text: "Map (Temple of Moonlight) location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Map (Temple of the Sun) location"
+    Names:
+      - Text: "Map (Temple of the Sun) location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Map (Tower of Ruin) location"
+    Names:
+      - Text: "Map (Tower of Ruin) location"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "Map (Tower of the Goddess) location"
+    Names:
+      - Text: "Map (Tower of the Goddess) location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Map (Twin Labyrinths) location"
+    Names:
+      - Text: "Map (Twin Labyrinths) location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Maternity Statue location"
+    Names:
+      - Text: "Maternity Statue location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Mausoleum of the Giants (Last Shrine) coin chest location"
+    Names:
+      - Text: "Mausoleum of the Giants (Last Shrine) coin chest location"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "mekuri.exe location"
+    Names:
+      - Text: "mekuri.exe location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Mini Doll location"
+    Names:
+      - Text: "Mini Doll location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "mirai.exe location"
+    Names:
+      - Text: "mirai.exe location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Mulana Talisman location"
+    Names:
+      - Text: "Mulana Talisman location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Origin Seal location"
+    Names:
+      - Text: "Origin Seal location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Pepper location"
+    Names:
+      - Text: "Pepper location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Perfume location"
+    Names:
+      - Text: "Perfume location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Philosopher's Ocarina location"
+    Names:
+      - Text: "Philosopher's Ocarina location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Plane Model location"
+    Names:
+      - Text: "Plane Model location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Pochette Key location"
+    Names:
+      - Text: "Pochette Key location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Provocative Bathing Suit location"
+    Names:
+      - Text: "Provocative Bathing Suit location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Ring location"
+    Names:
+      - Text: "Ring location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Rolling Shuriken location"
+    Names:
+      - Text: "Rolling Shuriken location"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "Sacred Orb (Chamber of Extinction) location"
+    Names:
+      - Text: "Sacred Orb (Chamber of Extinction) location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Sacred Orb (Dimensional Corridor) location"
+    Names:
+      - Text: "Sacred Orb (Dimensional Corridor) location"
+    Hints:
+      - "somewhere in the Dimensional Corridor"
+    Region: "Dimensional Corridor"
+  - Key: "Sacred Orb (Gate of Guidance) location"
+    Names:
+      - Text: "Sacred Orb (Gate of Guidance) location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Sacred Orb (Mausoleum of the Giants) location"
+    Names:
+      - Text: "Sacred Orb (Mausoleum of the Giants) location"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "Sacred Orb (Shrine of the Mother) location"
+    Names:
+      - Text: "Sacred Orb (Shrine of the Mother) location"
+    Hints:
+      - "somewhere in the Shrine of the Mother"
+    Region: "Shrine of the Mother"
+  - Key: "Sacred Orb (Spring in the Sky) location"
+    Names:
+      - Text: "Sacred Orb (Spring in the Sky) location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Sacred Orb (Surface) location"
+    Names:
+      - Text: "Sacred Orb (Surface) location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Sacred Orb (Temple of the Sun) location"
+    Names:
+      - Text: "Sacred Orb (Temple of the Sun) location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Sacred Orb (Tower of Ruin) location"
+    Names:
+      - Text: "Sacred Orb (Tower of Ruin) location"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "Sacred Orb (Twin Labyrinths) location"
+    Names:
+      - Text: "Sacred Orb (Twin Labyrinths) location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Scalesphere location"
+    Names:
+      - Text: "Scalesphere location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Serpent Staff location"
+    Names:
+      - Text: "Serpent Staff location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Shell Horn location"
+    Names:
+      - Text: "Shell Horn location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Shrine of the Mother (Viy's Room) coin chest location"
+    Names:
+      - Text: "Shrine of the Mother (Viy's Room) coin chest location"
+    Hints:
+      - "somewhere in the Shrine of the Mother"
+    Region: "Shrine of the Mother"
+  - Key: "Shuriken location"
+    Names:
+      - Text: "Shuriken location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Silver Shield location"
+    Names:
+      - Text: "Silver Shield location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Spaulder location"
+    Names:
+      - Text: "Spaulder location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Spring in the Sky (Anunnaki's Stone Basin) coin chest location"
+    Names:
+      - Text: "Spring in the Sky (Anunnaki's Stone Basin) coin chest location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Surface (Bahrun's Waterfall) coin chest location"
+    Names:
+      - Text: "Surface (Bahrun's Waterfall) coin chest location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Surface (Cliff in front of the Altar) coin chest location"
+    Names:
+      - Text: "Surface (Cliff in front of the Altar) coin chest location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Surface (Gazing Hill) coin chest location"
+    Names:
+      - Text: "Surface (Gazing Hill) coin chest location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Talisman location"
+    Names:
+      - Text: "Talisman location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Temple of Moonlight (Stairway of Eden) coin chest location"
+    Names:
+      - Text: "Temple of Moonlight (Stairway of Eden) coin chest location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Temple of the Sun (Sun Pyramid: Burial Chamber) coin chest location"
+    Names:
+      - Text: "Temple of the Sun (Sun Pyramid: Burial Chamber) coin chest location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Tower of Ruin (Approach of Life) coin chest location"
+    Names:
+      - Text: "Tower of Ruin (Approach of Life) coin chest location"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "Tower of the Goddess (Path to Power) coin chest location"
+    Names:
+      - Text: "Tower of the Goddess (Path to Power) coin chest location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Tower of the Goddess (Urd's Tower) coin chest location"
+    Names:
+      - Text: "Tower of the Goddess (Urd's Tower) coin chest location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Treasures location"
+    Names:
+      - Text: "Treasures location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Twin Labyrinths (Demon Altar) coin chest location"
+    Names:
+      - Text: "Twin Labyrinths (Demon Altar) coin chest location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Twin Labyrinths (Twin's Surrounding Wall) trap location"
+    Names:
+      - Text: "Twin Labyrinths (Twin's Surrounding Wall) trap location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Twin Labyrinths (Zodiac) escape coin chest location"
+    Names:
+      - Text: "Twin Labyrinths (Zodiac) escape coin chest location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Twin Labyrinths (Zu's Room) coin chest location"
+    Names:
+      - Text: "Twin Labyrinths (Zu's Room) coin chest location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Twin Statue location"
+    Names:
+      - Text: "Twin Statue location"
+    Hints:
+      - "somewhere in the Endless Corridor"
+    Region: "Endless Corridor"
+  - Key: "Vessel location"
+    Names:
+      - Text: "Vessel location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Woman Statue location"
+    Names:
+      - Text: "Woman Statue location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "xmailer.exe location"
+    Names:
+      - Text: "xmailer.exe location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "yagostr.exe location"
+    Names:
+      - Text: "yagostr.exe location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Modro (Surface)"
+    Names:
+      - Text: "Modro (Surface)"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Nebur (Surface)"
+    Names:
+      - Text: "Nebur (Surface)"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Nebur (4 Bosses) (Surface)"
+    Names:
+      - Text: "Nebur (4 Bosses) (Surface)"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Sidro (Surface)"
+    Names:
+      - Text: "Sidro (Surface)"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Penadvent of ghost (Gate of Guidance)"
+    Names:
+      - Text: "Penadvent of ghost (Gate of Guidance)"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Mover Athleland (Gate of Illusion)"
+    Names:
+      - Text: "Mover Athleland (Gate of Illusion)"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Greedy Charlie (Mausoleum of the Giants)"
+    Names:
+      - Text: "Greedy Charlie (Mausoleum of the Giants)"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "Giant Mopiran (Graveyard of the Giants)"
+    Names:
+      - Text: "Giant Mopiran (Graveyard of the Giants)"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Shalom III (Temple of the Sun)"
+    Names:
+      - Text: "Shalom III (Temple of the Sun)"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Usas VI (Temple of the Sun)"
+    Names:
+      - Text: "Usas VI (Temple of the Sun)"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Kingvalley I (Temple of the Sun)"
+    Names:
+      - Text: "Kingvalley I (Temple of the Sun)"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Kingvalley II (Temple of Moonlight)"
+    Names:
+      - Text: "Kingvalley II (Temple of Moonlight)"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Mr. Fishman (Original) (Spring in the Sky)"
+    Names:
+      - Text: "Mr. Fishman (Original) (Spring in the Sky)"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Mr. Fishman (Alt) (Spring in the Sky)"
+    Names:
+      - Text: "Mr. Fishman (Alt) (Spring in the Sky)"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Energetic Belmont (Tower of the Goddess)"
+    Names:
+      - Text: "Energetic Belmont (Tower of the Goddess)"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Hot-blooded Nemesistwo (Inferno Cavern)"
+    Names:
+      - Text: "Hot-blooded Nemesistwo (Inferno Cavern)"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Mechanical Efspi (Tower of Ruin)"
+    Names:
+      - Text: "Mechanical Efspi (Tower of Ruin)"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "Operator Combaker (Chamber of Extinction)"
+    Names:
+      - Text: "Operator Combaker (Chamber of Extinction)"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Mud Man Qubert (Chamber of Birth)"
+    Names:
+      - Text: "Mud Man Qubert (Chamber of Birth)"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Yiegah Kungfu (Twin Labyrinths)"
+    Names:
+      - Text: "Yiegah Kungfu (Twin Labyrinths)"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Yiear Kungfu (Twin Labyrinths)"
+    Names:
+      - Text: "Yiear Kungfu (Twin Labyrinths)"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Arrogant Sturdy Snake (Twin Labyrinths)"
+    Names:
+      - Text: "Arrogant Sturdy Snake (Twin Labyrinths)"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Arrogant Metagear (Twin Labyrinths)"
+    Names:
+      - Text: "Arrogant Metagear (Twin Labyrinths)"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Affected Knimare (Endless Corridor)"
+    Names:
+      - Text: "Affected Knimare (Endless Corridor)"
+    Hints:
+      - "somewhere in the Endless Corridor"
+    Region: "Endless Corridor"

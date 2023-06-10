@@ -1,0 +1,28 @@
+﻿# Config file for custom tracker request/responses
+
+# Fields
+# ------
+# Key (string): Unique identifier used for merging the same prompt between different config files
+# Prompts (list of strings): Different phrases that will trigger Tracker to respond. All of these will automatically have "Hey
+#     Tracker" added before them.
+# Responses (weighted possibilities): What Tracker will say when responding to the prompt
+
+# Example
+# CustomPrompts:
+#   - Key: "How are you?"
+#     Prompts:
+#       - "How are you?"
+#       - "How ya doin'?"
+#     Responses:
+#       - Text: "I'm fine, how about you?"
+#       - Text: "I don't feel like telling you"
+#         Weight: 0.1
+
+CustomPrompts:
+  - Key: "What are you up to?"
+    Prompts:
+      - "What are you up to?"
+      - "Watcha doin'?"
+    Responses:
+      - Text: "Nuttin' much. You?"
+      - Text: "I don't feel like telling you"

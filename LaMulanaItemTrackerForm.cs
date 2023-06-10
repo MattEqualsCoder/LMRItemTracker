@@ -14,14 +14,16 @@ namespace LMRItemTracker
         private BackgroundWorker flagListener;
         private ILogger<LaMulanaItemTrackerForm> _logger;
         private readonly TrackerService _trackerService;
+        private readonly VoiceRecognitionService _voiceRecognitionService;
 
-        public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService)
+        public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService, HintService hintService, VoiceRecognitionService voiceService)
         {
             flagListener = new();
             _logger = logger;
             _trackerService = trackerService;
             InitializeComponent();
             gameStarted = false;
+            _voiceRecognitionService = voiceService;
         }
 
         private void ScaleImages(Control parent)
@@ -666,6 +668,7 @@ namespace LMRItemTracker
 
         public void toggleItem(string flagName, bool isAdd)
         {
+            _logger.LogInformation("toggleItem: {Name} | {Value}", flagName, isAdd);
             if ("w-scanner".Equals(flagName) || "w-doll".Equals(flagName) || "w-magatama".Equals(flagName)
                 || "w-cog".Equals(flagName) || "w-pochettekey".Equals(flagName) || "w-cskull".Equals(flagName)
                 || "w-pepper".Equals(flagName) || "w-endless-key".Equals(flagName)
@@ -695,27 +698,27 @@ namespace LMRItemTracker
             else if("w-grail".Equals(flagName))
             {
                 holyGrail.ToggleState(isAdd, 2);
-                _trackerService.SetItemStepState("holy-grail", flagName, 1, isAdd);
+                _trackerService.SetItemState(flagName, isAdd);
             }
             else if ("w-woman".Equals(flagName))
             {
                 womanStatue.ToggleState(isAdd, 1);
-                _trackerService.SetItemStepState("woman-statue", flagName, 1, isAdd);
+                _trackerService.SetItemState(flagName, isAdd);
             }
             else if ("w-main-chain".Equals(flagName))
             {
                 whip.ToggleState(isAdd, 1);
-                _trackerService.SetItemStepState("whip", flagName, 1, isAdd);
+                _trackerService.SetItemState(flagName, isAdd);
             }
             else if ("w-main-flail".Equals(flagName))
             {
                 whip.ToggleState(isAdd, 0);
-                _trackerService.SetItemStepState("whip", flagName, 0, isAdd);
+                _trackerService.SetItemState(flagName, isAdd);
             }
             else if ("w-main-keysword".Equals(flagName))
             {
                 keySword.ToggleState(isAdd, true);
-                _trackerService.SetItemStepState("keysword", flagName, 0, isAdd);
+                _trackerService.SetItemState(flagName, isAdd);
             }
             else if (flagName.StartsWith("w-main-"))
             {
@@ -762,7 +765,7 @@ namespace LMRItemTracker
             else if ("w-maternity".Equals(flagName))
             {
                 womanStatue.ToggleState(isAdd, 0);
-                _trackerService.SetItemStepState("woman-statue", flagName, 0, isAdd);
+                _trackerService.SetItemState(flagName, isAdd);
             }
             else if ("w-vessel".Equals(flagName))
             {
@@ -826,6 +829,7 @@ namespace LMRItemTracker
 
         private void toggleSubWeapon(string flagName, bool isAdd)
         {
+            _logger.LogInformation("toggleSubWeapon: {Name} | {Value}", flagName, isAdd);
             SetImage(flagName, isAdd);
             if ("w-sub-shuriken".Equals(flagName))
             {
@@ -859,11 +863,11 @@ namespace LMRItemTracker
             {
                 pistolPanel.ToggleState(isAdd);
             }
-            _trackerService.SetItemState(flagName, isAdd);
         }
 
         public void ToggleGrail(string flagName, bool isAdd)
         {
+            _logger.LogInformation("toggleGrail: {Name} | {Value}", flagName, isAdd);
             if ("invtr-grailfull".Equals(flagName))
             {
                 holyGrail.ToggleState(isAdd, 1);
@@ -877,6 +881,7 @@ namespace LMRItemTracker
 
         internal void updateShield(string flagName, bool isAdd)
         {
+            _logger.LogInformation("updateShield: {Name} | {Value}", flagName, isAdd);
             if ("shield-buckler".Equals(flagName))
             {
                 shield.ToggleState(isAdd, 3);
@@ -898,6 +903,7 @@ namespace LMRItemTracker
 
         internal void UpdateLampOfTime(string displayname, bool isAdd)
         {
+            _logger.LogInformation("updateLampOfTime: {Name} | {Value}", displayname, isAdd);
             if ("invus-lamp-lit".Equals(displayname))
             {
                 lampOfTime.ToggleState(isAdd, 0);
@@ -906,6 +912,7 @@ namespace LMRItemTracker
 
         internal void UpdateTranslationTablets(byte cur)
         {
+            _logger.LogInformation("updateTranslationTables: {Value}", cur);
             if(cur == 3)
             {
                 readerPanel.UpdateCount(100);
@@ -927,12 +934,14 @@ namespace LMRItemTracker
         public void SetGameStarted(bool started)
         {
             gameStarted = started;
+            _trackerService.SetInGame(started);
         }
 
         internal void UpdateLastItem(string flagName)
         {
             if(gameStarted)
             {
+                _logger.LogInformation("updateLastItem: {Name}", flagName);
                 lastItemPanel.Invoke(new Action(() =>
                 {
                     System.Drawing.Bitmap? lastItemImage = getFoundImage(flagName);
@@ -975,6 +984,7 @@ namespace LMRItemTracker
 
         public void toggleBoss(string itemName, bool isAdd)
         {
+            _logger.LogInformation("toggleBoss: {Name} | {Value}", itemName, isAdd);
             if ("boss-amphisbaena".Equals(itemName))
             {
                 amphisbaena.ToggleState(isAdd);
@@ -1017,6 +1027,7 @@ namespace LMRItemTracker
 
         public void ToggleMap(string flagName, Boolean isAdd)
         {
+            _logger.LogInformation("toggleMap: {Name} | {Value}", flagName, isAdd);
             mapsPanel.UpdateCount(isAdd);
             if ("w-map-shrine".Equals(flagName))
             {
@@ -1028,6 +1039,7 @@ namespace LMRItemTracker
 
         public void ToggleMantra(string flagName, bool isAdd)
         {
+            _logger.LogInformation("toggleMantra: {Name} | {Value}", flagName, isAdd);
             if ("mantra-keysword".Equals(flagName))
             {
                 keySword.ToggleState(isAdd, false);
@@ -1069,6 +1081,7 @@ namespace LMRItemTracker
 
         public void SetAmmoCount(string flagName, int newCount)
         {
+            _logger.LogInformation("setAmmoCount: {Name} | {Value}", flagName, newCount);
             if ("ammo-shuriken".Equals(flagName))
             {
                 shurikenPanel.UpdateCount(newCount);
@@ -1109,11 +1122,13 @@ namespace LMRItemTracker
             {
                 ankhJewelPanel.Item.Collected = newCount != 0;
                 ankhJewelPanel.UpdateCount(newCount);
+                _trackerService.SetItemCount(flagName, newCount);
             }
         }
 
         public void UpdateDeathCount(bool isAdd)
         {
+            _logger.LogInformation("updateDeathCount: {Value}", isAdd);
             if (isAdd)
             {
                 Properties.Settings.Default.DeathCount += 1;
@@ -1165,6 +1180,9 @@ namespace LMRItemTracker
             {
                 MessageBox.Show("Error accessing resources!");
             }
+
+            UpdateVoiceTracker();
+            UpdateRandomizerSettings();
 
             InitializeBackgroundWorker();
             flagListener.RunWorkerAsync();
@@ -2692,6 +2710,25 @@ namespace LMRItemTracker
             deathPanel.Visible = Properties.Settings.Default.ShowDeathCount;
         }
 
+        private void UpdateVoiceTracker()
+        {
+            enableVoiceTrackerToolStripMenuItem.Checked = Properties.Settings.Default.EnableVoiceTracker;
+            if (Properties.Settings.Default.EnableVoiceTracker)
+            {
+                _trackerService.Enable();
+            }
+            else
+            {
+                _trackerService.Disable();
+            }
+        }
+
+        private void UpdateRandomizerSettings()
+        {
+            _trackerService.UpdateRandomizerPath(Properties.Settings.Default.RandomizerPath);
+            _voiceRecognitionService.UpdateThresholds(Properties.Settings.Default.RecognitionThreshold, Properties.Settings.Default.ExecutionThreshold);
+        }
+
         private void UpdateFormColor()
         {
             this.BackColor = Properties.Settings.Default.BackgroundColor;
@@ -2907,6 +2944,12 @@ namespace LMRItemTracker
             UpdateShowDeathCount();
         }
 
+        private void toggleVoiceTracker(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.EnableVoiceTracker = !Properties.Settings.Default.EnableVoiceTracker;
+            UpdateVoiceTracker();
+        }
+
         private void setHideUncollected(object sender, EventArgs e)
         {
             Properties.Settings.Default.BackgroundMode = "hide";
@@ -2996,6 +3039,19 @@ namespace LMRItemTracker
             else if (me.Button == MouseButtons.Right)
             {
                 UpdateDeathCount(false);
+            }
+        }
+
+        private void openSettingsWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new TrackerSettingsForm();
+            form.BringToFront();
+            form.TopMost = true;
+            var result = form.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                UpdateRandomizerSettings();
+                Properties.Settings.Default.Save();
             }
         }
     }

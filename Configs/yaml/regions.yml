@@ -1,0 +1,65 @@
+# Config file for regions in the game. Used for the hint system.
+
+# Fields
+# ------
+# Key (string): Unique internal tracker name for regions. Used for merging the same regions between different config files.  Do not modify.
+# Names (weighted possibilities): Different names tracker will refer to a region by when speaking
+
+Regions:
+- Key: "Chamber of Birth"
+  Names:
+  - Text: "Chamber of Birth"
+- Key: "Chamber of Extinction"
+  Names:
+  - Text: "Chamber of Extinction"
+- Key: "Dimensional Corridor"
+  Names:
+  - Text: "Dimensional Corridor"
+- Key: "Endless Corridor"
+  Names:
+  - Text: "Endless Corridor"
+- Key: "Gate of Guidance"
+  Names:
+  - Text: "Gate of Guidance"
+- Key: "Gate of Illusion"
+  Names:
+  - Text: "Gate of Illusion"
+- Key: "Gate of Time"
+  Names:
+  - Text: "Gate of Time"
+- Key: "Graveyard of the Giants"
+  Names:
+  - Text: "Graveyard of the Giants"
+- Key: "Inferno Cavern"
+  Names:
+  - Text: "Inferno Cavern"
+- Key: "Mausoleum of the Giants"
+  Names:
+  - Text: "Mausoleum of the Giants"
+- Key: "Shrine of the Mother"
+  Names:
+  - Text: "Shrine of the Mother"
+- Key: "Spring in the Sky"
+  Names:
+  - Text: "Spring in the Sky"
+- Key: "Temple of Moonlight"
+  Names:
+  - Text: "Temple of Moonlight"
+- Key: "temple of the moonlight"
+  Names:
+  - Text: "temple of the moonlight"
+- Key: "Temple of the Sun"
+  Names:
+  - Text: "Temple of the Sun"
+- Key: "Tower of Ruin"
+  Names:
+  - Text: "Tower of Ruin"
+- Key: "Tower of the Goddess"
+  Names:
+  - Text: "Tower of the Goddess"
+- Key: "Twin Labyrinths"
+  Names:
+  - Text: "Twin Labyrinths"
+- Key: "Surface"
+  Names:
+  - Text: "Surface"

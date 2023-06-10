@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Speech.Recognition;
+using LMRItemTracker.Configs;
 using Microsoft.Extensions.Logging;
 
 namespace LMRItemTracker.VoiceTracker;
 
 public class VoiceRecognitionService
 {
-    private SpeechRecognitionEngine _speechRecognitionEngine;
-    private ILogger<VoiceRecognitionService> _logger;
+    private readonly SpeechRecognitionEngine _speechRecognitionEngine;
+    private readonly ILogger<VoiceRecognitionService> _logger;
+    private readonly TrackerConfig _config;
+    private readonly TextToSpeechService _tts;
+    private int _recognitionThreshold;
+    private int _executionThreshold;
     
     /// <summary>
     /// Dll to get the number of microphones
@@ -17,25 +22,18 @@ public class VoiceRecognitionService
     [DllImport("winmm.dll")]
     private static extern int waveInGetNumDevs();
 
-    public VoiceRecognitionService(ILogger<VoiceRecognitionService> logger)
+    public VoiceRecognitionService(ILogger<VoiceRecognitionService> logger, TextToSpeechService tts, ConfigService configService)
     {
         _logger = logger;
         _speechRecognitionEngine = new SpeechRecognitionEngine();
-        _speechRecognitionEngine.SpeechRecognized += (sender, args) =>
-        {
-            _logger.LogInformation("Test");
-        };
-        _speechRecognitionEngine.SpeechDetected += (sender, args) =>
-        {
-            _logger.LogInformation("Test2");
-        };
-        _speechRecognitionEngine.LoadGrammarCompleted += (sender, args) =>
-        {
-            _logger.LogInformation("Grammar Loaded Complete");
-        };
-        _logger.LogInformation("Done");
+        _config = configService.Config;
+        _tts = tts;
     }
 
+    /// <summary>
+    /// Enables voice recognition
+    /// </summary>
+    /// <returns></returns>
     public bool Enable()
     {
         _logger.LogInformation("Starting speech recognition");
@@ -47,7 +45,6 @@ public class VoiceRecognitionService
                 return false;
             }
             
-           // _speechRecognitionEngine.EmulateRecognize("Hey Tracker, good morning");
             _speechRecognitionEngine.SetInputToDefaultAudioDevice();
             _speechRecognitionEngine.RecognizeAsync(RecognizeMode.Multiple);
             _logger.LogInformation("Speech recognition started");
@@ -60,24 +57,48 @@ public class VoiceRecognitionService
         }
     }
 
+    /// <summary>
+    /// Disables the voice recognition
+    /// </summary>
     public void Disable()
     {
         _logger.LogInformation("Stopping speech recognition");
         _speechRecognitionEngine.RecognizeAsyncStop();
     }
 
-    public void AddCommand(string ruleName, GrammarBuilder2 grammarBuilder, Action<RecognitionResult> command)
+    /// <summary>
+    /// Adds a new voice command that matches the specified phrase.
+    /// </summary>
+    /// <param name="ruleName">The name of the command.</param>
+    /// <param name="grammarBuilder">The grammar rules for detecting a request to tracker</param>
+    /// <param name="command">The command to execute when the phrase is recognized.</param>
+    public void AddCommand(string ruleName, GrammarBuilder grammarBuilder, Action<RecognitionResult> command)
     {
         try
         {
             var grammar = grammarBuilder.Build(ruleName);
             grammar.SpeechRecognized += (sender, e) =>
             {
+                var confidence = e.Result.Confidence * 100;
                 _logger.LogInformation("Recognized \"{Text}\" with {Confidence:P2} confidence", e.Result.Text, e.Result.Confidence);
-                command(e.Result);
+                if (confidence >= _executionThreshold)
+                {
+                    try
+                    {
+                        command(e.Result);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Unable to execute command");
+                        _tts.Say(_config.Responses.Error);
+                    }
+                }
+                else if (confidence >= _recognitionThreshold)
+                {
+                    _tts.Say(_config.Responses.UnrecognizedLine);
+                }
             };
             _speechRecognitionEngine.LoadGrammar(grammar);
-            _logger.LogInformation("Grammar Added");
         }
         catch (Exception e)
         {
@@ -97,7 +118,7 @@ public class VoiceRecognitionService
     public void AddCommand(string ruleName, string phrase,
         Action<RecognitionResult> executeCommand)
     {
-        var builder = new GrammarBuilder2()
+        var builder = new GrammarBuilder()
             .Append(phrase);
 
         AddCommand(ruleName, builder, executeCommand);
@@ -114,9 +135,20 @@ public class VoiceRecognitionService
     public void AddCommand(string ruleName, string[] phrases,
         Action<RecognitionResult> executeCommand)
     {
-        var builder = new GrammarBuilder2()
+        var builder = new GrammarBuilder()
             .OneOf(phrases);
 
         AddCommand(ruleName, builder, executeCommand);
+    }
+
+    /// <summary>
+    /// Updates the confidence thresholds for when tracker will recognize and execute requests
+    /// </summary>
+    /// <param name="recognitionThreshold"></param>
+    /// <param name="executionThreshold"></param>
+    public void UpdateThresholds(int recognitionThreshold, int executionThreshold)
+    {
+        _recognitionThreshold = recognitionThreshold;
+        _executionThreshold = executionThreshold;
     }
 }

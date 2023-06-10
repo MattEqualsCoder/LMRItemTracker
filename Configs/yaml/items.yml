@@ -1,0 +1,1353 @@
+﻿# Config file for items found in the game
+
+# Fields
+# ------
+# Key (string): Unique internal tracker name for items. Used for merging the same item between different config files. Do not modify.
+# Type (item type): Type classification for the item for hints.
+# SpoilerFileName (string): The name of the item when it is listed in the spoiler file.
+# Hints (list of strings): A list of generic ways to refer to an item when a person is asking what is at a location.
+#     When asking for hints, Tracker will start at the first one, then will go down the list when asking for more hints.
+#     When all hints are gone through, Tracker will say whether an item is required, nice to have, or useless. Ideally, 
+#     hints should be shared between different items so that people won't be able to discern an item by a single hint.
+# Names (weighted possibilities): Different names tracker will refer to an item by when speaking
+# OnTracked (weighted possibilities): A list of specific lines tracker may say when this item is tracked. If one of the
+#     options is an empty string (""), tracker will have a chance of falling back to a generic tracked line.
+
+# Example
+  # - Key: "w-main-flail"
+  #   Type: NiceToHave
+  #   SpoilerFileName: "Flail Whip"
+  #   Hints:
+  #     - "Some sort of weapon"
+  #     - "It's like a combination of two things"
+  #   Names:
+  #     - Text: "Flail whip"
+  #     - Text: "Flailing whip"
+  #       Weight: 0.1
+  #   OnTracked:
+  #     - Text: "Whip it good"
+  #     - Text: "Watch where you flail that thing around"
+  #       Weight: 0.1
+
+Items:
+  - Key: "coin-chests"
+    Names:
+      - Text: "coin-chests"
+    ArticledNames:
+      - Text: "the coin-chests"
+  - Key: "giltoriyo-ladder"
+    Names:
+      - Text: "Giltoriyo ladder"
+    ArticledNames:
+      - Text: "the Giltoriyo ladder"
+  - Key: "alsedana-ladder"
+    Names:
+      - Text: "alsedana ladder"
+    ArticledNames:
+      - Text: "the alsedana ladder"
+  - Key: "w-main-chain"
+    Type: NiceToHave
+    SpoilerFileName: "Chain Whip"
+    Names:
+      - Text: "Chain whip"
+    ArticledNames:
+      - Text: "the Chain whip"
+  - Key: "w-main-flail"
+    Type: NiceToHave
+    SpoilerFileName: "Flail Whip"
+    Names:
+      - Text: "Flail whip"
+    ArticledNames:
+      - Text: "the Flail whip"
+  - Key: "w-main-knife"
+    Type: NiceToHave
+    SpoilerFileName: "Knife"
+    Names:
+      - Text: "Knife"
+    ArticledNames:
+      - Text: "the Knife"
+  - Key: "w-main-keysword"
+    Type: Progression
+    SpoilerFileName: "Key Sword"
+    Names:
+      - Text: "Key Sword"
+    ArticledNames:
+      - Text: "the Key Sword"
+  - Key: "w-main-axe"
+    Type: NiceToHave
+    SpoilerFileName: "Axe"
+    Names:
+      - Text: "Axe"
+    ArticledNames:
+      - Text: "the Axe"
+  - Key: "w-main-katana"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Katana"
+    Names:
+      - Text: "Katana"
+    ArticledNames:
+      - Text: "the Katana"
+  - Key: "w-sub-shuriken"
+    Type: NiceToHave
+    SpoilerFileName: "Shuriken"
+    Names:
+      - Text: "Shuriken"
+    ArticledNames:
+      - Text: "the Shuriken"
+  - Key: "w-sub-rshuriken"
+    Type: NiceToHave
+    SpoilerFileName: "Rolling Shuriken"
+    Names:
+      - Text: "Rolling Shuriken"
+    ArticledNames:
+      - Text: "the Rolling Shuriken"
+  - Key: "w-sub-spear"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Earth Spear"
+    Names:
+      - Text: "Earth Spear"
+    ArticledNames:
+      - Text: "the Earth Spear"
+  - Key: "w-sub-flare"
+    Type: NiceToHave
+    SpoilerFileName: "Flare Gun"
+    Names:
+      - Text: "Flare Gun"
+    ArticledNames:
+      - Text: "the Flare Gun"
+  - Key: "w-sub-bomb"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Bomb"
+    Names:
+      - Text: "Bomb"
+    ArticledNames:
+      - Text: "the Bomb"
+  - Key: "w-sub-chakram"
+    Type: Progression
+    SpoilerFileName: "Chakram"
+    Names:
+      - Text: "Chakram"
+    ArticledNames:
+      - Text: "the Chakram"
+  - Key: "w-sub-caltrops"
+    Type: NiceToHave
+    SpoilerFileName: "Caltrops"
+    Names:
+      - Text: "Caltrops"
+    ArticledNames:
+      - Text: "the Caltrops"
+  - Key: "w-sub-pistol"
+    Type: NiceToHave
+    SpoilerFileName: "Pistol"
+    Names:
+      - Text: "Pistol"
+    ArticledNames:
+      - Text: "the Pistol"
+  - Key: "w-jewel-guidance"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Gate of Guidance)"
+    Names:
+      - Text: "Guidance Ankh Jewel"
+    ArticledNames:
+      - Text: "the Guidance Ankh Jewel"
+  - Key: "w-jewel-maus"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Mausoleum of the Giants)"
+    Names:
+      - Text: "Mausoleum of the Giants Ankh Jewel"
+    ArticledNames:
+      - Text: "the Mausoleum of the Giants Ankh Jewel"
+  - Key: "w-jewel-sun"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Temple of the Sun)"
+    Names:
+      - Text: "Temple of the Sun Ankh Jewel"
+    ArticledNames:
+      - Text: "the Temple of the Sun Ankh Jewel"
+  - Key: "w-jewel-spring"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Spring in the Sky)"
+    Names:
+      - Text: "Spring in the Sky Ankh Jewel"
+    ArticledNames:
+      - Text: "the Spring in the Sky Ankh Jewel"
+  - Key: "w-jewel-ruin"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Tower of Ruin)"
+    Names:
+      - Text: "Tower of Ruin Ankh Jewel"
+    ArticledNames:
+      - Text: "the Tower of Ruin Ankh Jewel"
+  - Key: "w-jewel-birth"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Chamber of Birth)"
+    Names:
+      - Text: "Chamber of Birth Ankh Jewel"
+    ArticledNames:
+      - Text: "the Chamber of Birth Ankh Jewel"
+  - Key: "w-jewel-twins"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Twin Labyrinths)"
+    Names:
+      - Text: "Twin Labyrinths Ankh Jewel"
+    ArticledNames:
+      - Text: "the Twin Labyrinths Ankh Jewel"
+  - Key: "w-jewel-dimension"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Dimensional Corridor)"
+    Names:
+      - Text: "Dimensional Corridor Ankh Jewel"
+    ArticledNames:
+      - Text: "the Dimensional Corridor Ankh Jewel"
+  - Key: "w-jewel-extra"
+    Type: AnkhJewel
+    SpoilerFileName: "Ankh Jewel (Extra)"
+    Names:
+      - Text: "Extra Ankh Jewel"
+    ArticledNames:
+      - Text: "the Extra Ankh Jewel"
+  - Key: "w-scanner"
+    Type: Progression
+    SpoilerFileName: "Hand Scanner"
+    Names:
+      - Text: "Hand Scanner"
+    ArticledNames:
+      - Text: "the Hand Scanner"
+  - Key: "w-djed"
+    Type: Progression
+    SpoilerFileName: "Djed Pillar"
+    Names:
+      - Text: "Djed Pillar"
+    ArticledNames:
+      - Text: "the Djed Pillar"
+  - Key: "w-doll"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Mini Doll"
+    Names:
+      - Text: "Mini Doll"
+    ArticledNames:
+      - Text: "the Mini Doll"
+  - Key: "w-magatama"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Magatama Jewel"
+    Names:
+      - Text: "Magatama Jewel"
+    ArticledNames:
+      - Text: "the Magatama Jewel"
+  - Key: "w-cog"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Cog of the Soul"
+    Names:
+      - Text: "Cog of the Soul"
+    ArticledNames:
+      - Text: "the Cog of the Soul"
+  - Key: "w-lamp"
+    Type: Progression
+    SpoilerFileName: "Lamp of Time"
+    Names:
+      - Text: "Lamp of Time"
+    ArticledNames:
+      - Text: "the Lamp of Time"
+  - Key: "w-pochettekey"
+    Type: Progression
+    SpoilerFileName: "Pochette Key"
+    Names:
+      - Text: "Pochette Key"
+    ArticledNames:
+      - Text: "the Pochette Key"
+  - Key: "w-dragonbone"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Dragon Bone"
+    Names:
+      - Text: "Dragon Bone"
+    ArticledNames:
+      - Text: "the Dragon Bone"
+  - Key: "w-cskull"
+    Type: Progression
+    SpoilerFileName: "Crystal Skull"
+    Names:
+      - Text: "Crystal Skull"
+    ArticledNames:
+      - Text: "the Crystal Skull"
+  - Key: "w-vessel"
+    Type: Progression
+    SpoilerFileName: "Vessel"
+    Names:
+      - Text: "Vessel"
+    ArticledNames:
+      - Text: "the Vessel"
+  - Key: "w-pepper"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Pepper"
+    Names:
+      - Text: "Pepper"
+    ArticledNames:
+      - Text: "the Pepper"
+  - Key: "w-woman"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Woman Statue"
+    Names:
+      - Text: "Woman Statue"
+    ArticledNames:
+      - Text: "the Woman Statue"
+  - Key: "w-endless-key"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Key of Eternity"
+    Names:
+      - Text: "Key of Eternity"
+    ArticledNames:
+      - Text: "the Key of Eternity"
+  - Key: "w-serpent"
+    Type: Progression
+    SpoilerFileName: "Serpent Staff"
+    Names:
+      - Text: "Serpent Staff"
+    ArticledNames:
+      - Text: "the Serpent Staff"
+  - Key: "invus-talisman"
+    Names:
+      - Text: "Talisman"
+    ArticledNames:
+      - Text: "the Talisman"
+  - Key: "w-talisman"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Talisman"
+    Names:
+      - Text: "Talisman"
+    ArticledNames:
+      - Text: "the Talisman"
+  - Key: "w-water-case"
+    Type: Progression
+    SpoilerFileName: "Waterproof Case"
+    Names:
+      - Text: "Waterproof Case"
+    ArticledNames:
+      - Text: "the Waterproof Case"
+  - Key: "w-heat-case"
+    Type: Progression
+    SpoilerFileName: "Heatproof Case"
+    Names:
+      - Text: "Heatproof Case"
+    ArticledNames:
+      - Text: "the Heatproof Case"
+  - Key: "w-shell-horn"
+    Type: Useless
+    SpoilerFileName: "Shell Horn"
+    Names:
+      - Text: "Shell Horn"
+    ArticledNames:
+      - Text: "the Shell Horn"
+  - Key: "w-glove"
+    Type: NiceToHave
+    SpoilerFileName: "Glove"
+    Names:
+      - Text: "Glove"
+    ArticledNames:
+      - Text: "the Glove"
+  - Key: "w-grail"
+    Type: Progression
+    SpoilerFileName: "Holy Grail"
+    Names:
+      - Text: "Holy Grail"
+    ArticledNames:
+      - Text: "the Holy Grail"
+  - Key: "w-isispendant"
+    Type: Progression
+    SpoilerFileName: "Isis' Pendant"
+    Names:
+      - Text: "Isis Pendant"
+    ArticledNames:
+      - Text: "the Isis Pendant"
+  - Key: "w-crucifix"
+    Type: NiceToHave
+    SpoilerFileName: "Crucifix"
+    Names:
+      - Text: "Crucifix"
+    ArticledNames:
+      - Text: "the Crucifix"
+  - Key: "w-helmet"
+    Type: Progression
+    SpoilerFileName: "Helmet"
+    Names:
+      - Text: "Helmet"
+    ArticledNames:
+      - Text: "the Helmet"
+  - Key: "w-grapple"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Grapple Claw"
+    Names:
+      - Text: "Grapple Claw"
+    ArticledNames:
+      - Text: "the Grapple Claw"
+  - Key: "w-mirror"
+    Type: Progression
+    SpoilerFileName: "Bronze Mirror"
+    Names:
+      - Text: "Bronze Mirror"
+    ArticledNames:
+      - Text: "the Bronze Mirror"
+  - Key: "w-eye-truth"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Eye of Truth"
+    Names:
+      - Text: "Eye of Truth"
+    ArticledNames:
+      - Text: "the Eye of Truth"
+  - Key: "w-ring"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Ring"
+    Names:
+      - Text: "Ring"
+    ArticledNames:
+      - Text: "the Ring"
+  - Key: "w-scale"
+    Type: NiceToHave
+    SpoilerFileName: "Scalesphere"
+    Names:
+      - Text: "Scalesphere"
+    ArticledNames:
+      - Text: "the Scalesphere"
+  - Key: "w-gauntlet"
+    Type: NiceToHave
+    SpoilerFileName: "Gauntlet"
+    Names:
+      - Text: "Gauntlet"
+    ArticledNames:
+      - Text: "the Gauntlet"
+  - Key: "w-anchor"
+    Type: PotentiallyProgression
+    Names:
+      - Text: "Anchor"
+    ArticledNames:
+      - Text: "the Anchor"
+    SpoilerFileName: "Anchor"
+  - Key: "w-plane"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Plane Model"
+    Names:
+      - Text: "Plane Model"
+    ArticledNames:
+      - Text: "the Plane Model"
+  - Key: "w-ocarina"
+    Type: Progression
+    SpoilerFileName: "Philosopher's Ocarina"
+    Names:
+      - Text: "Philosophers' Ocarina"
+    ArticledNames:
+      - Text: "the Philosophers' Ocarina"
+  - Key: "w-feather"
+    Type: Progression
+    SpoilerFileName: "Feather"
+    Names:
+      - Text: "Feather"
+    ArticledNames:
+      - Text: "the Feather"
+  - Key: "w-book"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Book of the Dead"
+    Names:
+      - Text: "Book of the Dead"
+    ArticledNames:
+      - Text: "the Book of the Dead"
+  - Key: "w-clothes"
+    Type: NiceToHave
+    SpoilerFileName: "Fairy Clothes"
+    Names:
+      - Text: "Fairy Clothes"
+    ArticledNames:
+      - Text: "the Fairy Clothes"
+  - Key: "w-scriptures"
+    Type: NiceToHave
+    SpoilerFileName: "Scriptures"
+    Names:
+      - Text: "Scriptures"
+    ArticledNames:
+      - Text: "the Scriptures"
+  - Key: "w-hermes"
+    Type: NiceToHave
+    SpoilerFileName: "Hermes' Boots"
+    Names:
+      - Text: "Hermes' Boots"
+    ArticledNames:
+      - Text: "the Hermes' Boots"
+  - Key: "w-fruit"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Fruit of Eden"
+    Names:
+      - Text: "Fruit of Eden"
+    ArticledNames:
+      - Text: "the Fruit of Eden"
+  - Key: "w-twin-statue"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Twin Statue"
+    Names:
+      - Text: "Twin Statue"
+    ArticledNames:
+      - Text: "the Twin Statue"
+  - Key: "w-bracelet"
+    Type: NiceToHave
+    SpoilerFileName: "Bracelet"
+    Names:
+      - Text: "Bracelet"
+    ArticledNames:
+      - Text: "the Bracelet"
+  - Key: "w-perfume"
+    Type: Useless
+    SpoilerFileName: "Perfume"
+    Names:
+      - Text: "Perfume"
+    ArticledNames:
+      - Text: "the Perfume"
+  - Key: "w-spaulder"
+    Type: Useless
+    SpoilerFileName: "Spaulder"
+    Names:
+      - Text: "Spaulder"
+    ArticledNames:
+      - Text: "the Spaulder"
+      - Text: "Shoulder rest of the fighting spirit"
+        Weight: 0.1
+  - Key: "w-dimension-key"
+    Type: Progression
+    SpoilerFileName: "Dimensional Key"
+    Names:
+      - Text: "Dimensional Key"
+    ArticledNames:
+      - Text: "the Dimensional Key"
+  - Key: "w-icecape"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Ice Cape"
+    Names:
+      - Text: "Ice Cape"
+    ArticledNames:
+      - Text: "the Ice Cape"
+      - Text: "Ice Cloak"
+  - Key: "w-seal1"
+    Type: Progression
+    SpoilerFileName: "Origin Seal"
+    Names:
+      - Text: "Origin Seal"
+    ArticledNames:
+      - Text: "the Origin Seal"
+  - Key: "w-seal2"
+    Type: Progression
+    SpoilerFileName: "Birth Seal"
+    Names:
+      - Text: "Birth Seal"
+    ArticledNames:
+      - Text: "the Birth Seal"
+  - Key: "w-seal3"
+    Type: Progression
+    SpoilerFileName: "Life Seal"
+    Names:
+      - Text: "Life Seal"
+    ArticledNames:
+      - Text: "the Life Seal"
+  - Key: "w-seal4"
+    Type: Progression
+    SpoilerFileName: "Death Seal"
+    Names:
+      - Text: "Death Seal"
+    ArticledNames:
+      - Text: "the Death Seal"
+  - Key: "w-orb-guidance"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Gate of Guidance)"
+    Names:
+      - Text: "Gate of Guidance Sacred Orb"
+    ArticledNames:
+      - Text: "the Gate of Guidance Sacred Orb"
+  - Key: "w-orb-surface"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Surface)"
+    Names:
+      - Text: "Surface Sacred Orb"
+    ArticledNames:
+      - Text: "the Surface Sacred Orb"
+  - Key: "w-orb-maus"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Mausoleum of the Giants)"
+    Names:
+      - Text: "Mausoleum of the Giants Sacred Orb"
+    ArticledNames:
+      - Text: "the Mausoleum of the Giants Sacred Orb"
+  - Key: "w-orb-sun"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Temple of the Sun)"
+    Names:
+      - Text: "Temple of the Sun Sacred Orb"
+    ArticledNames:
+      - Text: "the Temple of the Sun Sacred Orb"
+  - Key: "w-orb-spring"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Spring in the Sky)"
+    Names:
+      - Text: "Spring in the Sky Sacred Orb"
+    ArticledNames:
+      - Text: "the Spring in the Sky Sacred Orb"
+  - Key: "w-orb-extinct"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Chamber of Extinction)"
+    Names:
+      - Text: "Chamber of Extinction Sacred Orb"
+    ArticledNames:
+      - Text: "the Chamber of Extinction Sacred Orb"
+  - Key: "w-orb-twins"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Twin Labyrinths)"
+    Names:
+      - Text: "Twin Labyrinths Sacred Orb"
+    ArticledNames:
+      - Text: "the Twin Labyrinths Sacred Orb"
+  - Key: "w-orb-shrine"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Shrine of the Mother)"
+    Names:
+      - Text: "Shrine of the Mother Sacred Orb"
+    ArticledNames:
+      - Text: "the Shrine of the Mother Sacred Orb"
+  - Key: "w-orb-ruin"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Tower of Ruin)"
+    Names:
+      - Text: "Tower of Ruin Sacred Orb"
+    ArticledNames:
+      - Text: "the Tower of Ruin Sacred Orb"
+  - Key: "w-orb-dimension"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Sacred Orb (Dimensional Corridor)"
+    Names:
+      - Text: "Dimensional Corridor Sacred Orb"
+    ArticledNames:
+      - Text: "the Dimensional Corridor Sacred Orb"
+  - Key: "w-map-surface"
+    Type: Useless
+    SpoilerFileName: "Map (Surface)"
+    Names:
+      - Text: "Surface Map"
+    ArticledNames:
+      - Text: "the Surface Map"
+  - Key: "w-map-guidance"
+    Type: Useless
+    SpoilerFileName: "Map (Gate of Guidance)"
+    Names:
+      - Text: "Guidance Gate Map"
+    ArticledNames:
+      - Text: "the Guidance Gate Map"
+  - Key: "w-map-maus"
+    Type: Useless
+    SpoilerFileName: "Map (Mausoleum of the Giants)"
+    Names:
+      - Text: "Mausoleum of the Giants Map"
+    ArticledNames:
+      - Text: "the Mausoleum of the Giants Map"
+  - Key: "w-map-sun"
+    Type: Useless
+    SpoilerFileName: "Map (Temple of the Sun)"
+    Names:
+      - Text: "Temple of the Sun Map"
+    ArticledNames:
+      - Text: "the Temple of the Sun Map"
+  - Key: "w-map-spring"
+    Type: Useless
+    SpoilerFileName: "Map (Spring in the Sky)"
+    Names:
+      - Text: "Spring of the Sky Map"
+    ArticledNames:
+      - Text: "the Spring of the Sky Map"
+  - Key: "w-map-inferno"
+    Type: Useless
+    SpoilerFileName: "Map (Inferno Cavern)"
+    Names:
+      - Text: "Inferno Cavern Map"
+    ArticledNames:
+      - Text: "the Inferno Cavern Map"
+  - Key: "w-map-extinct"
+    Type: Useless
+    SpoilerFileName: "Map (Chamber of Extinction)"
+    Names:
+      - Text: "Chamber of Extinction Map"
+    ArticledNames:
+      - Text: "the Chamber of Extinction Map"
+  - Key: "w-map-twins"
+    Type: Useless
+    SpoilerFileName: "Map (Twin Labyrinths)"
+    Names:
+      - Text: "Twin Labyrinths Map"
+    ArticledNames:
+      - Text: "the Twin Labyrinths Map"
+  - Key: "w-map-endless"
+    Type: Useless
+    SpoilerFileName: "Map (Endless Corridor)"
+    Names:
+      - Text: "Endless Corridor Map"
+    ArticledNames:
+      - Text: "the Endless Corridor Map"
+  - Key: "w-map-shrine"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Map (Shrine of the Mother)"
+    Names:
+      - Text: "Shrine of the Mother Map"
+    ArticledNames:
+      - Text: "the Shrine of the Mother Map"
+  - Key: "w-map-illusion" 
+    Type: Useless
+    SpoilerFileName: "Map (Gate of Illusion)"
+    Names:
+      - Text: "Confusion Gate Map"
+    ArticledNames:
+      - Text: "the Confusion Gate Map"
+  - Key: "w-map-grave"
+    Type: Useless
+    SpoilerFileName: "Map (Graveyard of the Giants)"
+    Names:
+      - Text: "Graveyard of the Giants Map"
+    ArticledNames:
+      - Text: "the Graveyard of the Giants Map"
+  - Key: "w-map-moon"
+    Type: Useless
+    SpoilerFileName: "Map (Temple of Moonlight)"
+    Names:
+      - Text: "Temple of Moonlight Map"
+    ArticledNames:
+      - Text: "the Temple of Moonlight Map"
+  - Key: "w-map-goddess"
+    Type: Useless
+    SpoilerFileName: "Map (Tower of the Goddess)"
+    Names:
+      - Text: "Tower of the Goddess Map"
+    ArticledNames:
+      - Text: "the Tower of the Goddess Map"
+  - Key: "w-map-ruins"
+    Type: Useless
+    SpoilerFileName: "Map (Tower of Ruin)"
+    Names:
+      - Text: "Tower of Ruin Map"
+    ArticledNames:
+      - Text: "the Tower of Ruin Map"
+  - Key: "w-map-birth"
+    Type: Useless
+    SpoilerFileName: "Map (Chamber of Birth)"
+    Names:
+      - Text: "Chamber of Birth Map"
+    ArticledNames:
+      - Text: "the Chamber of Birth Map"
+  - Key: "w-map-dimensional"
+    Type: Useless
+    SpoilerFileName: "Map (Dimensional Corridor)"
+    Names:
+      - Text: "Dimensional Corridor Map"
+    ArticledNames:
+      - Text: "the Dimensional Corridor Map"
+  - Key: "w-soft-yagomap"
+    Type: PotentiallyProgression
+    SpoilerFileName: "yagomap.exe"
+    Names:
+      - Text: "Yagoo Map Reader"
+    ArticledNames:
+      - Text: "the Yagoo Map Reader"
+      - Text: "Map Reader"
+      - Text: "Map Software"
+  - Key: "w-soft-yagostr"
+    Type: PotentiallyProgression
+    SpoilerFileName: "yagostr.exe"
+    Names:
+      - Text: "Yagoo Map Street"
+    ArticledNames:
+      - Text: "the Yagoo Map Street"
+      - Text: "Map Street"
+      - Text: "Street Software"
+  - Key: "w-soft-reader"
+    Type: Progression
+    SpoilerFileName: "reader.exe"
+    Names:
+      - Text: "Glyph Reader"
+    ArticledNames:
+      - Text: "the Glyph Reader"
+      - Text: "Glyph Software"
+  - Key: "w-soft-xmailer"
+    Type: Useless
+    SpoilerFileName: "xmailer.exe"
+    Names:
+      - Text: "x mailer"
+    ArticledNames:
+      - Text: "the x mailer"
+      - Text: "xelpud mailer"
+      - Text: "G-Mail"
+  - Key: "w-soft-bunemon"
+    Type: NiceToHave
+    SpoilerFileName: "TextTrax"
+    Names:
+      - Text: "Text Trax"
+    ArticledNames:
+      - Text: "the Text Trax"
+  - Key: "w-soft-bunplus"
+    Type: Useless
+    SpoilerFileName: "bunplus.com"
+    Names:
+      - Text: "Additional Text Memory"
+    ArticledNames:
+      - Text: "the Additional Text Memory"
+  - Key: "w-soft-torude"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "torude.exe"
+    Names:
+      - Text: "Snapshots Software"
+    ArticledNames:
+      - Text: "the Snapshots Software"
+  - Key: "w-soft-guild"
+    Type: Useless
+    SpoilerFileName: "guild.exe"
+    Names:
+      - Text: "Guild Software"
+    ArticledNames:
+      - Text: "the Guild Software"
+      - Text: "Shop Chime"
+  - Key: "w-soft-mantra"
+    Type: Progression
+    SpoilerFileName: "mantra.exe"
+    Names:
+      - Text: "Mantra Software"
+    ArticledNames:
+      - Text: "the Mantra Software"
+  - Key: "w-soft-emusic"
+    Type: Useless
+    SpoilerFileName: "emusic.exe"
+    Names:
+      - Text: "Enga Musica"
+    ArticledNames:
+      - Text: "the Enga Musica"
+      - Text: "Ancient iTunes"
+  - Key: "w-soft-beolamu"
+    Type: Useless
+    SpoilerFileName: "beolamu.exe"
+    Names:
+      - Text: "Beo La-Mulana"
+    ArticledNames:
+      - Text: "the Beo La-Mulana"
+      - Text: "Sony Walkman"
+  - Key: "w-soft-deathv"
+    Type: Useless
+    SpoilerFileName: "deathv.exe"
+    Names:
+      - Text: "Death Village Software"
+    ArticledNames:
+      - Text: "the Death Village Software"
+  - Key: "w-soft-randc"
+    Type: Useless
+    SpoilerFileName: "randc.exe"
+    Names:
+      - Text: "Rose and Camillia Software"
+    ArticledNames:
+      - Text: "the Rose and Camillia Software"
+  - Key: "w-soft-capstar"
+    Type: Useless
+    SpoilerFileName: "capstar.exe"
+    Names:
+      - Text: "Space Capster Software"
+    ArticledNames:
+      - Text: "the Space Capster Software"
+  - Key: "w-soft-move"
+    Type: NiceToHave
+    SpoilerFileName: "move.exe"
+    Names:
+      - Text: "Lonely House Moving Software"
+    ArticledNames:
+      - Text: "the Lonely House Moving Software"
+  - Key: "w-soft-mekuri"
+    Type: PotentiallyProgression
+    SpoilerFileName: "mekuri.exe"
+    Names:
+      - Text: "Mekuri Master Software"
+    ArticledNames:
+      - Text: "the Mekuri Master Software"
+  - Key: "w-soft-bounce"
+    Type: Useless
+    SpoilerFileName: "bounce.exe"
+    Names:
+      - Text: "Bounce Shot Software"
+    ArticledNames:
+      - Text: "the Bounce Shot Software"
+  - Key: "w-soft-miracle"
+    Type: PotentiallyProgression
+    SpoilerFileName: "miracle.exe"
+    Names:
+      - Text: "Miracle Witch Software"
+    ArticledNames:
+      - Text: "the Miracle Witch Software"
+  - Key: "w-soft-mirai"
+    Type: Progression
+    SpoilerFileName: "mirai.exe"
+    Names:
+      - Text: "Future Development Company Software"
+    ArticledNames:
+      - Text: "the Future Development Company Software"
+  - Key: "w-soft-lamulana"
+    Type: NiceToHave
+    SpoilerFileName: "lamulana.exe"
+    Names:
+      - Text: "La-Mulana Software"
+    ArticledNames:
+      - Text: "the La-Mulana Software"
+  - Key: "boss-amphisbaena"
+    Names:
+      - Text: "Amphisbaena"
+    ArticledNames:
+      - Text: "the Amphisbaena"
+      - Text: "King Konda"
+  - Key: "boss-sakit"
+    Names:
+      - Text: "Sakit"
+    ArticledNames:
+      - Text: "the Sakit"
+  - Key: "boss-ellmac"
+    Names:
+      - Text: "Ellmac"
+    ArticledNames:
+      - Text: "the Ellmac"
+  - Key: "boss-bahamut"
+    Names:
+      - Text: "Bahamut"
+    ArticledNames:
+      - Text: "the Bahamut"
+  - Key: "boss-viy"
+    Names:
+      - Text: "Viy"
+    ArticledNames:
+      - Text: "the Viy"
+  - Key: "boss-palenque"
+    Names:
+      - Text: "Palenque"
+    ArticledNames:
+      - Text: "the Palenque"
+  - Key: "boss-baphomet"
+    Names:
+      - Text: "Baphomet"
+    ArticledNames:
+      - Text: "the Baphomet"
+  - Key: "boss-tiamat"
+    Names:
+      - Text: "Tiamat"
+    ArticledNames:
+      - Text: "the Tiamat"
+  - Key: "w-treasures"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Treasures"
+    Names:
+      - Text: "Treasures"
+    ArticledNames:
+      - Text: "the Treasures"
+  - Key: "w-diary"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Diary"
+    Names:
+      - Text: "Diary"
+    ArticledNames:
+      - Text: "the Diary"
+  - Key: "w-mulanatalisman"
+    Type: PotentiallyProgression
+    SpoilerFileName: "Mulana Talisman"
+    Names:
+      - Text: "Mulana Talisman"
+    ArticledNames:
+      - Text: "the Mulana Talisman"
+  - Key: "w-forbidden"
+    Type: Useless
+    SpoilerFileName: "Provocative Bathing Suit"
+    Names:
+      - Text: "Provocative Bathing Suit"
+    ArticledNames:
+      - Text: "the Provocative Bathing Suit"
+  - Key: "w-msx2"
+    Type: NiceToHave
+    SpoilerFileName: "Mobile Super X2"
+    Names:
+      - Text: "Mobile Super X2"
+    ArticledNames:
+      - Text: "the Mobile Super X2"
+  - Key: "w-medicine-yellow"
+    Names:
+      - Text: "w-medicine-yellow"
+    ArticledNames:
+      - Text: "the w-medicine-yellow"
+  - Key: "w-medicine-green"
+    Names:
+      - Text: "w-medicine-green"
+    ArticledNames:
+      - Text: "the w-medicine-green"
+  - Key: "w-medicine-red"
+    Names:
+      - Text: "w-medicine-red"
+    ArticledNames:
+      - Text: "the w-medicine-red"
+  - Key: "w-maternity"
+    Type: Progression
+    SpoilerFileName: "Maternity Statue"
+    Names:
+      - Text: "Maternity Statue"
+    ArticledNames:
+      - Text: "the Maternity Statue"
+  - Key: "fairypointsactive"
+    Names:
+      - Text: "fairypointsactive"
+    ArticledNames:
+      - Text: "the fairypointsactive"
+  - Key: "mantra-amphisbaena"
+    Names:
+      - Text: "mantra-amphisbaena"
+    ArticledNames:
+      - Text: "the mantra-amphisbaena"
+  - Key: "mantra-sakit"
+    Names:
+      - Text: "mantra-sakit"
+    ArticledNames:
+      - Text: "the mantra-sakit"
+  - Key: "mantra-ellmac"
+    Names:
+      - Text: "mantra-ellmac"
+    ArticledNames:
+      - Text: "the mantra-ellmac"
+  - Key: "mantra-bahamut"
+    Names:
+      - Text: "mantra-bahamut"
+    ArticledNames:
+      - Text: "the mantra-bahamut"
+  - Key: "mantra-viy"
+    Names:
+      - Text: "mantra-viy"
+    ArticledNames:
+      - Text: "the mantra-viy"
+  - Key: "mantra-palenque"
+    Names:
+      - Text: "mantra-palenque"
+    ArticledNames:
+      - Text: "the mantra-palenque"
+  - Key: "mantra-baphomet"
+    Names:
+      - Text: "mantra-baphomet"
+    ArticledNames:
+      - Text: "the mantra-baphomet"
+  - Key: "mantra-tiamat"
+    Names:
+      - Text: "mantra-tiamat"
+    ArticledNames:
+      - Text: "the mantra-tiamat"
+  - Key: "mantra-keysword"
+    Names:
+      - Text: "mantra-keysword"
+    ArticledNames:
+      - Text: "the mantra-keysword"
+  - Key: "rosetta-count"
+    Names:
+      - Text: "rosetta-count"
+    ArticledNames:
+      - Text: "the rosetta-count"
+  - Key: "learnt-lamulanese"
+    Names:
+      - Text: "learnt-lamulanese"
+    ArticledNames:
+      - Text: "the learnt-lamulanese"
+  - Key: "game-started"
+    Names:
+      - Text: "game-started"
+    ArticledNames:
+      - Text: "the game-started"
+  - Key: "orb-count"
+    Names:
+      - Text: "orb-count"
+    ArticledNames:
+      - Text: "the orb-count"
+  - Key: "orb-guidance"
+    Names:
+      - Text: "Gate of Guidance Sacred Orb"
+    ArticledNames:
+      - Text: "the Gate of Guidance Sacred Orb"
+  - Key: "orb-surface"
+    Names:
+      - Text: "Surface Sacred Orb"
+    ArticledNames:
+      - Text: "the Surface Sacred Orb"
+  - Key: "orb-maus"
+    Names:
+      - Text: "Mausoleum of the Giants Sacred Orb"
+    ArticledNames:
+      - Text: "the Mausoleum of the Giants Sacred Orb"
+  - Key: "orb-sun"
+    Names:
+      - Text: "Temple of the Sun Sacred Orb"
+    ArticledNames:
+      - Text: "the Temple of the Sun Sacred Orb"
+  - Key: "orb-spring"
+    Names:
+      - Text: "Spring in the Sky Sacred Orb"
+    ArticledNames:
+      - Text: "the Spring in the Sky Sacred Orb"
+  - Key: "orb-extinct"
+    Names:
+      - Text: "Chamber of Extinction Sacred Orb"
+    ArticledNames:
+      - Text: "the Chamber of Extinction Sacred Orb"
+  - Key: "orb-twins"
+    Names:
+      - Text: "Twin Labyrinths Sacred Orb"
+    ArticledNames:
+      - Text: "the Twin Labyrinths Sacred Orb"
+  - Key: "orb-shrine-f"
+    Names:
+      - Text: "Shrine of the Mother Sacred Orb"
+    ArticledNames:
+      - Text: "the Shrine of the Mother Sacred Orb"
+  - Key: "orb-ruin"
+    Names:
+      - Text: "Tower of Ruin Sacred Orb"
+    ArticledNames:
+      - Text: "the Tower of Ruin Sacred Orb"
+  - Key: "orb-dimension"
+    Type: Useless
+    SpoilerFileName: "Sacred Orb (Dimensional Corridor)"
+    Names:
+      - Text: "Dimensional Corridor Sacred Orb"
+    ArticledNames:
+      - Text: "the Dimensional Corridor Sacred Orb"
+  - Key: "w-map-a94"
+    Names:
+      - Text: "w-map-a94"
+    ArticledNames:
+      - Text: "the w-map-a94"
+  - Key: "w-map-a95"
+    Names:
+      - Text: "w-map-a95"
+    ArticledNames:
+      - Text: "the w-map-a95"
+  - Key: "w-map-a96"
+    Names:
+      - Text: "w-map-a96"
+    ArticledNames:
+      - Text: "the w-map-a96"
+  - Key: "w-map-a97"
+    Names:
+      - Text: "w-map-a97"
+    ArticledNames:
+      - Text: "the w-map-a97"
+  - Key: "w-map-a98"
+    Names:
+      - Text: "w-map-a98"
+    ArticledNames:
+      - Text: "the w-map-a98"
+  - Key: "w-map-a99"
+    Names:
+      - Text: "w-map-a99"
+    ArticledNames:
+      - Text: "the w-map-a99"
+  - Key: "w-map-a9a"
+    Names:
+      - Text: "w-map-a9a"
+    ArticledNames:
+      - Text: "the w-map-a9a"
+  - Key: "w-map-a9b"
+    Names:
+      - Text: "w-map-a9b"
+    ArticledNames:
+      - Text: "the w-map-a9b"
+  - Key: "w-map-a9c"
+    Names:
+      - Text: "w-map-a9c"
+    ArticledNames:
+      - Text: "the w-map-a9c"
+  - Key: "w-map-a9d"
+    Names:
+      - Text: "w-map-a9d"
+    ArticledNames:
+      - Text: "the w-map-a9d"
+  - Key: "w-map-a9e"
+    Names:
+      - Text: "w-map-a9e"
+    ArticledNames:
+      - Text: "the w-map-a9e"
+  - Key: "w-map-a9f"
+    Names:
+      - Text: "w-map-a9f"
+    ArticledNames:
+      - Text: "the w-map-a9f"
+  - Key: "w-map-aa0"
+    Names:
+      - Text: "w-map-aa0"
+    ArticledNames:
+      - Text: "the w-map-aa0"
+  - Key: "w-map-aa1"
+    Names:
+      - Text: "w-map-aa1"
+    ArticledNames:
+      - Text: "the w-map-aa1"
+  - Key: "w-map-aa2"
+    Names:
+      - Text: "w-map-aa2"
+    ArticledNames:
+      - Text: "the w-map-aa2"
+  - Key: "w-map-aa3"
+    Names:
+      - Text: "w-map-aa3"
+    ArticledNames:
+      - Text: "the w-map-aa3"
+  - Key: "whip"
+    Type: Progression
+    SpoilerFileName: "Whip"
+    Names:
+      - Text: "whip"
+    ArticledNames:
+      - Text: "the whip"
+  - Key: "shield-buckler"
+    Type: Useless
+    SpoilerFileName: "Buckler"
+    Names:
+      - Text: "Buckler Shield"
+    ArticledNames:
+      - Text: "the Buckler Shield"
+  - Key: "shield-silver"
+    Type: NiceToHave
+    SpoilerFileName: "Silver Shield"
+    Names:
+      - Text: "Silver Shield"
+    ArticledNames:
+      - Text: "the Silver Shield"
+  - Key: "shield-angel"
+    Type: NiceToHaveChecks
+    SpoilerFileName: "Angel Shield"
+    Names:
+      - Text: "Angel Shield"
+    ArticledNames:
+      - Text: "the Angel Shield"
+  - Key: "recent-buckler"
+    Names:
+      - Text: "Buckler Shield"
+    ArticledNames:
+      - Text: "the Buckler Shield"
+  - Key: "recent-silver"
+    Names:
+      - Text: "Silver Shield"
+    ArticledNames:
+      - Text: "the Silver Shield"
+  - Key: "recent-angel"
+    Names:
+      - Text: "Angel Shield"
+    ArticledNames:
+      - Text: "the Angel Shield"
+  - Key: "recent-fake"
+    Type: Useless
+    SpoilerFileName: "Fake Silver Shield"
+    Names:
+      - Text: "Fake Silver Shield"
+    ArticledNames:
+      - Text: "the Fake Silver Shield"
+  - Key: "ankh-jewels"
+    Names:
+      - Text: "Ankh Jewel"
+    ArticledNames:
+      - Text: "an Ankh Jewel"
+    PluralNames:
+      - Text: "Ankh Jewels"
+  - Key: "invus-lamp-lit"
+    Names:
+      - Text: "invus-lamp-lit"
+    ArticledNames:
+      - Text: "the invus-lamp-lit"
+  - Key: "maps"
+    Names:
+      - Text: "maps"
+    ArticledNames:
+      - Text: "the maps"
+  - Key: "invtr-treasures"
+    Names:
+      - Text: "invtr-treasures"
+    ArticledNames:
+      - Text: "the invtr-treasures"
+  - Key: "invus-diary"
+    Names:
+      - Text: "invus-diary"
+    ArticledNames:
+      - Text: "the invus-diary"
+  - Key: "shield-fake"
+    Names:
+      - Text: "shield-fake"
+    ArticledNames:
+      - Text: "the shield-fake"
+  - Key: "invus-lamp-unlit"
+    Names:
+      - Text: "invus-lamp-unlit"
+    ArticledNames:
+      - Text: "the invus-lamp-unlit"
+  - Key: "invtr-grailbr"
+    Names:
+      - Text: "invtr-grailbr"
+    ArticledNames:
+      - Text: "the invtr-grailbr"
+  - Key: "invtr-grailfull"
+    Names:
+      - Text: "invtr-grailfull"
+    ArticledNames:
+      - Text: "the invtr-grailfull"
+  - Key: "weights"
+    Names:
+      - Text: "weights"
+    ArticledNames:
+      - Text: "the weights"
+  - Key: "coins"
+    Names:
+      - Text: "coins"
+    ArticledNames:
+      - Text: "the coins"
+  - Key: "ammo-shuriken"
+    Names:
+      - Text: "ammo-shuriken"
+    ArticledNames:
+      - Text: "the ammo-shuriken"
+  - Key: "ammo-roll-shuriken"
+    Names:
+      - Text: "ammo-roll-shuriken"
+    ArticledNames:
+      - Text: "the ammo-roll-shuriken"
+  - Key: "ammo-spear"
+    Names:
+      - Text: "ammo-spear"
+    ArticledNames:
+      - Text: "the ammo-spear"
+  - Key: "ammo-flare"
+    Names:
+      - Text: "ammo-flare"
+    ArticledNames:
+      - Text: "the ammo-flare"
+  - Key: "ammo-bomb"
+    Names:
+      - Text: "ammo-bomb"
+    ArticledNames:
+      - Text: "the ammo-bomb"
+  - Key: "ammo-chakram"
+    Names:
+      - Text: "ammo-chakram"
+    ArticledNames:
+      - Text: "the ammo-chakram"
+  - Key: "ammo-caltrop"
+    Names:
+      - Text: "ammo-caltrop"
+    ArticledNames:
+      - Text: "the ammo-caltrop"
+  - Key: "ammo-clip"
+    Names:
+      - Text: "ammo-clip"
+    ArticledNames:
+      - Text: "the ammo-clip"
+  - Key: "ammo-mystery-73"
+    Names:
+      - Text: "ammo-mystery-73"
+    ArticledNames:
+      - Text: "the ammo-mystery-73"
+  - Key: "ammo-bullet"
+    Names:
+      - Text: "ammo-bullet"
+    ArticledNames:
+      - Text: "the ammo-bullet"
+  - Key: "death-tracker"
+    Names:
+      - Text: "death-tracker"
+    ArticledNames:
+      - Text: "the death-tracker"

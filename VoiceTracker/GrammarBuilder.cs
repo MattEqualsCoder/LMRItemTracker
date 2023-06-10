@@ -4,27 +4,27 @@ using System.Speech.Recognition;
 
 namespace LMRItemTracker.VoiceTracker;
 
-public class GrammarBuilder2
+public class GrammarBuilder
 {
     private readonly System.Speech.Recognition.GrammarBuilder _grammar;
     private readonly List<string> _elements;
 
     /// <summary>
-    /// Initializes a new empty instance of the <see cref="GrammarBuilder2"/>
+    /// Initializes a new empty instance of the <see cref="GrammarBuilder"/>
     /// class.
     /// </summary>
-    public GrammarBuilder2()
+    public GrammarBuilder()
     {
         _grammar = new();
         _elements = new();
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="GrammarBuilder2"/> class
+    /// Initializes a new instance of the <see cref="GrammarBuilder"/> class
     /// that combines the specified grammars into a single choice.
     /// </summary>
     /// <param name="choices">The grammars to choose from.</param>
-    public GrammarBuilder2(IEnumerable<GrammarBuilder2> choices)
+    public GrammarBuilder(IEnumerable<GrammarBuilder> choices)
         : this()
     {
         _grammar.Append(new Choices(choices.Select(x => (System.Speech.Recognition.GrammarBuilder)x).ToArray()));
@@ -36,7 +36,7 @@ public class GrammarBuilder2
     /// Converts the grammar builder to the System.Speech grammar builder.
     /// </summary>
     /// <param name="self">The grammar builder to convert.</param>
-    public static implicit operator System.Speech.Recognition.GrammarBuilder(GrammarBuilder2 self) => self._grammar;
+    public static implicit operator System.Speech.Recognition.GrammarBuilder(GrammarBuilder self) => self._grammar;
 
     /// <summary>
     /// Combines the specified grammars into a single grammar.
@@ -45,12 +45,12 @@ public class GrammarBuilder2
     /// The possible grammars to choose from in the new grammar.
     /// </param>
     /// <returns>
-    /// A new <see cref="GrammarBuilder2"/> that represents a choice of one
+    /// A new <see cref="GrammarBuilder"/> that represents a choice of one
     /// of <paramref name="choices"/>.
     /// </returns>
-    public static GrammarBuilder2 Combine(params GrammarBuilder2[] choices)
+    public static GrammarBuilder Combine(params GrammarBuilder[] choices)
     {
-        return new GrammarBuilder2(choices);
+        return new GrammarBuilder(choices);
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class GrammarBuilder2
     /// </summary>
     /// <param name="text">The text to recognize.</param>
     /// <returns>This instance.</returns>
-    public GrammarBuilder2 Append(string text)
+    public GrammarBuilder Append(string text)
     {
         _grammar.Append(text);
         _elements.Add(text);
@@ -76,7 +76,7 @@ public class GrammarBuilder2
     /// The choices to represent in the grammar.
     /// </param>
     /// <returns>This instance.</returns>
-    public GrammarBuilder2 Append(string key, Choices choices)
+    public GrammarBuilder Append(string key, Choices choices)
     {
         _grammar.Append(new SemanticResultKey(key, choices));
         _elements.Add($"<{key}>");
@@ -90,7 +90,7 @@ public class GrammarBuilder2
     /// The choices to represent in the grammar.
     /// </param>
     /// <returns>This instance.</returns>
-    public GrammarBuilder2 OneOf(params string[] choices)
+    public GrammarBuilder OneOf(params string[] choices)
     {
         _grammar.Append(new Choices(choices));
         _elements.Add($"[{string.Join("/", choices)}]");
@@ -104,7 +104,7 @@ public class GrammarBuilder2
     /// The text that may or may not be recognized.
     /// </param>
     /// <returns>This instance.</returns>
-    public GrammarBuilder2 Optional(string text)
+    public GrammarBuilder Optional(string text)
     {
         _grammar.Append(text, 0, 1);
         _elements.Add($"({text})");
@@ -116,7 +116,7 @@ public class GrammarBuilder2
     /// </summary>
     /// <param name="choices">The choices to represent in the grammar.</param>
     /// <returns>This instance.</returns>
-    public GrammarBuilder2 Optional(params string[] choices)
+    public GrammarBuilder Optional(params string[] choices)
     {
         _grammar.Append(new Choices(choices), 0, 1);
         _elements.Add($"({string.Join("/", choices)})");

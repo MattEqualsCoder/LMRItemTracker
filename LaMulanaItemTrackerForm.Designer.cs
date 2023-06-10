@@ -70,16 +70,9 @@ namespace LMRItemTracker
             this.clearDeathCountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showLastItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLastItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.voiceTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableVoiceTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.hermesBoots = new LMRItemTracker.TrackerBox();
-            this.grappleClaw = new LMRItemTracker.TrackerBox();
-            this.feather = new LMRItemTracker.TrackerBox();
-            this.scanner = new LMRItemTracker.TrackerBox();
-            this.readerPanel = new LMRItemTracker.ItemTextPanel();
-            this.reader = new LMRItemTracker.TrackerBox();
-            this.translationTablets = new LMRItemTracker.TrackerLabel();
-            this.holyGrail = new LMRItemTracker.MultiStateTrackerBox();
-            this.mirai = new LMRItemTracker.TrackerBox();
             this.mainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.overviewPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.lastItemPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -91,6 +84,22 @@ namespace LMRItemTracker
             this.deathLabel = new System.Windows.Forms.Label();
             this.deathCount = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.bossPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.itemColorDialog = new System.Windows.Forms.ColorDialog();
+            this.openSettingsWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hermesBoots = new LMRItemTracker.TrackerBox();
+            this.grappleClaw = new LMRItemTracker.TrackerBox();
+            this.feather = new LMRItemTracker.TrackerBox();
+            this.scanner = new LMRItemTracker.TrackerBox();
+            this.readerPanel = new LMRItemTracker.ItemTextPanel();
+            this.reader = new LMRItemTracker.TrackerBox();
+            this.translationTablets = new LMRItemTracker.TrackerLabel();
+            this.holyGrail = new LMRItemTracker.MultiStateTrackerBox();
+            this.mirai = new LMRItemTracker.TrackerBox();
             this.bronzeMirror = new LMRItemTracker.TrackerBox();
             this.fruitOfEden = new LMRItemTracker.TrackerBox();
             this.twinStatue = new LMRItemTracker.TrackerBox();
@@ -121,7 +130,6 @@ namespace LMRItemTracker
             this.shrinePanel = new LMRItemTracker.ItemTextPanel();
             this.skullWall = new LMRItemTracker.TrackerBox();
             this.skullWallCount = new LMRItemTracker.TrackerLabel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.originSeal = new LMRItemTracker.TrackerBox();
             this.birthSeal = new LMRItemTracker.TrackerBox();
             this.lifeSeal = new LMRItemTracker.TrackerBox();
@@ -136,7 +144,6 @@ namespace LMRItemTracker
             this.glove = new LMRItemTracker.TrackerBox();
             this.bracelet = new LMRItemTracker.TrackerBox();
             this.spaulder = new LMRItemTracker.TrackerBox();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.whip = new LMRItemTracker.MultiStateTrackerBox();
             this.knife = new LMRItemTracker.TrackerBox();
             this.axe = new LMRItemTracker.TrackerBox();
@@ -167,7 +174,6 @@ namespace LMRItemTracker
             this.bombPanel = new LMRItemTracker.ItemTextPanel();
             this.bombAmmoCount = new LMRItemTracker.TrackerLabel();
             this.bomb = new LMRItemTracker.TrackerBox();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.ocarina = new LMRItemTracker.TrackerBox();
             this.mantra = new LMRItemTracker.TrackerBox();
             this.vessel = new LMRItemTracker.MultiStateTrackerBox();
@@ -179,7 +185,6 @@ namespace LMRItemTracker
             this.ankhJewelPanel = new LMRItemTracker.ItemTextPanel();
             this.ankhJewels = new LMRItemTracker.TrackerBox();
             this.ankhJewelCount = new LMRItemTracker.TrackerLabel();
-            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
             this.shellHorn = new LMRItemTracker.TrackerBox();
             this.waterproofCase = new LMRItemTracker.TrackerBox();
             this.heatproofCase = new LMRItemTracker.TrackerBox();
@@ -202,7 +207,6 @@ namespace LMRItemTracker
             this.bounce = new LMRItemTracker.TrackerBox();
             this.miracle = new LMRItemTracker.TrackerBox();
             this.lamulana = new LMRItemTracker.TrackerBox();
-            this.bossPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.amphisbaena = new LMRItemTracker.TrackerBox();
             this.sakit = new LMRItemTracker.TrackerBox();
             this.ellmac = new LMRItemTracker.TrackerBox();
@@ -211,17 +215,8 @@ namespace LMRItemTracker
             this.palenque = new LMRItemTracker.TrackerBox();
             this.baphomet = new LMRItemTracker.TrackerBox();
             this.tiamat = new LMRItemTracker.TrackerBox();
-            this.itemColorDialog = new System.Windows.Forms.ColorDialog();
             this.menu.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hermesBoots)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grappleClaw)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feather)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scanner)).BeginInit();
-            this.readerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.reader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.holyGrail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mirai)).BeginInit();
             this.mainPanel.SuspendLayout();
             this.overviewPanel.SuspendLayout();
             this.lastItemPanel.SuspendLayout();
@@ -230,6 +225,19 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.lastItem3)).BeginInit();
             this.deathPanel.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
+            this.flowLayoutPanel6.SuspendLayout();
+            this.bossPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hermesBoots)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grappleClaw)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feather)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scanner)).BeginInit();
+            this.readerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holyGrail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mirai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bronzeMirror)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitOfEden)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.twinStatue)).BeginInit();
@@ -259,7 +267,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.torude)).BeginInit();
             this.shrinePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skullWall)).BeginInit();
-            this.flowLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.originSeal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.birthSeal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifeSeal)).BeginInit();
@@ -274,7 +281,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.glove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bracelet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spaulder)).BeginInit();
-            this.flowLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.whip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.knife)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axe)).BeginInit();
@@ -297,7 +303,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.earthSpear)).BeginInit();
             this.bombPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bomb)).BeginInit();
-            this.flowLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ocarina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mantra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vessel)).BeginInit();
@@ -307,7 +312,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.maps)).BeginInit();
             this.ankhJewelPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ankhJewels)).BeginInit();
-            this.flowLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shellHorn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.waterproofCase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heatproofCase)).BeginInit();
@@ -330,7 +334,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.bounce)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miracle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lamulana)).BeginInit();
-            this.bossPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.amphisbaena)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sakit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ellmac)).BeginInit();
@@ -356,7 +359,8 @@ namespace LMRItemTracker
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
             this.colorsToolStripMenuItem,
-            this.layoutToolStripMenuItem});
+            this.layoutToolStripMenuItem,
+            this.voiceTrackerToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(340, 24);
@@ -569,6 +573,22 @@ namespace LMRItemTracker
             this.clearLastItemToolStripMenuItem.Text = "Clear Recent Items";
             this.clearLastItemToolStripMenuItem.Click += new System.EventHandler(this.clearLastItem);
             // 
+            // voiceTrackerToolStripMenuItem
+            // 
+            this.voiceTrackerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enableVoiceTrackerToolStripMenuItem,
+            this.openSettingsWindowToolStripMenuItem});
+            this.voiceTrackerToolStripMenuItem.Name = "voiceTrackerToolStripMenuItem";
+            this.voiceTrackerToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.voiceTrackerToolStripMenuItem.Text = "Voice Tracker";
+            // 
+            // enableVoiceTrackerToolStripMenuItem
+            // 
+            this.enableVoiceTrackerToolStripMenuItem.Name = "enableVoiceTrackerToolStripMenuItem";
+            this.enableVoiceTrackerToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.enableVoiceTrackerToolStripMenuItem.Text = "Enable Voice Tracker";
+            this.enableVoiceTrackerToolStripMenuItem.Click += new System.EventHandler(this.toggleVoiceTracker);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
@@ -587,6 +607,313 @@ namespace LMRItemTracker
             this.flowLayoutPanel1.Size = new System.Drawing.Size(280, 56);
             this.flowLayoutPanel1.TabIndex = 110;
             this.flowLayoutPanel1.DoubleClick += new System.EventHandler(this.SelectFormColor);
+            // 
+            // mainPanel
+            // 
+            this.mainPanel.AutoSize = true;
+            this.mainPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.mainPanel.Controls.Add(this.overviewPanel);
+            this.mainPanel.Controls.Add(this.flowLayoutPanel1);
+            this.mainPanel.Controls.Add(this.flowLayoutPanel2);
+            this.mainPanel.Controls.Add(this.flowLayoutPanel3);
+            this.mainPanel.Controls.Add(this.flowLayoutPanel4);
+            this.mainPanel.Controls.Add(this.flowLayoutPanel5);
+            this.mainPanel.Controls.Add(this.flowLayoutPanel6);
+            this.mainPanel.Controls.Add(this.bossPanel);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.mainPanel.Location = new System.Drawing.Point(0, 24);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.mainPanel.Size = new System.Drawing.Size(340, 758);
+            this.mainPanel.TabIndex = 111;
+            this.mainPanel.DoubleClick += new System.EventHandler(this.SelectFormColor);
+            // 
+            // overviewPanel
+            // 
+            this.overviewPanel.AutoSize = true;
+            this.overviewPanel.Controls.Add(this.lastItemPanel);
+            this.overviewPanel.Controls.Add(this.deathPanel);
+            this.mainPanel.SetFlowBreak(this.overviewPanel, true);
+            this.overviewPanel.Location = new System.Drawing.Point(10, 10);
+            this.overviewPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.overviewPanel.Name = "overviewPanel";
+            this.overviewPanel.Size = new System.Drawing.Size(300, 56);
+            this.overviewPanel.TabIndex = 119;
+            this.overviewPanel.WrapContents = false;
+            // 
+            // lastItemPanel
+            // 
+            this.lastItemPanel.AutoSize = true;
+            this.lastItemPanel.Controls.Add(this.lastItemLabel);
+            this.lastItemPanel.Controls.Add(this.lastItem1);
+            this.lastItemPanel.Controls.Add(this.lastItem2);
+            this.lastItemPanel.Controls.Add(this.lastItem3);
+            this.overviewPanel.SetFlowBreak(this.lastItemPanel, true);
+            this.lastItemPanel.Location = new System.Drawing.Point(0, 0);
+            this.lastItemPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 16);
+            this.lastItemPanel.Name = "lastItemPanel";
+            this.lastItemPanel.Size = new System.Drawing.Size(218, 40);
+            this.lastItemPanel.TabIndex = 118;
+            // 
+            // lastItemLabel
+            // 
+            this.lastItemLabel.AutoSize = true;
+            this.lastItemLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lastItemLabel.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.lastItemLabel.Location = new System.Drawing.Point(0, 0);
+            this.lastItemLabel.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.lastItemLabel.Name = "lastItemLabel";
+            this.lastItemLabel.Size = new System.Drawing.Size(93, 40);
+            this.lastItemLabel.TabIndex = 115;
+            this.lastItemLabel.Text = "Recent Items:";
+            this.lastItemLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lastItemLabel.Click += new System.EventHandler(this.changeLanguage);
+            this.lastItemLabel.DoubleClick += new System.EventHandler(this.SelectTextColor);
+            // 
+            // lastItem1
+            // 
+            this.lastItem1.Location = new System.Drawing.Point(98, 0);
+            this.lastItem1.Margin = new System.Windows.Forms.Padding(0);
+            this.lastItem1.Name = "lastItem1";
+            this.lastItem1.Size = new System.Drawing.Size(40, 40);
+            this.lastItem1.TabIndex = 114;
+            this.lastItem1.TabStop = false;
+            // 
+            // lastItem2
+            // 
+            this.lastItem2.Location = new System.Drawing.Point(138, 0);
+            this.lastItem2.Margin = new System.Windows.Forms.Padding(0);
+            this.lastItem2.Name = "lastItem2";
+            this.lastItem2.Size = new System.Drawing.Size(40, 40);
+            this.lastItem2.TabIndex = 116;
+            this.lastItem2.TabStop = false;
+            // 
+            // lastItem3
+            // 
+            this.lastItem3.Location = new System.Drawing.Point(178, 0);
+            this.lastItem3.Margin = new System.Windows.Forms.Padding(0);
+            this.lastItem3.Name = "lastItem3";
+            this.lastItem3.Size = new System.Drawing.Size(40, 40);
+            this.lastItem3.TabIndex = 117;
+            this.lastItem3.TabStop = false;
+            // 
+            // deathPanel
+            // 
+            this.deathPanel.AutoSize = true;
+            this.deathPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.deathPanel.Controls.Add(this.deathLabel);
+            this.deathPanel.Controls.Add(this.deathCount);
+            this.deathPanel.Location = new System.Drawing.Point(226, 0);
+            this.deathPanel.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.deathPanel.Name = "deathPanel";
+            this.deathPanel.Size = new System.Drawing.Size(74, 40);
+            this.deathPanel.TabIndex = 119;
+            this.deathPanel.WrapContents = false;
+            this.deathPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deathCount_MouseClick);
+            // 
+            // deathLabel
+            // 
+            this.deathLabel.AutoSize = true;
+            this.deathLabel.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.deathLabel.Location = new System.Drawing.Point(3, 0);
+            this.deathLabel.MinimumSize = new System.Drawing.Size(0, 40);
+            this.deathLabel.Name = "deathLabel";
+            this.deathLabel.Size = new System.Drawing.Size(48, 40);
+            this.deathLabel.TabIndex = 0;
+            this.deathLabel.Text = "Death:";
+            this.deathLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deathLabel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deathCount_MouseClick);
+            // 
+            // deathCount
+            // 
+            this.deathCount.AutoSize = true;
+            this.deathCount.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.deathCount.Location = new System.Drawing.Point(57, 0);
+            this.deathCount.MinimumSize = new System.Drawing.Size(0, 40);
+            this.deathCount.Name = "deathCount";
+            this.deathCount.Size = new System.Drawing.Size(14, 40);
+            this.deathCount.TabIndex = 1;
+            this.deathCount.Text = "0";
+            this.deathCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deathCount.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deathCount_MouseClick);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel2.Controls.Add(this.bronzeMirror);
+            this.flowLayoutPanel2.Controls.Add(this.fruitOfEden);
+            this.flowLayoutPanel2.Controls.Add(this.twinStatue);
+            this.flowLayoutPanel2.Controls.Add(this.keyOfEternity);
+            this.flowLayoutPanel2.Controls.Add(this.helmet);
+            this.flowLayoutPanel2.Controls.Add(this.planeModel);
+            this.flowLayoutPanel2.Controls.Add(this.crystalSkull);
+            this.flowLayoutPanel2.Controls.Add(this.dimensionalKey);
+            this.flowLayoutPanel2.Controls.Add(this.pochetteKey);
+            this.flowLayoutPanel2.Controls.Add(this.iceCape);
+            this.flowLayoutPanel2.Controls.Add(this.scalesphere);
+            this.flowLayoutPanel2.Controls.Add(this.cogOfTheSoul);
+            this.flowLayoutPanel2.Controls.Add(this.dragonBone);
+            this.flowLayoutPanel2.Controls.Add(this.serpentStaff);
+            this.flowLayoutPanel2.Controls.Add(this.mulanaTalisman);
+            this.flowLayoutPanel2.Controls.Add(this.womanStatue);
+            this.flowLayoutPanel2.Controls.Add(this.pepper);
+            this.flowLayoutPanel2.Controls.Add(this.talisman);
+            this.flowLayoutPanel2.Controls.Add(this.diary);
+            this.flowLayoutPanel2.Controls.Add(this.miniDoll);
+            this.flowLayoutPanel2.Controls.Add(this.treasures);
+            this.flowLayoutPanel2.Controls.Add(this.anchor);
+            this.flowLayoutPanel2.Controls.Add(this.keyFairy);
+            this.flowLayoutPanel2.Controls.Add(this.isisPendant);
+            this.flowLayoutPanel2.Controls.Add(this.eyeOfTruth);
+            this.flowLayoutPanel2.Controls.Add(this.magatamaJewel);
+            this.flowLayoutPanel2.Controls.Add(this.torude);
+            this.flowLayoutPanel2.Controls.Add(this.shrinePanel);
+            this.mainPanel.SetFlowBreak(this.flowLayoutPanel2, true);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(10, 130);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(320, 176);
+            this.flowLayoutPanel2.TabIndex = 112;
+            this.flowLayoutPanel2.DoubleClick += new System.EventHandler(this.SelectFormColor);
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoSize = true;
+            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel3.Controls.Add(this.originSeal);
+            this.flowLayoutPanel3.Controls.Add(this.birthSeal);
+            this.flowLayoutPanel3.Controls.Add(this.lifeSeal);
+            this.flowLayoutPanel3.Controls.Add(this.deathSeal);
+            this.flowLayoutPanel3.Controls.Add(this.bookOfTheDead);
+            this.flowLayoutPanel3.Controls.Add(this.ring);
+            this.flowLayoutPanel3.Controls.Add(this.fairyClothes);
+            this.flowLayoutPanel3.Controls.Add(this.msx2);
+            this.flowLayoutPanel3.Controls.Add(this.scriptures);
+            this.flowLayoutPanel3.Controls.Add(this.crucifix);
+            this.flowLayoutPanel3.Controls.Add(this.perfume);
+            this.flowLayoutPanel3.Controls.Add(this.glove);
+            this.flowLayoutPanel3.Controls.Add(this.bracelet);
+            this.flowLayoutPanel3.Controls.Add(this.spaulder);
+            this.mainPanel.SetFlowBreak(this.flowLayoutPanel3, true);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(10, 314);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(320, 80);
+            this.flowLayoutPanel3.TabIndex = 117;
+            this.flowLayoutPanel3.DoubleClick += new System.EventHandler(this.SelectFormColor);
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.AutoSize = true;
+            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel4.Controls.Add(this.whip);
+            this.flowLayoutPanel4.Controls.Add(this.knife);
+            this.flowLayoutPanel4.Controls.Add(this.axe);
+            this.flowLayoutPanel4.Controls.Add(this.katana);
+            this.flowLayoutPanel4.Controls.Add(this.shield);
+            this.flowLayoutPanel4.Controls.Add(this.gauntlet);
+            this.flowLayoutPanel4.Controls.Add(this.pistolPanel);
+            this.flowLayoutPanel4.Controls.Add(this.shurikenPanel);
+            this.flowLayoutPanel4.Controls.Add(this.rollingShurikenPanel);
+            this.flowLayoutPanel4.Controls.Add(this.caltropsPanel);
+            this.flowLayoutPanel4.Controls.Add(this.flareGunPanel);
+            this.flowLayoutPanel4.Controls.Add(this.chakramPanel);
+            this.flowLayoutPanel4.Controls.Add(this.earthSpearPanel);
+            this.flowLayoutPanel4.Controls.Add(this.bombPanel);
+            this.mainPanel.SetFlowBreak(this.flowLayoutPanel4, true);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(10, 402);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(320, 112);
+            this.flowLayoutPanel4.TabIndex = 115;
+            this.flowLayoutPanel4.DoubleClick += new System.EventHandler(this.SelectFormColor);
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.AutoSize = true;
+            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel5.Controls.Add(this.ocarina);
+            this.flowLayoutPanel5.Controls.Add(this.mantra);
+            this.flowLayoutPanel5.Controls.Add(this.vessel);
+            this.flowLayoutPanel5.Controls.Add(this.keySword);
+            this.flowLayoutPanel5.Controls.Add(this.lampOfTime);
+            this.flowLayoutPanel5.Controls.Add(this.mapsPanel);
+            this.flowLayoutPanel5.Controls.Add(this.ankhJewelPanel);
+            this.mainPanel.SetFlowBreak(this.flowLayoutPanel5, true);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(10, 522);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(280, 56);
+            this.flowLayoutPanel5.TabIndex = 115;
+            this.flowLayoutPanel5.DoubleClick += new System.EventHandler(this.SelectFormColor);
+            // 
+            // flowLayoutPanel6
+            // 
+            this.flowLayoutPanel6.AutoSize = true;
+            this.flowLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel6.Controls.Add(this.shellHorn);
+            this.flowLayoutPanel6.Controls.Add(this.waterproofCase);
+            this.flowLayoutPanel6.Controls.Add(this.heatproofCase);
+            this.flowLayoutPanel6.Controls.Add(this.swimsuit);
+            this.flowLayoutPanel6.Controls.Add(this.djedPillar);
+            this.flowLayoutPanel6.Controls.Add(this.mantraSingle);
+            this.flowLayoutPanel6.Controls.Add(this.xmailer);
+            this.flowLayoutPanel6.Controls.Add(this.yagomap);
+            this.flowLayoutPanel6.Controls.Add(this.yagostr);
+            this.flowLayoutPanel6.Controls.Add(this.bunemon);
+            this.flowLayoutPanel6.Controls.Add(this.bunplus);
+            this.flowLayoutPanel6.Controls.Add(this.guild);
+            this.flowLayoutPanel6.Controls.Add(this.beolamu);
+            this.flowLayoutPanel6.Controls.Add(this.emusic);
+            this.flowLayoutPanel6.Controls.Add(this.randc);
+            this.flowLayoutPanel6.Controls.Add(this.capstar);
+            this.flowLayoutPanel6.Controls.Add(this.deathv);
+            this.flowLayoutPanel6.Controls.Add(this.move);
+            this.flowLayoutPanel6.Controls.Add(this.mekuri);
+            this.flowLayoutPanel6.Controls.Add(this.bounce);
+            this.flowLayoutPanel6.Controls.Add(this.miracle);
+            this.flowLayoutPanel6.Controls.Add(this.lamulana);
+            this.mainPanel.SetFlowBreak(this.flowLayoutPanel6, true);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(10, 586);
+            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(320, 120);
+            this.flowLayoutPanel6.TabIndex = 120;
+            // 
+            // bossPanel
+            // 
+            this.bossPanel.AutoSize = true;
+            this.bossPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.bossPanel.Controls.Add(this.amphisbaena);
+            this.bossPanel.Controls.Add(this.sakit);
+            this.bossPanel.Controls.Add(this.ellmac);
+            this.bossPanel.Controls.Add(this.bahamut);
+            this.bossPanel.Controls.Add(this.viy);
+            this.bossPanel.Controls.Add(this.palenque);
+            this.bossPanel.Controls.Add(this.baphomet);
+            this.bossPanel.Controls.Add(this.tiamat);
+            this.mainPanel.SetFlowBreak(this.bossPanel, true);
+            this.bossPanel.Location = new System.Drawing.Point(10, 714);
+            this.bossPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.bossPanel.MaximumSize = new System.Drawing.Size(280, 0);
+            this.bossPanel.Name = "bossPanel";
+            this.bossPanel.Size = new System.Drawing.Size(280, 34);
+            this.bossPanel.TabIndex = 112;
+            this.bossPanel.DoubleClick += new System.EventHandler(this.SelectFormColor);
+            // 
+            // itemColorDialog
+            // 
+            this.itemColorDialog.AnyColor = true;
+            this.itemColorDialog.SolidColorOnly = true;
+            // 
+            // openSettingsWindowToolStripMenuItem
+            // 
+            this.openSettingsWindowToolStripMenuItem.Name = "openSettingsWindowToolStripMenuItem";
+            this.openSettingsWindowToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openSettingsWindowToolStripMenuItem.Text = "Open Settings Window";
+            this.openSettingsWindowToolStripMenuItem.Click += new System.EventHandler(this.openSettingsWindowToolStripMenuItem_Click);
             // 
             // hermesBoots
             // 
@@ -734,176 +1061,6 @@ namespace LMRItemTracker
             this.mirai.SolidImage = global::LMRItemTracker.Properties.Resources.Icon_software_solid;
             this.mirai.TabIndex = 115;
             this.mirai.TabStop = false;
-            // 
-            // mainPanel
-            // 
-            this.mainPanel.AutoSize = true;
-            this.mainPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mainPanel.Controls.Add(this.overviewPanel);
-            this.mainPanel.Controls.Add(this.flowLayoutPanel1);
-            this.mainPanel.Controls.Add(this.flowLayoutPanel2);
-            this.mainPanel.Controls.Add(this.flowLayoutPanel3);
-            this.mainPanel.Controls.Add(this.flowLayoutPanel4);
-            this.mainPanel.Controls.Add(this.flowLayoutPanel5);
-            this.mainPanel.Controls.Add(this.flowLayoutPanel6);
-            this.mainPanel.Controls.Add(this.bossPanel);
-            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mainPanel.Location = new System.Drawing.Point(0, 24);
-            this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.mainPanel.Size = new System.Drawing.Size(340, 758);
-            this.mainPanel.TabIndex = 111;
-            this.mainPanel.DoubleClick += new System.EventHandler(this.SelectFormColor);
-            // 
-            // overviewPanel
-            // 
-            this.overviewPanel.AutoSize = true;
-            this.overviewPanel.Controls.Add(this.lastItemPanel);
-            this.overviewPanel.Controls.Add(this.deathPanel);
-            this.mainPanel.SetFlowBreak(this.overviewPanel, true);
-            this.overviewPanel.Location = new System.Drawing.Point(10, 10);
-            this.overviewPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.overviewPanel.Name = "overviewPanel";
-            this.overviewPanel.Size = new System.Drawing.Size(303, 56);
-            this.overviewPanel.TabIndex = 119;
-            this.overviewPanel.WrapContents = false;
-            // 
-            // lastItemPanel
-            // 
-            this.lastItemPanel.AutoSize = true;
-            this.lastItemPanel.Controls.Add(this.lastItemLabel);
-            this.lastItemPanel.Controls.Add(this.lastItem1);
-            this.lastItemPanel.Controls.Add(this.lastItem2);
-            this.lastItemPanel.Controls.Add(this.lastItem3);
-            this.overviewPanel.SetFlowBreak(this.lastItemPanel, true);
-            this.lastItemPanel.Location = new System.Drawing.Point(0, 0);
-            this.lastItemPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 16);
-            this.lastItemPanel.Name = "lastItemPanel";
-            this.lastItemPanel.Size = new System.Drawing.Size(219, 40);
-            this.lastItemPanel.TabIndex = 118;
-            // 
-            // lastItemLabel
-            // 
-            this.lastItemLabel.AutoSize = true;
-            this.lastItemLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lastItemLabel.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lastItemLabel.Location = new System.Drawing.Point(0, 0);
-            this.lastItemLabel.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.lastItemLabel.Name = "lastItemLabel";
-            this.lastItemLabel.Size = new System.Drawing.Size(94, 40);
-            this.lastItemLabel.TabIndex = 115;
-            this.lastItemLabel.Text = "Recent Items:";
-            this.lastItemLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lastItemLabel.Click += new System.EventHandler(this.changeLanguage);
-            this.lastItemLabel.DoubleClick += new System.EventHandler(this.SelectTextColor);
-            // 
-            // lastItem1
-            // 
-            this.lastItem1.Location = new System.Drawing.Point(99, 0);
-            this.lastItem1.Margin = new System.Windows.Forms.Padding(0);
-            this.lastItem1.Name = "lastItem1";
-            this.lastItem1.Size = new System.Drawing.Size(40, 40);
-            this.lastItem1.TabIndex = 114;
-            this.lastItem1.TabStop = false;
-            // 
-            // lastItem2
-            // 
-            this.lastItem2.Location = new System.Drawing.Point(139, 0);
-            this.lastItem2.Margin = new System.Windows.Forms.Padding(0);
-            this.lastItem2.Name = "lastItem2";
-            this.lastItem2.Size = new System.Drawing.Size(40, 40);
-            this.lastItem2.TabIndex = 116;
-            this.lastItem2.TabStop = false;
-            // 
-            // lastItem3
-            // 
-            this.lastItem3.Location = new System.Drawing.Point(179, 0);
-            this.lastItem3.Margin = new System.Windows.Forms.Padding(0);
-            this.lastItem3.Name = "lastItem3";
-            this.lastItem3.Size = new System.Drawing.Size(40, 40);
-            this.lastItem3.TabIndex = 117;
-            this.lastItem3.TabStop = false;
-            // 
-            // deathPanel
-            // 
-            this.deathPanel.AutoSize = true;
-            this.deathPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.deathPanel.Controls.Add(this.deathLabel);
-            this.deathPanel.Controls.Add(this.deathCount);
-            this.deathPanel.Location = new System.Drawing.Point(227, 0);
-            this.deathPanel.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.deathPanel.Name = "deathPanel";
-            this.deathPanel.Size = new System.Drawing.Size(76, 40);
-            this.deathPanel.TabIndex = 119;
-            this.deathPanel.WrapContents = false;
-            this.deathPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deathCount_MouseClick);
-            // 
-            // deathLabel
-            // 
-            this.deathLabel.AutoSize = true;
-            this.deathLabel.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.deathLabel.Location = new System.Drawing.Point(3, 0);
-            this.deathLabel.MinimumSize = new System.Drawing.Size(0, 40);
-            this.deathLabel.Name = "deathLabel";
-            this.deathLabel.Size = new System.Drawing.Size(49, 40);
-            this.deathLabel.TabIndex = 0;
-            this.deathLabel.Text = "Death:";
-            this.deathLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.deathLabel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deathCount_MouseClick);
-            // 
-            // deathCount
-            // 
-            this.deathCount.AutoSize = true;
-            this.deathCount.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.deathCount.Location = new System.Drawing.Point(58, 0);
-            this.deathCount.MinimumSize = new System.Drawing.Size(0, 40);
-            this.deathCount.Name = "deathCount";
-            this.deathCount.Size = new System.Drawing.Size(15, 40);
-            this.deathCount.TabIndex = 1;
-            this.deathCount.Text = "0";
-            this.deathCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.deathCount.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deathCount_MouseClick);
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel2.Controls.Add(this.bronzeMirror);
-            this.flowLayoutPanel2.Controls.Add(this.fruitOfEden);
-            this.flowLayoutPanel2.Controls.Add(this.twinStatue);
-            this.flowLayoutPanel2.Controls.Add(this.keyOfEternity);
-            this.flowLayoutPanel2.Controls.Add(this.helmet);
-            this.flowLayoutPanel2.Controls.Add(this.planeModel);
-            this.flowLayoutPanel2.Controls.Add(this.crystalSkull);
-            this.flowLayoutPanel2.Controls.Add(this.dimensionalKey);
-            this.flowLayoutPanel2.Controls.Add(this.pochetteKey);
-            this.flowLayoutPanel2.Controls.Add(this.iceCape);
-            this.flowLayoutPanel2.Controls.Add(this.scalesphere);
-            this.flowLayoutPanel2.Controls.Add(this.cogOfTheSoul);
-            this.flowLayoutPanel2.Controls.Add(this.dragonBone);
-            this.flowLayoutPanel2.Controls.Add(this.serpentStaff);
-            this.flowLayoutPanel2.Controls.Add(this.mulanaTalisman);
-            this.flowLayoutPanel2.Controls.Add(this.womanStatue);
-            this.flowLayoutPanel2.Controls.Add(this.pepper);
-            this.flowLayoutPanel2.Controls.Add(this.talisman);
-            this.flowLayoutPanel2.Controls.Add(this.diary);
-            this.flowLayoutPanel2.Controls.Add(this.miniDoll);
-            this.flowLayoutPanel2.Controls.Add(this.treasures);
-            this.flowLayoutPanel2.Controls.Add(this.anchor);
-            this.flowLayoutPanel2.Controls.Add(this.keyFairy);
-            this.flowLayoutPanel2.Controls.Add(this.isisPendant);
-            this.flowLayoutPanel2.Controls.Add(this.eyeOfTruth);
-            this.flowLayoutPanel2.Controls.Add(this.magatamaJewel);
-            this.flowLayoutPanel2.Controls.Add(this.torude);
-            this.flowLayoutPanel2.Controls.Add(this.shrinePanel);
-            this.mainPanel.SetFlowBreak(this.flowLayoutPanel2, true);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(10, 130);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(320, 176);
-            this.flowLayoutPanel2.TabIndex = 112;
-            this.flowLayoutPanel2.DoubleClick += new System.EventHandler(this.SelectFormColor);
             // 
             // bronzeMirror
             // 
@@ -1403,32 +1560,6 @@ namespace LMRItemTracker
             this.skullWallCount.TreatAsAmmo = false;
             this.skullWallCount.DoubleClick += new System.EventHandler(this.SelectTextColor);
             // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.AutoSize = true;
-            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel3.Controls.Add(this.originSeal);
-            this.flowLayoutPanel3.Controls.Add(this.birthSeal);
-            this.flowLayoutPanel3.Controls.Add(this.lifeSeal);
-            this.flowLayoutPanel3.Controls.Add(this.deathSeal);
-            this.flowLayoutPanel3.Controls.Add(this.bookOfTheDead);
-            this.flowLayoutPanel3.Controls.Add(this.ring);
-            this.flowLayoutPanel3.Controls.Add(this.fairyClothes);
-            this.flowLayoutPanel3.Controls.Add(this.msx2);
-            this.flowLayoutPanel3.Controls.Add(this.scriptures);
-            this.flowLayoutPanel3.Controls.Add(this.crucifix);
-            this.flowLayoutPanel3.Controls.Add(this.perfume);
-            this.flowLayoutPanel3.Controls.Add(this.glove);
-            this.flowLayoutPanel3.Controls.Add(this.bracelet);
-            this.flowLayoutPanel3.Controls.Add(this.spaulder);
-            this.mainPanel.SetFlowBreak(this.flowLayoutPanel3, true);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(10, 314);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(320, 80);
-            this.flowLayoutPanel3.TabIndex = 117;
-            this.flowLayoutPanel3.DoubleClick += new System.EventHandler(this.SelectFormColor);
-            // 
             // originSeal
             // 
             this.originSeal.BackgroundImage = global::LMRItemTracker.Properties.Resources.Icon_originseal_blank;
@@ -1666,32 +1797,6 @@ namespace LMRItemTracker
             this.spaulder.SolidImage = global::LMRItemTracker.Properties.Resources.Icon_spaulder_solid;
             this.spaulder.TabIndex = 100;
             this.spaulder.TabStop = false;
-            // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.AutoSize = true;
-            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel4.Controls.Add(this.whip);
-            this.flowLayoutPanel4.Controls.Add(this.knife);
-            this.flowLayoutPanel4.Controls.Add(this.axe);
-            this.flowLayoutPanel4.Controls.Add(this.katana);
-            this.flowLayoutPanel4.Controls.Add(this.shield);
-            this.flowLayoutPanel4.Controls.Add(this.gauntlet);
-            this.flowLayoutPanel4.Controls.Add(this.pistolPanel);
-            this.flowLayoutPanel4.Controls.Add(this.shurikenPanel);
-            this.flowLayoutPanel4.Controls.Add(this.rollingShurikenPanel);
-            this.flowLayoutPanel4.Controls.Add(this.caltropsPanel);
-            this.flowLayoutPanel4.Controls.Add(this.flareGunPanel);
-            this.flowLayoutPanel4.Controls.Add(this.chakramPanel);
-            this.flowLayoutPanel4.Controls.Add(this.earthSpearPanel);
-            this.flowLayoutPanel4.Controls.Add(this.bombPanel);
-            this.mainPanel.SetFlowBreak(this.flowLayoutPanel4, true);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(10, 402);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(320, 112);
-            this.flowLayoutPanel4.TabIndex = 115;
-            this.flowLayoutPanel4.DoubleClick += new System.EventHandler(this.SelectFormColor);
             // 
             // whip
             // 
@@ -2167,25 +2272,6 @@ namespace LMRItemTracker
             this.bomb.TabIndex = 54;
             this.bomb.TabStop = false;
             // 
-            // flowLayoutPanel5
-            // 
-            this.flowLayoutPanel5.AutoSize = true;
-            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel5.Controls.Add(this.ocarina);
-            this.flowLayoutPanel5.Controls.Add(this.mantra);
-            this.flowLayoutPanel5.Controls.Add(this.vessel);
-            this.flowLayoutPanel5.Controls.Add(this.keySword);
-            this.flowLayoutPanel5.Controls.Add(this.lampOfTime);
-            this.flowLayoutPanel5.Controls.Add(this.mapsPanel);
-            this.flowLayoutPanel5.Controls.Add(this.ankhJewelPanel);
-            this.mainPanel.SetFlowBreak(this.flowLayoutPanel5, true);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(10, 522);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(280, 56);
-            this.flowLayoutPanel5.TabIndex = 115;
-            this.flowLayoutPanel5.DoubleClick += new System.EventHandler(this.SelectFormColor);
-            // 
             // ocarina
             // 
             this.ocarina.BackgroundImage = global::LMRItemTracker.Properties.Resources.Icon_philosophersocarina_blank;
@@ -2359,39 +2445,6 @@ namespace LMRItemTracker
             this.ankhJewelCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.ankhJewelCount.TreatAsAmmo = false;
             this.ankhJewelCount.DoubleClick += new System.EventHandler(this.SelectTextColor);
-            // 
-            // flowLayoutPanel6
-            // 
-            this.flowLayoutPanel6.AutoSize = true;
-            this.flowLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel6.Controls.Add(this.shellHorn);
-            this.flowLayoutPanel6.Controls.Add(this.waterproofCase);
-            this.flowLayoutPanel6.Controls.Add(this.heatproofCase);
-            this.flowLayoutPanel6.Controls.Add(this.swimsuit);
-            this.flowLayoutPanel6.Controls.Add(this.djedPillar);
-            this.flowLayoutPanel6.Controls.Add(this.mantraSingle);
-            this.flowLayoutPanel6.Controls.Add(this.xmailer);
-            this.flowLayoutPanel6.Controls.Add(this.yagomap);
-            this.flowLayoutPanel6.Controls.Add(this.yagostr);
-            this.flowLayoutPanel6.Controls.Add(this.bunemon);
-            this.flowLayoutPanel6.Controls.Add(this.bunplus);
-            this.flowLayoutPanel6.Controls.Add(this.guild);
-            this.flowLayoutPanel6.Controls.Add(this.beolamu);
-            this.flowLayoutPanel6.Controls.Add(this.emusic);
-            this.flowLayoutPanel6.Controls.Add(this.randc);
-            this.flowLayoutPanel6.Controls.Add(this.capstar);
-            this.flowLayoutPanel6.Controls.Add(this.deathv);
-            this.flowLayoutPanel6.Controls.Add(this.move);
-            this.flowLayoutPanel6.Controls.Add(this.mekuri);
-            this.flowLayoutPanel6.Controls.Add(this.bounce);
-            this.flowLayoutPanel6.Controls.Add(this.miracle);
-            this.flowLayoutPanel6.Controls.Add(this.lamulana);
-            this.mainPanel.SetFlowBreak(this.flowLayoutPanel6, true);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(10, 586);
-            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(320, 120);
-            this.flowLayoutPanel6.TabIndex = 120;
             // 
             // shellHorn
             // 
@@ -2767,27 +2820,6 @@ namespace LMRItemTracker
             this.lamulana.TabIndex = 137;
             this.lamulana.TabStop = false;
             // 
-            // bossPanel
-            // 
-            this.bossPanel.AutoSize = true;
-            this.bossPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.bossPanel.Controls.Add(this.amphisbaena);
-            this.bossPanel.Controls.Add(this.sakit);
-            this.bossPanel.Controls.Add(this.ellmac);
-            this.bossPanel.Controls.Add(this.bahamut);
-            this.bossPanel.Controls.Add(this.viy);
-            this.bossPanel.Controls.Add(this.palenque);
-            this.bossPanel.Controls.Add(this.baphomet);
-            this.bossPanel.Controls.Add(this.tiamat);
-            this.mainPanel.SetFlowBreak(this.bossPanel, true);
-            this.bossPanel.Location = new System.Drawing.Point(10, 714);
-            this.bossPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.bossPanel.MaximumSize = new System.Drawing.Size(280, 0);
-            this.bossPanel.Name = "bossPanel";
-            this.bossPanel.Size = new System.Drawing.Size(280, 34);
-            this.bossPanel.TabIndex = 112;
-            this.bossPanel.DoubleClick += new System.EventHandler(this.SelectFormColor);
-            // 
             // amphisbaena
             // 
             this.amphisbaena.BackgroundImage = global::LMRItemTracker.Properties.Resources.Boss_amphisbaena_blank;
@@ -2924,11 +2956,6 @@ namespace LMRItemTracker
             this.tiamat.TabIndex = 19;
             this.tiamat.TabStop = false;
             // 
-            // itemColorDialog
-            // 
-            this.itemColorDialog.AnyColor = true;
-            this.itemColorDialog.SolidColorOnly = true;
-            // 
             // LaMulanaItemTrackerForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2944,14 +2971,6 @@ namespace LMRItemTracker
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.hermesBoots)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grappleClaw)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.feather)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scanner)).EndInit();
-            this.readerPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.reader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.holyGrail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mirai)).EndInit();
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.overviewPanel.ResumeLayout(false);
@@ -2964,6 +2983,19 @@ namespace LMRItemTracker
             this.deathPanel.ResumeLayout(false);
             this.deathPanel.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel6.ResumeLayout(false);
+            this.bossPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.hermesBoots)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grappleClaw)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.feather)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scanner)).EndInit();
+            this.readerPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.reader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holyGrail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mirai)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bronzeMirror)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitOfEden)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.twinStatue)).EndInit();
@@ -2993,7 +3025,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.torude)).EndInit();
             this.shrinePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.skullWall)).EndInit();
-            this.flowLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.originSeal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.birthSeal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifeSeal)).EndInit();
@@ -3008,7 +3039,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.glove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bracelet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spaulder)).EndInit();
-            this.flowLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.whip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.knife)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axe)).EndInit();
@@ -3031,7 +3061,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.earthSpear)).EndInit();
             this.bombPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bomb)).EndInit();
-            this.flowLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ocarina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mantra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vessel)).EndInit();
@@ -3041,7 +3070,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.maps)).EndInit();
             this.ankhJewelPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ankhJewels)).EndInit();
-            this.flowLayoutPanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.shellHorn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.waterproofCase)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.heatproofCase)).EndInit();
@@ -3064,7 +3092,6 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.bounce)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miracle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lamulana)).EndInit();
-            this.bossPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.amphisbaena)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sakit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ellmac)).EndInit();
@@ -3128,6 +3155,8 @@ namespace LMRItemTracker
             services.AddSingleton<LaMulanaItemTrackerForm>();
             services.AddSingleton<TextToSpeechService>();
             services.AddSingleton<VoiceRecognitionService>();
+            services.AddSingleton<HintService>();
+            services.AddSingleton<MetaService>();
             services.AddSingleton<TrackerService>();
         }
 
@@ -3290,5 +3319,8 @@ namespace LMRItemTracker
         private MultiStateTrackerBox vessel;
         private KeySwordTrackerBox keySword;
         private MultiStateTrackerBox lampOfTime;
+        private ToolStripMenuItem voiceTrackerToolStripMenuItem;
+        private ToolStripMenuItem enableVoiceTrackerToolStripMenuItem;
+        private ToolStripMenuItem openSettingsWindowToolStripMenuItem;
     }
 }

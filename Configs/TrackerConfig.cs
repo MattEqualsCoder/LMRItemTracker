@@ -5,6 +5,33 @@ namespace LMRItemTracker.Configs;
 
 public class TrackerConfig
 {
-    public ICollection<ItemConfig> Items { get; set; } = new List<ItemConfig>();
+    public ItemsConfig Items { get; set; } = new();
     public ResponseConfig Responses { get; set; } = new();
+    public CustomConfig CustomPrompts { get; set; } = new();
+    public LocationsConfig Locations { get; set; } = new();
+    public RegionsConfig Regions { get; set; } = new();
+
+    public TrackerConfig(ItemsConfig? items, LocationsConfig? locations, RegionsConfig? regions, ResponseConfig? responses,
+        CustomConfig? customConfig)
+    {
+        if (items != null)
+            Items = items;
+        if (locations != null)
+            Locations = locations;
+        if (regions != null)
+            Regions = regions;
+        if (responses != null)
+            Responses = responses;
+        if (customConfig != null)
+            CustomPrompts = customConfig;
+    }
+
+    public void Merge(TrackerConfig other)
+    {
+        Items.Merge(other.Items);
+        Responses.Merge(other.Responses);
+        CustomPrompts.Merge(other.CustomPrompts);
+        Locations.Merge(other.Locations);
+        Regions.Merge(other.Regions);
+    }
 }
