@@ -27,6 +27,7 @@ PlayerDied:
     - Text: "I'm proud of you for getting your {1} death"
  
 # Lines for picking up an item with multiple copies after the first one. Currently only used for ankh jewels.
+# NOTE: This is not currently in use
 # Type: Rollup Responses
 # {0} is replaced with the singular name of the item
 # {1} is replaced with the plural name of the item
