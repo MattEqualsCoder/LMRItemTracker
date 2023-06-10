@@ -4,7 +4,7 @@
 # Lines for when an item is collected
 # Type: Weighted Possibilities
 # {0} is replaced with the item's name
-# {1} is replaced with the item's name with an article in front of it
+# {1} is replaced with the item's name with an article in front of it (a, an, the)
 BasicItemTracked:
 - Text: "Tracked {0}"
 - Text: "You got {1}"

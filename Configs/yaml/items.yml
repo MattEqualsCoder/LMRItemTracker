@@ -10,6 +10,7 @@
 #     When all hints are gone through, Tracker will say whether an item is required, nice to have, or useless. Ideally, 
 #     hints should be shared between different items so that people won't be able to discern an item by a single hint.
 # Names (weighted possibilities): Different names tracker will refer to an item by when speaking
+# ArticledNames (weighted possibilities): Different names tracker with the correct article (a, an, the) for an item
 # OnTracked (weighted possibilities): A list of specific lines tracker may say when this item is tracked. If one of the
 #     options is an empty string (""), tracker will have a chance of falling back to a generic tracked line.
 
@@ -24,6 +25,8 @@
   #     - Text: "Flail whip"
   #     - Text: "Flailing whip"
   #       Weight: 0.1
+  #   ArticledNames:
+  #     - Text: "The Flail Whip"
   #   OnTracked:
   #     - Text: "Whip it good"
   #     - Text: "Watch where you flail that thing around"
