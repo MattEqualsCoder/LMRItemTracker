@@ -898,7 +898,6 @@ namespace LMRItemTracker
             {
                 shield.ToggleState(isAdd, 0);
             }
-            _trackerService.SetItemState(flagName, isAdd);
         }
 
         internal void UpdateLampOfTime(string displayname, bool isAdd)
@@ -979,6 +978,10 @@ namespace LMRItemTracker
                         lastItem3.Refresh();
                     }
                 }));
+                if (flagName.StartsWith("shield-"))
+                {
+                    _trackerService.SetItemState(flagName, true);    
+                }
             }
         }
 
