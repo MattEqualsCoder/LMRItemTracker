@@ -18,11 +18,8 @@ public class HintService
     private string? _randomizerPath;
     private bool _hintsEnabled;
     private bool _spoilersEnabled;
-    private const string ItemKey = "ItemKey";
-    private const string LocationKey = "LocationKey";
-    private const string RegionKey = "RegionKey";
     
-    public HintService(ConfigService configService, VoiceRecognitionService voiceService, TextToSpeechService ttsService, ILogger<HintService> logger)
+    public HintService(ConfigService configService, VoiceRecognitionService voiceService, TextToSpeechService ttsService, ILogger<HintService> logger, ChoiceService choices)
     {
         _logger = logger;
         _trackerConfig = configService.Config;
@@ -42,10 +39,10 @@ public class HintService
             new GrammarBuilder()
                 .Append("Hey tracker, ")
                 .OneOf("where is the ", "where can I find the ")
-                .Append(ItemKey, GetItemNames()),
+                .Append(choices.ItemKey, choices.GetItemNames()),
             result =>
             {
-                var item = GetItemFromResult(result, out string itemName);
+                var item = choices.GetItemFromResult(result, out string itemName);
                 if (_hintsEnabled || _spoilersEnabled)
                 {
                     GiveItemHint(item);    
@@ -61,10 +58,10 @@ public class HintService
             new GrammarBuilder()
                 .Append("Hey tracker, ")
                 .OneOf("what's at ", "what can I get at ")
-                .Append(LocationKey, GetLocationNames()),
+                .Append(choices.LocationKey, choices.GetLocationNames()),
             result =>
             {
-                var location = GetLocationFromResult(result, out string locationName);
+                var location = choices.GetLocationFromResult(result, out string locationName);
                 if (_hintsEnabled || _spoilersEnabled)
                 {
                     GiveLocationHint(location);
@@ -80,10 +77,10 @@ public class HintService
             new GrammarBuilder()
                 .Append("Hey tracker, ")
                 .OneOf("what's in ", "what all is in ")
-                .Append(RegionKey, GetRegionNames()),
+                .Append(choices.RegionKey, choices.GetRegionNames()),
             result =>
             {
-                var regionConfig = GetRegionFromResult(result, out string locationName);
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
                 if (_hintsEnabled || _spoilersEnabled)
                 {
                     GiveRegionHint(regionConfig);
@@ -473,72 +470,5 @@ public class HintService
         }
     }
     
-    private Choices GetItemNames()
-    {
-        var itemNames = new Choices();
-        
-        foreach (var item in _trackerConfig.Items.Where(x => x.Names != null && !string.IsNullOrWhiteSpace(x.SpoilerFileName)))
-        {
-            foreach (var name in item.Names!)
-            {
-                itemNames.Add(new SemanticResultValue(name.ToString(), item.Key));
-            }
-        }
-
-        return itemNames;
-    }
     
-    private Choices GetLocationNames()
-    {
-        var locationNames = new Choices();
-        
-        foreach (var location in _trackerConfig.Locations.Where(x => x.Names != null))
-        {
-            foreach (var name in location.Names!)
-            {
-                locationNames.Add(new SemanticResultValue(name.ToString(), location.Key));
-            }
-        }
-
-        return locationNames;
-    }
-    
-    private Choices GetRegionNames()
-    {
-        var regionNames = new Choices();
-        
-        foreach (var region in _trackerConfig.Regions.Where(x => x.Names != null))
-        {
-            foreach (var name in region.Names!)
-            {
-                regionNames.Add(new SemanticResultValue(name.ToString(), region.Key));
-            }
-        }
-
-        return regionNames;
-    }
-    
-    private ItemConfig GetItemFromResult(RecognitionResult result, out string itemName)
-    {
-        itemName = (string)result.Semantics[ItemKey].Value;
-        var key = itemName;
-        var item = _trackerConfig.Items.FirstOrDefault(x => x.Key == key);
-        return item ?? throw new KeyNotFoundException($"Could not find recognized item '{itemName}' (\"{result.Text}\")");
-    }
-    
-    private LocationConfig GetLocationFromResult(RecognitionResult result, out string locationName)
-    {
-        locationName = (string)result.Semantics[LocationKey].Value;
-        var key = locationName;
-        var location = _trackerConfig.Locations.FirstOrDefault(x => x.Key == key);
-        return location ?? throw new KeyNotFoundException($"Could not find recognized item '{locationName}' (\"{result.Text}\")");
-    }
-    
-    private RegionConfig GetRegionFromResult(RecognitionResult result, out string regionName)
-    {
-        regionName = (string)result.Semantics[RegionKey].Value;
-        var key = regionName;
-        var region = _trackerConfig.Regions.FirstOrDefault(x => x.Key == key);
-        return region ?? throw new KeyNotFoundException($"Could not find recognized item '{regionName}' (\"{result.Text}\")");
-    }
 }

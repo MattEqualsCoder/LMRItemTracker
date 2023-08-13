@@ -12,7 +12,7 @@ namespace LMRItemTracker.Configs;
 
 public class ConfigService
 {
-    public TrackerConfig Config { get; set; } = new(null, null, null, null, null);
+    public TrackerConfig Config { get; set; } = new(null, null, null, null, null, null);
     
     private static readonly IDeserializer s_deserializer = new DeserializerBuilder()
         .WithNamingConvention(PascalCaseNamingConvention.Instance)
@@ -55,7 +55,8 @@ public class ConfigService
         var regions = LoadBuiltInYamlFile<RegionsConfig>("regions.yml");
         var responses = LoadBuiltInYamlFile<ResponseConfig>("responses.yml");
         var custom = LoadBuiltInYamlFile<CustomConfig>("custom.yml");
-        return new TrackerConfig(items, locations, regions, responses, custom);
+        var twitch = LoadBuiltInYamlFile<TwitchConfig>("twitch.yml");
+        return new TrackerConfig(items, locations, regions, responses, custom, twitch);
     }
     
     private T? LoadBuiltInYamlFile<T>(string filename)
@@ -101,12 +102,13 @@ public class ConfigService
         var regions = LoadUserYamlFile<RegionsConfig>(path + Path.DirectorySeparatorChar + "regions.yml");
         var responses = LoadUserYamlFile<ResponseConfig>(path + Path.DirectorySeparatorChar + "responses.yml");
         var custom = LoadUserYamlFile<CustomConfig>(path + Path.DirectorySeparatorChar + "custom.yml");
+        var twitch = LoadUserYamlFile<TwitchConfig>(path + Path.DirectorySeparatorChar + "twitch.yml");
         if (items == null && locations == null && responses == null && custom == null)
         {
             config = null;
             return false;
         }
-        config = new TrackerConfig(items, locations, regions, responses, custom);
+        config = new TrackerConfig(items, locations, regions, responses, custom, twitch);
         return true;
     }
     

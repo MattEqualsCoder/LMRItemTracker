@@ -185,6 +185,12 @@ public abstract class MergeableConfig
                 var otherValue = property.GetValue(other) as List<CustomPrompt>;
                 Merge(thisValue ?? new List<CustomPrompt>(), otherValue ?? new List<CustomPrompt>());
             }
+            else if (property.PropertyType == typeof(List<TwitchPredictionConfig>))
+            {
+                var thisValue = property.GetValue(this) as List<TwitchPredictionConfig>;
+                var otherValue = property.GetValue(other) as List<TwitchPredictionConfig>;
+                Merge(thisValue ?? new List<TwitchPredictionConfig>(), otherValue ?? new List<TwitchPredictionConfig>());
+            }
             else if (property.PropertyType == typeof(RollupResponses))
             {
                 var thisValue = property.GetValue(this) as RollupResponses;

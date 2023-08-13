@@ -294,5 +294,95 @@ namespace LMRItemTracker.Properties {
                 this["ExecutionThreshold"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitchUserName
+        {
+            get
+            {
+                return ((string)(this["TwitchUserName"]));
+            }
+            set
+            {
+                this["TwitchUserName"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitchChannel
+        {
+            get
+            {
+                return ((string)(this["TwitchChannel"]));
+            }
+            set
+            {
+                this["TwitchChannel"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitchId
+        {
+            get
+            {
+                return ((string)(this["TwitchId"]));
+            }
+            set
+            {
+                this["TwitchId"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitchOAuthToken
+        {
+            get
+            {
+                return ((string)(this["TwitchOAuthToken"]));
+            }
+            set
+            {
+                this["TwitchOAuthToken"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableTwitchChatResponses
+        {
+            get
+            {
+                return ((bool)(this["EnableTwitchChatResponses"]));
+            }
+            set
+            {
+                this["EnableTwitchChatResponses"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableTwitchPolls
+        {
+            get
+            {
+                return ((bool)(this["EnableTwitchPolls"]));
+            }
+            set
+            {
+                this["EnableTwitchPolls"] = value;
+            }
+        }
     }
 }

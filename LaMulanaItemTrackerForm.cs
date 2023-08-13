@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using LMRItemTracker.VoiceTracker;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LMRItemTracker
 {
@@ -15,8 +16,10 @@ namespace LMRItemTracker
         private ILogger<LaMulanaItemTrackerForm> _logger;
         private readonly TrackerService _trackerService;
         private readonly VoiceRecognitionService _voiceRecognitionService;
+        private readonly IServiceProvider _services;
+        private readonly ChatModule _chatModule;
 
-        public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService, HintService hintService, VoiceRecognitionService voiceService)
+        public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService, HintService hintService, VoiceRecognitionService voiceService, IServiceProvider services, ChatModule chatModule)
         {
             flagListener = new();
             _logger = logger;
@@ -24,6 +27,8 @@ namespace LMRItemTracker
             InitializeComponent();
             gameStarted = false;
             _voiceRecognitionService = voiceService;
+            _services = services;
+            _chatModule = chatModule;
         }
 
         private void ScaleImages(Control parent)
@@ -3047,7 +3052,7 @@ namespace LMRItemTracker
 
         private void openSettingsWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new TrackerSettingsForm();
+            var form = _services.GetRequiredService<TrackerSettingsForm>();
             form.BringToFront();
             form.TopMost = true;
             var result = form.ShowDialog();
@@ -3056,6 +3061,19 @@ namespace LMRItemTracker
                 UpdateRandomizerSettings();
                 Properties.Settings.Default.Save();
             }
+        }
+
+        private void connectToChatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var twitchUserName = Properties.Settings.Default.TwitchUserName;
+            var twitchChannel = Properties.Settings.Default.TwitchChannel;
+            var twitchId = Properties.Settings.Default.TwitchId;
+            var twitchAuthToken = Properties.Settings.Default.TwitchOAuthToken;
+            var respondToChat = Properties.Settings.Default.EnableTwitchChatResponses;
+            var enablePolls = Properties.Settings.Default.EnableTwitchPolls;
+            _chatModule.Connect(twitchUserName, twitchAuthToken, twitchChannel, twitchId);
+            _chatModule.RespondToChat = respondToChat;
+            _chatModule.OpenPolls = enablePolls;
         }
     }
 }

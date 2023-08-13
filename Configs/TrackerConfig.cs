@@ -10,9 +10,10 @@ public class TrackerConfig
     public CustomConfig CustomPrompts { get; set; } = new();
     public LocationsConfig Locations { get; set; } = new();
     public RegionsConfig Regions { get; set; } = new();
+    public TwitchConfig TwitchConfig { get; set; } = new();
 
     public TrackerConfig(ItemsConfig? items, LocationsConfig? locations, RegionsConfig? regions, ResponseConfig? responses,
-        CustomConfig? customConfig)
+        CustomConfig? customConfig, TwitchConfig? twitchConfig)
     {
         if (items != null)
             Items = items;
@@ -24,6 +25,8 @@ public class TrackerConfig
             Responses = responses;
         if (customConfig != null)
             CustomPrompts = customConfig;
+        if (twitchConfig != null)
+            TwitchConfig = twitchConfig;
     }
 
     public void Merge(TrackerConfig other)
@@ -33,5 +36,6 @@ public class TrackerConfig
         CustomPrompts.Merge(other.CustomPrompts);
         Locations.Merge(other.Locations);
         Regions.Merge(other.Regions);
+        TwitchConfig.Merge(other.TwitchConfig);
     }
 }

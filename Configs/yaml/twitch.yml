@@ -1,0 +1,75 @@
+# Regular expressions for people greeting tracker in chat  
+RecognizedGreetings:
+  - '\b(hi|hey|hello)( there)?,? (tracker|betusTracker)\b'
+  - "\\b(greetings|hiya|howdy|'sup),? (tracker|betusTracker)\\b"
+  - '\bgood (morning|afternoon|evening|day),? (tracker|betusTracker)\b'
+  - '\b(morning|afternoon|evening),? (tracker|betusTracker)\b'
+  - '\b(HeyGuys|VoHiYo|pkroseHello|betusHey|digita78Wave) (tracker|betusTracker)\b'
+  - '\b(betusTracker|tracker) (HeyGuys|VoHiYo|pkroseHello|betusHey)\b'
+  - ^tracker!+$
+  - '\bT R A C K E R\b'
+
+# Lines for giving a hint at where ankh jewels are
+# Type: Weighted Possibilities
+WhenConnected:
+  - Text: "Hey chat"
+  - Text: "Hello Twitch chat"
+  - Text: "Hey Twitch chat"
+  - Text: "Oh no, not the chat. They're the last people I want to see."
+    Weight: 0.2
+  - Text: "I hope you know I'm paid by the letter when it comes to reading chat."
+    Weight: 0.2
+
+UserNamePronunciations:
+  MattEqualsCoder: Matt Equals Coder
+
+# The list of possibilities when the streamer greets tracker in chat
+# Type: Weighted Possibilities
+# {0} is replaced with the chat user's name
+GreetedBySelf:
+  - Text: "Shouldn't you focus on the seed {0}?"
+  - Text: "Is the logic too dull for you {0}?"
+  - Text: "Don't you have something better to do {0}?"
+  
+# The list of possibilities for when a user has greeted tracker in chat
+# Type: Weighted Possibilities
+# {0} is replaced with the chat user's' name
+GreetingResponses:
+  - Text: "Hello {0}"
+  - Text: "Oh hello {0}. I didn't see you there."
+  - Text: "It's about time you showed up {0}."
+    Weight: 0.2
+
+# The list of possibilities for when a user has greeted tracker in chat multiple times
+# Type: Weighted Possibilities
+# {0} is replaced with the chat user's' name
+GreetedTwice:
+  - Text: "I already said hi to you {0}"
+  - Text: "Didn't you already greet me, {0}?"
+
+
+Predictions:
+  - Key: "Trial Fairy"
+    StartPrompts: 
+      - "the Trials fairy has something"
+    ResolveGoodPrompts:
+      - "the trials fairy had the goods"
+    ResolveBadPrompts:
+      - "the trials fairy had trash"
+      - "the trials fairy had nothing"
+    StartResponses:
+      - Text: "Well then. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. Good luck, I personally think this will be a waste of time."
+      - Text: "Well then. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. Good luck, I choose to believe."
+      - Text: "Alright. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. I already know the answer, so good luck to the rest of you."
+      - Text: "Let's go. Chat, what do you think? Are we wasting time or is this progress. Poll should now be open for 2 minutes"
+      - Text: "Time to get blue balled by a lizard. Chat, poll should now be open for 2 minutes, do you have faith or is this a waste. Good luck!"
+    PredictionTitles:
+      - Text: "Does the trials fairy have the goods?"
+    PredictionOptions:
+      - Good: "It has the goods!"
+        Bad: "It has trash"
+    ResolvedResponses:
+      - Text: "Well I sure bet {6} feels silly they didn't pick the other option"
+      - Text: "Oh look, {5} channel points were wasted on that. Too bad."
+      - Text: "Congrats to {3} for getting it right. This time."
+      - Text: "Wow. A total of {1} people got it right."
