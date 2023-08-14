@@ -1191,9 +1191,17 @@ namespace LMRItemTracker
 
             UpdateVoiceTracker();
             UpdateRandomizerSettings();
+            UpdateChatSettings();
 
             InitializeBackgroundWorker();
             flagListener.RunWorkerAsync();
+
+            _chatModule.ContentUpdated += ChatModule_ContentUpdated;
+        }
+
+        private void ChatModule_ContentUpdated(object sender, EventArgs e)
+        {
+            UpdateCount(labelContentCount, _chatModule.Content, 100);
         }
 
         private void SelectFormColor(object sender, EventArgs e)
@@ -2737,6 +2745,17 @@ namespace LMRItemTracker
             _voiceRecognitionService.UpdateThresholds(Properties.Settings.Default.RecognitionThreshold, Properties.Settings.Default.ExecutionThreshold);
         }
 
+        private void UpdateChatSettings()
+        {
+            var twitchUserName = Properties.Settings.Default.TwitchUserName;
+            var twitchChannel = Properties.Settings.Default.TwitchChannel;
+            var twitchId = Properties.Settings.Default.TwitchId;
+            var twitchAuthToken = Properties.Settings.Default.TwitchOAuthToken;
+            var respondToChat = Properties.Settings.Default.EnableTwitchChatResponses;
+            var enablePolls = Properties.Settings.Default.EnableTwitchPolls;
+            _chatModule.SetTwitchData(twitchUserName, twitchAuthToken, twitchChannel, twitchId, respondToChat, enablePolls);
+        }
+
         private void UpdateFormColor()
         {
             this.BackColor = Properties.Settings.Default.BackgroundColor;
@@ -2747,6 +2766,8 @@ namespace LMRItemTracker
             lastItemLabel.ForeColor = Properties.Settings.Default.TextColor;
             deathLabel.ForeColor = Properties.Settings.Default.TextColor;
             deathCount.ForeColor = Properties.Settings.Default.TextColor;
+            labelContent.ForeColor = Properties.Settings.Default.TextColor;
+            labelContentCount.ForeColor = Properties.Settings.Default.TextColor;
 
             mapCount.UpdateTextColor();
             ankhJewelCount.UpdateTextColor();
@@ -3059,21 +3080,14 @@ namespace LMRItemTracker
             if (result == DialogResult.OK)
             {
                 UpdateRandomizerSettings();
+                UpdateChatSettings();
                 Properties.Settings.Default.Save();
             }
         }
 
         private void connectToChatToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var twitchUserName = Properties.Settings.Default.TwitchUserName;
-            var twitchChannel = Properties.Settings.Default.TwitchChannel;
-            var twitchId = Properties.Settings.Default.TwitchId;
-            var twitchAuthToken = Properties.Settings.Default.TwitchOAuthToken;
-            var respondToChat = Properties.Settings.Default.EnableTwitchChatResponses;
-            var enablePolls = Properties.Settings.Default.EnableTwitchPolls;
-            _chatModule.Connect(twitchUserName, twitchAuthToken, twitchChannel, twitchId);
-            _chatModule.RespondToChat = respondToChat;
-            _chatModule.OpenPolls = enablePolls;
+            _chatModule.Connect();
         }
     }
 }

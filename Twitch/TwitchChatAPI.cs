@@ -21,7 +21,7 @@ namespace LMRItemTracker.Twitch
 
         private static readonly HttpClient s_httpClient = new();
 
-#if DEBUG
+#if false
         private const string ClientId = "26d7dd70e5035307b0c8612d6f9d83";
         private const string ApiEndpoint = "http://localhost:8080/mock/";
         private const string UserIdOverride = "99708192";

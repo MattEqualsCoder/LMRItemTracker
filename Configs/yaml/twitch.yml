@@ -46,30 +46,103 @@ GreetingResponses:
 GreetedTwice:
   - Text: "I already said hi to you {0}"
   - Text: "Didn't you already greet me, {0}?"
+  
+# The list of possibilities when trying to open a prediction poll when not connected to chat
+# Type: Weighted Possibilities
+NotConnectedToChat:
+  - Text: "I'm not currently connected to chat. If you have all of the settings entered, you can say Hey tracker, connect to chat"
+      
+# The list of possibilities for when trying to close or resolve a prediction poll when there isn't one
+# Type: Weighted Possibilities
+NoCurrentPrediction:
+  - Text: "There is no current prediction poll"
+  
+# The list of possibilities for when trying to open a prediction poll when one is already open
+# Type: Weighted Possibilities
+# {0} is replaced with the chat user's' name
+PredictionAlreadyExists:
+  - Text: "A prediction poll already exists"
+    
+# The list of possibilities for when a prediction poll was locked
+# Type: Weighted Possibilities
+PredictionLocked:
+  - Text: "Prediction poll was locked for new responses"
+  
+# The list of possibilities for when a prediction poll was terminated and refunded
+# Type: Weighted Possibilities
+PredictionCancelled:
+  - Text: "Prediction poll was cancelled and all points refunded"
 
+# The list of possibilities for when asking tracker to track content and she opens a poll
+# Type: Weighted Possibilities
+AskChatAboutContent:
+  - Text: "Are you sure that was some high quality content? Let's check with chat to see what they think."
+    
+# The list of possibilities for when chat voted yes on content
+# Type: Weighted Possibilities
+AskChatAboutContentYes:
+  - Text: "It appears the chat is on your side. They think that was some high quality content"
+    
+# The list of possibilities for when chat voted no on content
+# Type: Weighted Possibilities
+AskChatAboutContentNo:
+  - Text: "Ouch. The chat did not think that was some high quality content"
+    
+# The list of possibilities for when the poll results come back from chat
+# Type: Weighted Possibilities
+PollComplete:
+  - Text: "And the results are now in."
+    
+# The list of possibilities for when tracker successfully opened a twitch poll
+# Type: Weighted Possibilities
+# {0} is replaced with the number of seconds the poll is open for
+PollOpened:
+  - Text: "I have opened a poll for {0} seconds."
+    
+# The list of possibilities for when tracker couldn't get the poll results
+# Type: Weighted Possibilities
+PollError:
+  - Text: "Sorry, I was unable to get the poll results."
 
+# The list of tiered responses for when content is being tracked
+# Type: Rollup Responses
+ContentTracked:
+  1:
+    - Text: "Congrats on your first con-tent"
+    - Text: "Your first con-tent is always special"
+  2:
+    - Text: "More than one con-tent in a run? What a shock."
+    - Text: "Congrats on getting your {1} content"
+  5:
+    - Text: "Don't you think this is too much con-tent?"
+    - Text: "I think you may be lying about this much con-tent."
+    - Text: "Good job on getting {0} con-tent"
+
+# The list of different prediction polls that can be added
+  # StartPrompts: The prompts to initiate the prediction poll (without "Hey Tracker" added to the beginning)
+    # Type: List of Strings
+  # ResolveGoodPrompts: The prompts to resolve the prediction poll with the "good" result (without "Hey Tracker" added to the beginning)
+    # Type: List of Strings
+  # ResolveBadPrompts: The prompts to resolve the prediction poll with the "bad" result (without "Hey Tracker" added to the beginning)
+    # Type: List of Strings
+  # StartResponses: The list of possibilities for when tracker starts the prediction poll
+    # Type: Weighted Possibilities
+  # PredictionTitles: The list of titles to show up on the Twitch prediction poll
+    # Type: Weighted possibilties
+  # PredictionOptions: The list of possible options for people to select from. (Max 25 characters.)
+    # Type: Has the two fields "Good" and "Bad" which are the two options people can select on Twitch
+    # Example:
+      # - Good: It'll be great
+      #   Bad: It'll suck!
+      # - Good: I expect greatness!
+      #   Bad: I expect suckiness!
+  # ResolvedResponses: The list of possibilities for when tracker resolves the prediction poll
+    # Type: Weighted possibilities
+    # {0} is replaced with the winning choice
+    # {1} is replaced with the number of people who voted for the winning choice
+    # {2} is replaced with the number of points spent on the winning choice
+    # {3} is replaced with the name of someone who voted on the winning choice
+    # {4} is replaced with the number of people who voted for the losing choice
+    # {5} is replaced with the number of points spent on the losing choice
+    # {6} is replaced with the name of someone who voted on the losting choice
 Predictions:
-  - Key: "Trial Fairy"
-    StartPrompts: 
-      - "the Trials fairy has something"
-    ResolveGoodPrompts:
-      - "the trials fairy had the goods"
-    ResolveBadPrompts:
-      - "the trials fairy had trash"
-      - "the trials fairy had nothing"
-    StartResponses:
-      - Text: "Well then. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. Good luck, I personally think this will be a waste of time."
-      - Text: "Well then. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. Good luck, I choose to believe."
-      - Text: "Alright. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. I already know the answer, so good luck to the rest of you."
-      - Text: "Let's go. Chat, what do you think? Are we wasting time or is this progress. Poll should now be open for 2 minutes"
-      - Text: "Time to get blue balled by a lizard. Chat, poll should now be open for 2 minutes, do you have faith or is this a waste. Good luck!"
-    PredictionTitles:
-      - Text: "Does the trials fairy have the goods?"
-    PredictionOptions:
-      - Good: "It has the goods!"
-        Bad: "It has trash"
-    ResolvedResponses:
-      - Text: "Well I sure bet {6} feels silly they didn't pick the other option"
-      - Text: "Oh look, {5} channel points were wasted on that. Too bad."
-      - Text: "Congrats to {3} for getting it right. This time."
-      - Text: "Wow. A total of {1} people got it right."

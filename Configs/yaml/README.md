@@ -9,6 +9,7 @@ There are five config files which can be modified for tracker lines:
 - **locations.yml** - Includes the various locations and their names. Used for hints.
 - **regions.yml** - Includes the various regions and their names. Used for hints.
 - **responses.yml** - This is for generic lines for tracker to respond with for built in functionality.
+- **twitch.yml** - This is configs for Twitch chat functionality
 - **custom.yml** - This is for adding in custom prompts and responses for tracker to say.
 
 ## Editing Config Files
@@ -96,3 +97,60 @@ PlayerDied:
   5:
     - Text: "You now have at least 5 deaths"
 ```
+
+
+### Twitch Prediction Polls
+Any number of Twitch prediction polls can be added, each with different prompts to trigger the poll, options for people to choose from, and responses when the prediction poll has been closed.
+
+**Fields**:
+- StartPrompts (List of Strings): The prompts to initiate the prediction poll (without "Hey Tracker" added to the beginning)
+- ResolveGoodPrompts (List of Strings): The prompts to resolve the prediction poll with the "good" result (without "Hey Tracker" added to the beginning)
+- ResolveBadPrompts (List of Strings): The prompts to resolve the prediction poll with the "bad" result (without "Hey Tracker" added to the beginning)
+- StartResponses (Weighted Possibilities): The list of possibilities for when tracker starts the prediction poll
+- PredictionTitles (Weighted possibilties): The list of titles to show up on the Twitch prediction polls
+- PredictionOptions (Custom - see example below): The list of possible options for people to select from. (Max 25 characters.)
+- ResolvedResponses (Weighted possibilties): The list of possibilities for when tracker resolves the prediction poll
+  - {0} is replaced with the winning choice
+  - {1} is replaced with the number of people who voted for the winning choice
+  - {2} is replaced with the number of points spent on the winning choice
+  - {3} is replaced with the name of someone who voted on the winning choice
+  - {4} is replaced with the number of people who voted for the losing choice
+  - {5} is replaced with the number of points spent on the losing choice
+  - {6} is replaced with the name of someone who voted on the losting choice
+
+In the below example, saying "Hey tracker, the trials fairy has something" will trigger Tracker to open a prediction poll for 2 minutes. The Twitch prediction poll with have the title "Does the trials fairy have the goods?" with either "It has the goods!" and "It has trash" or "It'll be great!" and "It'll suck!" as the two options people can select.
+
+Once the outcome has been discovered, the prediction poll could be resolved by saying "The trials fairy had the goods" or "The trials fairy had trash". Tracker will then close the prediction poll and pick one of the resolved responses to say, substituting the above values in for the placeholders.
+
+Note if you ever need to end a Twitch prediction early, you can either say "Hey tracker, lock the prediction poll" to tell her to close it so that people can't vote anymore or say "Hey tracker, terminate the prediction poll" to close it and refund the points back to people.
+
+**Example**
+```
+Predictions:
+  - Key: "Trial Fairy"
+    StartPrompts: 
+      - "the Trials fairy has something"
+    ResolveGoodPrompts:
+      - "the trials fairy had the goods"
+    ResolveBadPrompts:
+      - "the trials fairy had trash"
+      - "the trials fairy had nothing"
+    StartResponses:
+      - Text: "Well then. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. Good luck, I personally think this will be a waste of time."
+      - Text: "Well then. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. Good luck, I choose to believe."
+      - Text: "Alright. Chat, a poll will be open to predict if the trials fairy will be a worthwhile endeavor. I already know the answer, so good luck to the rest of you."
+      - Text: "Let's go. Chat, what do you think? Are we wasting time or is this progress. Poll should now be open for 2 minutes"
+      - Text: "Time to get blue balled by a lizard. Chat, poll should now be open for 2 minutes, do you have faith or is this a waste. Good luck!"
+    PredictionTitles:
+      - Text: "Does the trials fairy have the goods?"
+    PredictionOptions:
+      - Good: "It has the goods!"
+        Bad: "It has trash"
+      - Good: "It'll be great!"
+        Bad: "It'll suck!"
+    ResolvedResponses:
+      - Text: "Well I sure bet {6} feels silly they didn't pick the other option"
+      - Text: "Oh look, {5} channel points were wasted on that. Too bad."
+      - Text: "Congrats to {3} for getting it right. This time."
+      - Text: "Wow. A total of {1} people got it right."
+  ```

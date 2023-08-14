@@ -76,6 +76,7 @@ namespace LMRItemTracker
             this.voiceTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableVoiceTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSettingsWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectToChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.hermesBoots = new LMRItemTracker.TrackerBox();
             this.grappleClaw = new LMRItemTracker.TrackerBox();
@@ -93,9 +94,13 @@ namespace LMRItemTracker
             this.lastItem1 = new System.Windows.Forms.PictureBox();
             this.lastItem2 = new System.Windows.Forms.PictureBox();
             this.lastItem3 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
             this.deathPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.deathLabel = new System.Windows.Forms.Label();
             this.deathCount = new System.Windows.Forms.Label();
+            this.flowLayoutPanel8 = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelContent = new System.Windows.Forms.Label();
+            this.labelContentCount = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.bronzeMirror = new LMRItemTracker.TrackerBox();
             this.fruitOfEden = new LMRItemTracker.TrackerBox();
@@ -218,7 +223,6 @@ namespace LMRItemTracker
             this.baphomet = new LMRItemTracker.TrackerBox();
             this.tiamat = new LMRItemTracker.TrackerBox();
             this.itemColorDialog = new System.Windows.Forms.ColorDialog();
-            this.connectToChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hermesBoots)).BeginInit();
@@ -235,7 +239,9 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.lastItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastItem3)).BeginInit();
+            this.flowLayoutPanel7.SuspendLayout();
             this.deathPanel.SuspendLayout();
+            this.flowLayoutPanel8.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bronzeMirror)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitOfEden)).BeginInit();
@@ -601,6 +607,13 @@ namespace LMRItemTracker
             this.openSettingsWindowToolStripMenuItem.Text = "Open Settings Window";
             this.openSettingsWindowToolStripMenuItem.Click += new System.EventHandler(this.openSettingsWindowToolStripMenuItem_Click);
             // 
+            // connectToChatToolStripMenuItem
+            // 
+            this.connectToChatToolStripMenuItem.Name = "connectToChatToolStripMenuItem";
+            this.connectToChatToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.connectToChatToolStripMenuItem.Text = "Connect to Chat";
+            this.connectToChatToolStripMenuItem.Click += new System.EventHandler(this.connectToChatToolStripMenuItem_Click);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
@@ -792,12 +805,12 @@ namespace LMRItemTracker
             // 
             this.overviewPanel.AutoSize = true;
             this.overviewPanel.Controls.Add(this.lastItemPanel);
-            this.overviewPanel.Controls.Add(this.deathPanel);
+            this.overviewPanel.Controls.Add(this.flowLayoutPanel7);
             this.mainPanel.SetFlowBreak(this.overviewPanel, true);
             this.overviewPanel.Location = new System.Drawing.Point(10, 10);
             this.overviewPanel.Margin = new System.Windows.Forms.Padding(0);
             this.overviewPanel.Name = "overviewPanel";
-            this.overviewPanel.Size = new System.Drawing.Size(300, 56);
+            this.overviewPanel.Size = new System.Drawing.Size(321, 56);
             this.overviewPanel.TabIndex = 119;
             this.overviewPanel.WrapContents = false;
             // 
@@ -857,17 +870,26 @@ namespace LMRItemTracker
             this.lastItem3.TabIndex = 117;
             this.lastItem3.TabStop = false;
             // 
+            // flowLayoutPanel7
+            // 
+            this.flowLayoutPanel7.Controls.Add(this.deathPanel);
+            this.flowLayoutPanel7.Controls.Add(this.flowLayoutPanel8);
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(221, 3);
+            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(97, 50);
+            this.flowLayoutPanel7.TabIndex = 120;
+            // 
             // deathPanel
             // 
             this.deathPanel.AutoSize = true;
             this.deathPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.deathPanel.Controls.Add(this.deathLabel);
             this.deathPanel.Controls.Add(this.deathCount);
-            this.deathPanel.Location = new System.Drawing.Point(226, 0);
+            this.deathPanel.Location = new System.Drawing.Point(8, 0);
             this.deathPanel.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.deathPanel.Name = "deathPanel";
-            this.deathPanel.Size = new System.Drawing.Size(74, 40);
-            this.deathPanel.TabIndex = 119;
+            this.deathPanel.Size = new System.Drawing.Size(74, 20);
+            this.deathPanel.TabIndex = 120;
             this.deathPanel.WrapContents = false;
             this.deathPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deathCount_MouseClick);
             // 
@@ -876,9 +898,9 @@ namespace LMRItemTracker
             this.deathLabel.AutoSize = true;
             this.deathLabel.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.deathLabel.Location = new System.Drawing.Point(3, 0);
-            this.deathLabel.MinimumSize = new System.Drawing.Size(0, 40);
+            this.deathLabel.MinimumSize = new System.Drawing.Size(0, 20);
             this.deathLabel.Name = "deathLabel";
-            this.deathLabel.Size = new System.Drawing.Size(48, 40);
+            this.deathLabel.Size = new System.Drawing.Size(48, 20);
             this.deathLabel.TabIndex = 0;
             this.deathLabel.Text = "Death:";
             this.deathLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -889,13 +911,50 @@ namespace LMRItemTracker
             this.deathCount.AutoSize = true;
             this.deathCount.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.deathCount.Location = new System.Drawing.Point(57, 0);
-            this.deathCount.MinimumSize = new System.Drawing.Size(0, 40);
+            this.deathCount.MinimumSize = new System.Drawing.Size(0, 20);
             this.deathCount.Name = "deathCount";
-            this.deathCount.Size = new System.Drawing.Size(14, 40);
+            this.deathCount.Size = new System.Drawing.Size(14, 20);
             this.deathCount.TabIndex = 1;
             this.deathCount.Text = "0";
             this.deathCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.deathCount.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deathCount_MouseClick);
+            // 
+            // flowLayoutPanel8
+            // 
+            this.flowLayoutPanel8.AutoSize = true;
+            this.flowLayoutPanel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel8.Controls.Add(this.labelContent);
+            this.flowLayoutPanel8.Controls.Add(this.labelContentCount);
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(8, 20);
+            this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.flowLayoutPanel8.Name = "flowLayoutPanel8";
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(86, 20);
+            this.flowLayoutPanel8.TabIndex = 121;
+            this.flowLayoutPanel8.WrapContents = false;
+            // 
+            // labelContent
+            // 
+            this.labelContent.AutoSize = true;
+            this.labelContent.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.labelContent.Location = new System.Drawing.Point(3, 0);
+            this.labelContent.MinimumSize = new System.Drawing.Size(0, 20);
+            this.labelContent.Name = "labelContent";
+            this.labelContent.Size = new System.Drawing.Size(60, 20);
+            this.labelContent.TabIndex = 0;
+            this.labelContent.Text = "Content:";
+            this.labelContent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelContentCount
+            // 
+            this.labelContentCount.AutoSize = true;
+            this.labelContentCount.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.labelContentCount.Location = new System.Drawing.Point(69, 0);
+            this.labelContentCount.MinimumSize = new System.Drawing.Size(0, 20);
+            this.labelContentCount.Name = "labelContentCount";
+            this.labelContentCount.Size = new System.Drawing.Size(14, 20);
+            this.labelContentCount.TabIndex = 1;
+            this.labelContentCount.Text = "0";
+            this.labelContentCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // flowLayoutPanel2
             // 
@@ -2961,13 +3020,6 @@ namespace LMRItemTracker
             this.itemColorDialog.AnyColor = true;
             this.itemColorDialog.SolidColorOnly = true;
             // 
-            // connectToChatToolStripMenuItem
-            // 
-            this.connectToChatToolStripMenuItem.Name = "connectToChatToolStripMenuItem";
-            this.connectToChatToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.connectToChatToolStripMenuItem.Text = "Connect to Chat";
-            this.connectToChatToolStripMenuItem.Click += new System.EventHandler(this.connectToChatToolStripMenuItem_Click);
-            // 
             // LaMulanaItemTrackerForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -3000,8 +3052,12 @@ namespace LMRItemTracker
             ((System.ComponentModel.ISupportInitialize)(this.lastItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastItem3)).EndInit();
+            this.flowLayoutPanel7.ResumeLayout(false);
+            this.flowLayoutPanel7.PerformLayout();
             this.deathPanel.ResumeLayout(false);
             this.deathPanel.PerformLayout();
+            this.flowLayoutPanel8.ResumeLayout(false);
+            this.flowLayoutPanel8.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bronzeMirror)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitOfEden)).EndInit();
@@ -3325,9 +3381,6 @@ namespace LMRItemTracker
         private FlowLayoutPanel flowLayoutPanel6;
         private ToolStripMenuItem addItemPanel6ToolStripMenuItem;
         private ToolStripMenuItem showDeathCountToolStripMenuItem;
-        private FlowLayoutPanel deathPanel;
-        private Label deathLabel;
-        private Label deathCount;
         private ToolStripMenuItem clearDeathCountToolStripMenuItem;
         private ColorDialog itemColorDialog;
         private ToolStripMenuItem changeUncollectedItemColorToolStripMenuItem;
@@ -3344,5 +3397,12 @@ namespace LMRItemTracker
         private ToolStripMenuItem enableVoiceTrackerToolStripMenuItem;
         private ToolStripMenuItem openSettingsWindowToolStripMenuItem;
         private ToolStripMenuItem connectToChatToolStripMenuItem;
+        private FlowLayoutPanel flowLayoutPanel7;
+        private FlowLayoutPanel deathPanel;
+        private Label deathLabel;
+        private Label deathCount;
+        private FlowLayoutPanel flowLayoutPanel8;
+        private Label labelContent;
+        private Label labelContentCount;
     }
 }

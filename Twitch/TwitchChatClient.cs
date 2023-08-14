@@ -301,7 +301,7 @@ namespace LMRItemTracker.Twitch
                 
                 return new ChatPrediction
                 {
-                    Id = pollApiResponse.Id,
+                    Id = pollApiResponse.Id!,
                     IsPredictionComplete = true,
                     IsPredictionSuccessful = true,
                     OutcomeIds = pollApiResponse.Outcomes.ToDictionary(x => x.Title, x => x.Id),

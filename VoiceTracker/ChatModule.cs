@@ -1,4 +1,5 @@
-﻿using LMRItemTracker.Configs;
+﻿using Humanizer;
+using LMRItemTracker.Configs;
 using LMRItemTracker.Twitch;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,13 +17,16 @@ namespace LMRItemTracker.VoiceTracker
         private IChatClient _chatClient;
         private TwitchConfig _config;
         private TrackerConfig _trackerConfig;
-        private string _localUsername;
         private readonly Dictionary<string, int> _usersGreetedTimes = new();
         private ChatPrediction? _currentPrediction;
         private TwitchPredictionConfig? _currentPredictionConfig;
         private string? _currentPredictionGoodId;
         private string? _currentPredictionBadId;
         private readonly Random _random = new();
+        
+        private bool _hasAskedForContent;
+        private string? _contentPollId;
+        private bool _askChatAboutContentCheckPollResults = true;
 
         public ChatModule(ILogger<ChatModule> logger, TextToSpeechService ttsService, VoiceRecognitionService voiceService, ConfigService configService, IChatClient chatClient, ChoiceService choices)
         {
@@ -33,43 +37,107 @@ namespace LMRItemTracker.VoiceTracker
             _chatClient.MessageReceived += ChatClient_MessageReceived;
             _config = configService.Config.TwitchConfig;
             _trackerConfig = configService.Config;
+
+            if (_config.Predictions.Any())
+            {
+                voiceService.AddCommand("start prediction",
+                    new GrammarBuilder()
+                        .Append("Hey tracker, ")
+                        .Append(choices.PredictionKey, choices.GetStartPredictionNames()),
+                    result =>
+                    {
+                        var predictionConfig = choices.GetPredictionConfigFromResult(result);
+                        _ = StartPredictionPoll(predictionConfig);
+                    }
+                );
+
+                voiceService.AddCommand("resolve prediction good",
+                    new GrammarBuilder()
+                        .Append("Hey tracker, ")
+                        .Append(choices.PredictionKey, choices.GetResolveGoodPredictionNames()),
+                    result =>
+                    {
+                        var predictionConfig = choices.GetPredictionConfigFromResult(result);
+                        _ = ResolvePredictionPoll(predictionConfig, true);
+                    }
+                );
+
+                voiceService.AddCommand("resolve prediction bad",
+                    new GrammarBuilder()
+                        .Append("Hey tracker, ")
+                        .Append(choices.PredictionKey, choices.GetResolveBadPredictionNames()),
+                    result =>
+                    {
+                        var predictionConfig = choices.GetPredictionConfigFromResult(result);
+                        _ = ResolvePredictionPoll(predictionConfig, false);
+                    }
+                );
+
+                voiceService.AddCommand("lock prediction",
+                    new GrammarBuilder()
+                        .Append("Hey tracker, ")
+                        .Append("lock the prediction poll"),
+                    result =>
+                    {
+                        _ = ClosePredictionPoll(false);
+                    }
+                );
+
+                voiceService.AddCommand("terminate prediction",
+                    new GrammarBuilder()
+                        .Append("Hey tracker, ")
+                        .Append("terminate the prediction poll"),
+                    result =>
+                    {
+                        _ = ClosePredictionPoll(true);
+                    }
+                );
+            }
             
-            voiceService.AddCommand("start prediction",
+            voiceService.AddCommand("track content",
                 new GrammarBuilder()
                     .Append("Hey tracker, ")
-                    .Append(choices.PredictionKey, choices.GetStartPredictionNames()),
+                    .Append("track content"),
                 result =>
                 {
-                    var predictionConfig = choices.GetPredictionConfigFromResult(result);
-                    _ = StartPredictionPoll(predictionConfig);
+                    _ = TrackContent();
                 }
             );
             
-            voiceService.AddCommand("resolve prediction good",
+            voiceService.AddCommand("connect",
                 new GrammarBuilder()
                     .Append("Hey tracker, ")
-                    .Append(choices.PredictionKey, choices.GetResolveGoodPredictionNames()),
+                    .OneOf("connect to chat", "connect to twitch chat"),
                 result =>
                 {
-                    var predictionConfig = choices.GetPredictionConfigFromResult(result);
-                    _ = ResolvePredictionPoll(predictionConfig, true);
-                }
-            );
-            
-            voiceService.AddCommand("resolve prediction bad",
-                new GrammarBuilder()
-                    .Append("Hey tracker, ")
-                    .Append(choices.PredictionKey, choices.GetResolveBadPredictionNames()),
-                result =>
-                {
-                    var predictionConfig = choices.GetPredictionConfigFromResult(result);
-                    _ = ResolvePredictionPoll(predictionConfig, false);
+                    Connect();
                 }
             );
         }
 
+        public event EventHandler? ContentUpdated;
+        
+        public string TwitchUsername { get; set; }
+        public string TwitchAuthToken { get; set; }
+        public string TwitchChannel { get; set; }
+        public string TwitchUserId { get; set; }
+        public int Content { get; private set; }
+
         public async Task StartPredictionPoll(TwitchPredictionConfig config)
         {
+            if (!_chatClient.IsConnected)
+            {
+                _ttsService.Say(_config.NotConnectedToChat);
+                return;
+            }
+            
+            if (_currentPrediction == null || _currentPredictionConfig == null)
+            {
+                _logger.LogWarning("Prediction poll already exists");
+                _ttsService.Say(_config.PredictionAlreadyExists);
+                return;
+            }
+            
             var title = config.PredictionTitles.ToString();
             var options = config.PredictionOptions[_random.Next(0, config.PredictionOptions.Count)];
 
@@ -105,9 +173,10 @@ namespace LMRItemTracker.VoiceTracker
             if (_currentPrediction == null || _currentPredictionConfig == null)
             {
                 _logger.LogWarning("No current active prediction");
-                _ttsService.Say(_trackerConfig.Responses.Error);
+                _ttsService.Say(_config.NoCurrentPrediction);
                 return;
             }
+            
             var winnerId = isGoodResult ? _currentPredictionGoodId : _currentPredictionBadId;
 
             try
@@ -138,15 +207,57 @@ namespace LMRItemTracker.VoiceTracker
                 _ttsService.Say(_trackerConfig.Responses.Error);
             }
         }
+        
+        public async Task ClosePredictionPoll(bool cancelled)
+        {
+            if (_currentPrediction == null || _currentPredictionConfig == null)
+            {
+                _logger.LogWarning("No current active prediction");
+                _ttsService.Say(_config.NoCurrentPrediction);
+                return;
+            }
+            
+            try
+            {
+                await _chatClient.EndPredictionAsync(_currentPrediction, null, cancelled);
 
-        public void Connect(string username, string authToken, string channel, string id)
+                if (cancelled)
+                {
+                    _ttsService.Say(_config.PredictionCancelled);
+                    _currentPrediction = null;
+                    _currentPredictionConfig = null;    
+                }
+                else
+                {
+                    _ttsService.Say(_config.PredictionLocked);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error resolving prediction poll");
+                _currentPrediction = null;
+                _currentPredictionConfig = null;
+                _ttsService.Say(_trackerConfig.Responses.Error);
+            }
+        }
+        
+        public void SetTwitchData(string username, string authToken, string channel, string id, bool respondToChat, bool openPolls)
+        {
+            TwitchUsername = username;
+            TwitchAuthToken = authToken;
+            TwitchChannel = channel;
+            TwitchUserId = id;
+            RespondToChat = respondToChat;
+            OpenPolls = openPolls;
+        }
+
+        public void Connect()
         {
             if (_chatClient.IsConnected)
             {
                 _chatClient.Disconnect();
             }
-            _localUsername = username;
-            _chatClient.Connect(username, authToken, channel, id);
+            _chatClient.Connect(TwitchUsername, TwitchAuthToken, TwitchChannel, TwitchUserId);
         }
 
         private void ChatClient_MessageReceived(object sender, MessageReceivedEventArgs e)
@@ -181,8 +292,7 @@ namespace LMRItemTracker.VoiceTracker
                 if (Regex.IsMatch(message.Text, recognizedGreeting, RegexOptions.IgnoreCase | RegexOptions.Singleline))
                 {
                     // Sass if it was the broadcaster
-                    if (message.SenderUserName.Equals(_localUsername, StringComparison.OrdinalIgnoreCase)
-                        && _config.GreetedBySelf != null)
+                    if (message.SenderUserName.Equals(TwitchUsername, StringComparison.OrdinalIgnoreCase))
                     {
                         _ttsService.Say(_config.GreetedBySelf, senderNamePronunciation);
                         break;
@@ -207,7 +317,71 @@ namespace LMRItemTracker.VoiceTracker
             }
         }
 
-        private async void ChatClient_Connected(object sender, EventArgs e)
+        private async Task TrackContent()
+        {
+            var shouldAskChat = OpenPolls && _chatClient.IsConnected && (!_hasAskedForContent || _random.Next(0, 3) == 0);
+            if (!shouldAskChat)
+            {
+                UpdateContent();
+                return;
+            }
+            
+            _contentPollId = await _chatClient.CreatePollAsync("Do you think that was some high quality #content?", new List<string>() { "Yes", "No" }, 60);
+
+            if (string.IsNullOrEmpty(_contentPollId))
+            {
+                UpdateContent();
+                return;
+            }
+
+            _ttsService.Say(_config.AskChatAboutContent);
+            _ttsService.Say(_config.PollOpened, 60);
+            _hasAskedForContent = true;
+            _askChatAboutContentCheckPollResults = true;
+            
+            await Task.Delay(TimeSpan.FromSeconds(70));
+            
+            do
+            {
+                var result = await _chatClient.CheckPollAsync(_contentPollId!);
+                if (result.IsPollComplete && _askChatAboutContentCheckPollResults)
+                {
+                    _askChatAboutContentCheckPollResults = false;
+
+                    if (result.IsPollSuccessful)
+                    {
+                        _ttsService.Say(_config.PollComplete);
+
+                        if ("Yes".Equals(result.WinningChoice, StringComparison.OrdinalIgnoreCase))
+                        {
+                            _ttsService.Say(_config.AskChatAboutContentYes);
+                            UpdateContent();
+                        }
+                        else
+                        {
+                            _ttsService.Say(_config.AskChatAboutContentNo);
+                        }
+                    }
+                    else
+                    {
+                        _ttsService.Say(_config.PollError);
+                    }
+                }
+                else if (_askChatAboutContentCheckPollResults)
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+                }
+            } while (_askChatAboutContentCheckPollResults);
+        }
+
+        private void UpdateContent()
+        {
+            Content++;
+            ContentUpdated?.Invoke(this, EventArgs.Empty);
+            _ttsService.Say(_config.ContentTracked.GetRollupResponse(Content), Content, Content.ToOrdinalWords());
+        }
+
+        private void ChatClient_Connected(object sender, EventArgs e)
         {
             _ttsService.Say(_config.WhenConnected);
         }

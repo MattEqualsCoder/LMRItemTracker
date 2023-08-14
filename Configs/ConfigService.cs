@@ -103,7 +103,7 @@ public class ConfigService
         var responses = LoadUserYamlFile<ResponseConfig>(path + Path.DirectorySeparatorChar + "responses.yml");
         var custom = LoadUserYamlFile<CustomConfig>(path + Path.DirectorySeparatorChar + "custom.yml");
         var twitch = LoadUserYamlFile<TwitchConfig>(path + Path.DirectorySeparatorChar + "twitch.yml");
-        if (items == null && locations == null && responses == null && custom == null)
+        if (items == null && locations == null && regions == null && responses == null && custom == null && twitch == null)
         {
             config = null;
             return false;
