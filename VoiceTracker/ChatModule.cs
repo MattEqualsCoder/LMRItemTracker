@@ -131,7 +131,7 @@ namespace LMRItemTracker.VoiceTracker
                 return;
             }
             
-            if (_currentPrediction == null || _currentPredictionConfig == null)
+            if (_currentPrediction != null)
             {
                 _logger.LogWarning("Prediction poll already exists");
                 _ttsService.Say(_config.PredictionAlreadyExists);

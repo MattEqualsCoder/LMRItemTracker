@@ -15,6 +15,8 @@ public class ResponseConfig : MergeableConfig
     public SchrodingersString NoHintsAvailable { get; set; } = new();
     public SchrodingersString HintItem { get; set; } = new();
     public SchrodingersString HintLocation { get; set; } = new();
+    public SchrodingersString HintNpc { get; set; } = new();
+    public SchrodingersString HintNpcLocation { get; set; } = new();
     public SchrodingersString NeedToEnableHints { get; set; } = new();
     public SchrodingersString LocationHasProgressionItem { get; set; } = new();
     public SchrodingersString LocationHasNiceToHaveItem { get; set; } = new();

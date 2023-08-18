@@ -298,6 +298,8 @@
     <Compile Include="Configs\ItemType.cs" />
     <Compile Include="Configs\LocationConfig.cs" />
     <Compile Include="Configs\MergeableConfig.cs" />
+    <Compile Include="Configs\NpcConfig.cs" />
+    <Compile Include="Configs\NpcsConfig.cs" />
     <Compile Include="Configs\RollupResponses.cs" />
     <Compile Include="Configs\RegionConfig.cs" />
     <Compile Include="Configs\RegionsConfig.cs" />
@@ -1237,7 +1239,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Configs\yaml\regions.yml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Configs\yaml\npcs.yml" />
+  </ItemGroup>
   <Import Project="EyeOfTruth.Shared\EyeOfTruth.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

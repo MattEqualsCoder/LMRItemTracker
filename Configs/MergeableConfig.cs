@@ -191,6 +191,12 @@ public abstract class MergeableConfig
                 var otherValue = property.GetValue(other) as List<TwitchPredictionConfig>;
                 Merge(thisValue ?? new List<TwitchPredictionConfig>(), otherValue ?? new List<TwitchPredictionConfig>());
             }
+            else if (property.PropertyType == typeof(List<NpcConfig>))
+            {
+                var thisValue = property.GetValue(this) as List<NpcConfig>;
+                var otherValue = property.GetValue(other) as List<NpcConfig>;
+                Merge(thisValue ?? new List<NpcConfig>(), otherValue ?? new List<NpcConfig>());
+            }
             else if (property.PropertyType == typeof(RollupResponses))
             {
                 var thisValue = property.GetValue(this) as RollupResponses;

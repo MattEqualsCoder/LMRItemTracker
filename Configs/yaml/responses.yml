@@ -84,6 +84,24 @@ HintLocation:
 - Text: "You can find {0} at {1}"
 - Text: "{1} contains {0}"
   
+# Lines for when asking for a hint for where you can find an npc
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the npc
+# {1} is replaced with the name of the location where the npc can be found
+HintNpc:
+  - Text: "You can find {0} at {1}"
+  - Text: "You'll want to go to {1} for {0}"
+      
+# Lines for what NPC is at a specific location
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the npc at a location. If spoilers are enabled, this will be the
+# actual name of the item. If hints are enabled and the item has hints, then it will use the name
+# the hint.
+# {1} is replaced with the name of the location
+HintNpcLocation:
+  - Text: "You can find {0} at {1}"
+  - Text: "{1} houses {0}"
+  
 # Lines for when asking for a hint when hints are disabled
 # Type: Weighted Possibilities
 NeedToEnableHints:

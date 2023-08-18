@@ -13,11 +13,13 @@ public class ChoiceService
     private const string LocationKeyValue = "LocationKey";
     private const string RegionKeyValue = "RegionKey";
     private const string PredictionKeyValue = "PredictionKey";
+    private const string NpcKeyValue = "NpcKey";
 
     public string ItemKey => ItemKeyValue;
     public string LocationKey => LocationKeyValue;
     public string RegionKey => RegionKeyValue;
     public string PredictionKey => PredictionKeyValue;
+    public string NpcKey => NpcKeyValue;
 
     public ChoiceService(ConfigService configService)
     {
@@ -114,6 +116,36 @@ public class ChoiceService
         return choices;
     }
     
+    public Choices GetNpcNames()
+    {
+        var choices = new Choices();
+        
+        foreach (var npc in _trackerConfig.NpcConfig.Npcs.Where(x => x.Names != null))
+        {
+            foreach (var name in npc.Names!)
+            {
+                choices.Add(new SemanticResultValue(name, npc.Key));
+            }
+        }
+
+        return choices;
+    }
+    
+    public Choices GetNpcLocationNames()
+    {
+        var choices = new Choices();
+        
+        foreach (var location in _trackerConfig.NpcConfig.Locations.Where(x => x.Names != null))
+        {
+            foreach (var name in location.Names!)
+            {
+                choices.Add(new SemanticResultValue(name, location.Key));
+            }
+        }
+
+        return choices;
+    }
+    
     public ItemConfig GetItemFromResult(RecognitionResult result, out string itemName)
     {
         itemName = (string)result.Semantics[ItemKey].Value;
@@ -143,5 +175,19 @@ public class ChoiceService
         var key = (string)result.Semantics[PredictionKey].Value;
         var prediction = _trackerConfig.TwitchConfig.Predictions.FirstOrDefault(x => x.Key == key);
         return prediction ?? throw new KeyNotFoundException($"Could not find recognized prediction '{key}' (\"{result.Text}\")");
+    }
+    
+    public NpcConfig GetNpcConfigFromResult(RecognitionResult result)
+    {
+        var key = (string)result.Semantics[NpcKey].Value;
+        var npc = _trackerConfig.NpcConfig.Npcs.FirstOrDefault(x => x.Key == key);
+        return npc ?? throw new KeyNotFoundException($"Could not find recognized prediction '{key}' (\"{result.Text}\")");
+    }
+    
+    public LocationConfig GetNpcLocationConfigFromResult(RecognitionResult result)
+    {
+        var key = (string)result.Semantics[LocationKey].Value;
+        var location = _trackerConfig.NpcConfig.Locations.FirstOrDefault(x => x.Key == key);
+        return location ?? throw new KeyNotFoundException($"Could not find recognized prediction '{key}' (\"{result.Text}\")");
     }
 }

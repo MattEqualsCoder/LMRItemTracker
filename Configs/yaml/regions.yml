@@ -4,6 +4,7 @@
 # ------
 # Key (string): Unique internal tracker name for regions. Used for merging the same regions between different config files.  Do not modify.
 # Names (weighted possibilities): Different names tracker will refer to a region by when speaking
+# Hints (list of strings)): Hints for a particular region
 
 Regions:
 - Key: "Chamber of Birth"
@@ -63,3 +64,6 @@ Regions:
 - Key: "Surface"
   Names:
   - Text: "Surface"
+- Key: "Hell Temple"
+  Names:
+    - Text: "Hell Temple"

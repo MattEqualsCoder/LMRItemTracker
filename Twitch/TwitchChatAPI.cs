@@ -21,11 +21,11 @@ namespace LMRItemTracker.Twitch
 
         private static readonly HttpClient s_httpClient = new();
 
-#if false
+#if DEBUG
         private const string ClientId = "26d7dd70e5035307b0c8612d6f9d83";
         private const string ApiEndpoint = "http://localhost:8080/mock/";
         private const string UserIdOverride = "99708192";
-        private const string UserTokenOverride = "95eda78eb59c5cf";
+        private const string UserTokenOverride = "ab7a7ff7db4b8fa";
 #else
         private const string ClientId = "zeo049h4dgk2v9i1lexu07ncw3dus3";
         private const string ApiEndpoint = "https://api.twitch.tv/helix/";

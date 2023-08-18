@@ -14,6 +14,8 @@ public class HintService
     private readonly TextToSpeechService _ttsService;
     private readonly Dictionary<string, string> _itemLocations = new();
     private readonly Dictionary<string, List<string>> _locationItems = new();
+    private readonly Dictionary<string, string> _npcLocations = new();
+    private readonly Dictionary<string, string> _locationNpcs = new();
     private readonly Dictionary<string, int> _hintsGiven = new();
     private string? _randomizerPath;
     private bool _hintsEnabled;
@@ -54,7 +56,7 @@ public class HintService
             }
         );
         
-        voiceService.AddCommand("item hints",
+        voiceService.AddCommand("location hints",
             new GrammarBuilder()
                 .Append("Hey tracker, ")
                 .OneOf("what's at ", "what can I get at ")
@@ -65,6 +67,44 @@ public class HintService
                 if (_hintsEnabled || _spoilersEnabled)
                 {
                     GiveLocationHint(location);
+                }
+                else
+                {
+                    _ttsService.Say(_trackerConfig.Responses.NeedToEnableHints);
+                }
+            }
+        );
+        
+        voiceService.AddCommand("npc hints",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("where is ", "where can I find ")
+                .Append(choices.NpcKey, choices.GetNpcNames()),
+            result =>
+            {
+                var npc = choices.GetNpcConfigFromResult(result);
+                if (_hintsEnabled || _spoilersEnabled)
+                {
+                    GiveNpcHint(npc);    
+                }
+                else
+                {
+                    _ttsService.Say(_trackerConfig.Responses.NeedToEnableHints);
+                }
+            }
+        );
+        
+        voiceService.AddCommand("npc location hints",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("who's at ", "who is at ")
+                .Append(choices.LocationKey, choices.GetNpcLocationNames()),
+            result =>
+            {
+                var location = choices.GetNpcLocationConfigFromResult(result);
+                if (_hintsEnabled || _spoilersEnabled)
+                {
+                    GiveNpcLocationHint(location);
                 }
                 else
                 {
@@ -181,6 +221,7 @@ public class HintService
         var currentShopName = "";
         var parsingItems = false;
         var parsingShops = false;
+        var parsingNpcs = false;
         foreach (var line in lines)
         {
             var trimmedLine = line.Trim();
@@ -189,17 +230,27 @@ public class HintService
                 _logger.LogInformation("Parsing items");
                 parsingItems = true;
                 parsingShops = false;
+                parsingNpcs = false;
             }
             else if (trimmedLine.StartsWith("Shops:"))
             {
                 _logger.LogInformation("Parsing shops");
                 parsingItems = false;
                 parsingShops = true;
+                parsingNpcs = false;
             }
-            else if (trimmedLine is "Transitions:" or "Backside Doors:" or "NPCs:" or "Origin Seal:" or "Birth Seal:" or "Life Seal:" or "Death Seal:")
+            else if (trimmedLine.StartsWith("NPCs:"))
+            {
+                _logger.LogInformation("Parsing npcs");
+                parsingItems = false;
+                parsingShops = false;
+                parsingNpcs = true;
+            }
+            else if (trimmedLine is "Transitions:" or "Backside Doors:" or "Origin Seal:" or "Birth Seal:" or "Life Seal:" or "Death Seal:")
             {
                 parsingItems = false;
                 parsingShops = false;
+                parsingNpcs = false;
             }
             else if (parsingItems && trimmedLine.Contains(" location"))
             {
@@ -217,6 +268,14 @@ public class HintService
             {
                 var item = trimmedLine.Substring(7).Trim();
                 AddSpoilerEntry(currentShopName, item);
+            }
+            else if (parsingNpcs && trimmedLine.Contains(" location"))
+            {
+                var parts = trimmedLine.Split(new char[] { ':' }, 2);
+                var npc = parts[0].Trim();
+                var location = parts[1].Trim();
+                _locationNpcs[location] = npc;
+                _npcLocations[npc] = location;
             }
         }
     }
@@ -364,6 +423,84 @@ public class HintService
         {
             var itemNames = string.Join(" and ", items.Select(x => x.Names?.ToString() ?? x.SpoilerFileName));
             _ttsService.Say(_trackerConfig.Responses.HintLocation, itemNames, location.Names);
+        }
+    }
+    
+    private void GiveNpcHint(NpcConfig npc)
+    {
+        var npcKey = npc.Key;
+        if (!_npcLocations.ContainsKey(npcKey))
+        {
+            _logger.LogWarning("NPC {Npc} not found in spoiler log", npcKey);
+            _ttsService.Say(_trackerConfig.Responses.ItemLocationNotFound);
+            return;
+        }
+
+        var locationKey = _npcLocations[npcKey];
+        var location = _trackerConfig.NpcConfig.Locations.FirstOrDefault(x => x.Key == locationKey);
+        if (location == null)
+        {
+            _logger.LogWarning("NPC location {SpoilerName} from spoiler log not found in config file", locationKey);
+            _ttsService.Say(_trackerConfig.Responses.HintItem, npc.Names, locationKey);
+            return;
+        }
+
+        if (_hintsEnabled)
+        {
+            if (!_hintsGiven.TryGetValue(npc.Key, out var value))
+            {
+                value = 0;
+            }
+            if (location.Hints.Count <= value)
+            {
+                _ttsService.Say(_trackerConfig.Responses.NoHintsAvailable, npc.Names);
+                return;
+            }
+
+            _ttsService.Say(_trackerConfig.Responses.HintNpc, npc.Names, location.Hints[value]);
+            _hintsGiven[npc.Key] = value + 1;
+        }
+        else if (_spoilersEnabled)
+        {
+            _ttsService.Say(_trackerConfig.Responses.HintNpc, npc.Names, location.Names);
+        }
+    }
+    
+    private void GiveNpcLocationHint(LocationConfig location)
+    {
+        if (!_locationNpcs.ContainsKey(location.Key))
+        {
+            _ttsService.Say(_trackerConfig.Responses.LocationHasUselessItem, location.Names);
+            return;
+        }
+
+        var npcKey = _locationNpcs[location.Key];
+        var npc = _trackerConfig.NpcConfig.Npcs.FirstOrDefault(x => x.Key == npcKey);
+        if (npc == null)
+        {
+            _ttsService.Say(_trackerConfig.Responses.LocationHasUselessItem, location.Names);
+            return;
+        }
+
+        if (_hintsEnabled)
+        {
+            if (!_hintsGiven.TryGetValue(location.Key, out var value))
+            {
+                value = 0;
+            }
+            
+            if (npc.Hints.Count <= value)
+            {
+                _ttsService.Say(_trackerConfig.Responses.NoHintsAvailable, location.Names);
+                return;
+            }
+
+            _ttsService.Say(_trackerConfig.Responses.HintNpcLocation, npc.Hints[value], location.Names);
+            _hintsGiven[npc.Key] = value + 1;
+        }
+        else if (_spoilersEnabled)
+        {
+            _ttsService.Say(_trackerConfig.Responses.HintNpcLocation, npc.Names, location.Names);
         }
     }
     

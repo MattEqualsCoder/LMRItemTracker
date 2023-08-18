@@ -12,7 +12,7 @@ namespace LMRItemTracker.Configs;
 
 public class ConfigService
 {
-    public TrackerConfig Config { get; set; } = new(null, null, null, null, null, null);
+    public TrackerConfig Config { get; set; } = new(null, null, null, null, null, null, null);
     
     private static readonly IDeserializer s_deserializer = new DeserializerBuilder()
         .WithNamingConvention(PascalCaseNamingConvention.Instance)
@@ -56,7 +56,8 @@ public class ConfigService
         var responses = LoadBuiltInYamlFile<ResponseConfig>("responses.yml");
         var custom = LoadBuiltInYamlFile<CustomConfig>("custom.yml");
         var twitch = LoadBuiltInYamlFile<TwitchConfig>("twitch.yml");
-        return new TrackerConfig(items, locations, regions, responses, custom, twitch);
+        var npcs = LoadBuiltInYamlFile<NpcsConfig>("npcs.yml");
+        return new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs);
     }
     
     private T? LoadBuiltInYamlFile<T>(string filename)
@@ -103,12 +104,13 @@ public class ConfigService
         var responses = LoadUserYamlFile<ResponseConfig>(path + Path.DirectorySeparatorChar + "responses.yml");
         var custom = LoadUserYamlFile<CustomConfig>(path + Path.DirectorySeparatorChar + "custom.yml");
         var twitch = LoadUserYamlFile<TwitchConfig>(path + Path.DirectorySeparatorChar + "twitch.yml");
-        if (items == null && locations == null && regions == null && responses == null && custom == null && twitch == null)
+        var npcs = LoadUserYamlFile<NpcsConfig>(path + Path.DirectorySeparatorChar + "npcs.yml");
+        if (items == null && locations == null && regions == null && responses == null && custom == null && twitch == null && npcs == null)
         {
             config = null;
             return false;
         }
-        config = new TrackerConfig(items, locations, regions, responses, custom, twitch);
+        config = new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs);
         return true;
     }
     

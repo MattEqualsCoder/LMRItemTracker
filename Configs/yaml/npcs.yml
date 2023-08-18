@@ -1,0 +1,574 @@
+﻿Npcs:
+  - Key: "Modro"
+    Names:
+      - Text: "Modro"
+    Hints:
+      - "Someone from the Surface"
+  - Key: "Naramura"
+    Names:
+      - Text: "Naramura"
+    Hints:
+      - "Someone from the Tower of the Goddess"
+  - Key: "Sidro"
+    Names:
+      - Text: "Sidro"
+    Hints:
+      - "Someone from the Surface"
+  - Key: "Priest Laydoc"
+    Names:
+      - Text: "Priest Laydoc"
+    Hints:
+      - "Someone from the Tower of Ruin"
+  - Key: "The Fairy Queen"
+    Names:
+      - Text: "The Fairy Queen"
+    Hints:
+      - "Someone from the Endless Corridor"
+  - Key: "Giant Mopiran"
+    Names:
+      - Text: "Giant Mopiran"
+    Hints:
+      - "Someone from the Graveyard of the Giants"
+  - Key: "Mulbruk"
+    Names:
+      - Text: "Mulbruk"
+    Hints:
+      - "Someone from the Temple of the Sun"
+  - Key: "Former Mekuri Master"
+    Names:
+      - Text: "Former Mekuri Master"
+    Hints:
+      - "Someone from the Surface"
+  - Key: "Giant Thexde"
+    Names:
+      - Text: "Giant Thexde"
+    Hints:
+      - "Someone from the Graveyard of the Giants"
+  - Key: "Kingvalley I"
+    Names:
+      - Text: "Kingvalley I"
+    Hints:
+      - "Someone from the Temple of the Sun"
+  - Key: "Mechanical Efspi"
+    Names:
+      - Text: "Mechanical Efspi"
+    Hints:
+      - "Someone from the Tower of Ruin"
+  - Key: "Philosopher Fobos"
+    Names:
+      - Text: "Philosopher Fobos"
+    Hints:
+      - "Someone from the Dimensional Corridor"
+  - Key: "Mover Athleland"
+    Names:
+      - Text: "Mover Athleland"
+    Hints:
+      - "Someone from the Gate of Illusion"
+  - Key: "Shalom III"
+    Names:
+      - Text: "Shalom III"
+    Hints:
+      - "Someone from the Temple of the Sun"
+  - Key: "Priest Madomono"
+    Names:
+      - Text: "Priest Madomono"
+    Hints:
+      - "Someone from the Temple of the Sun"
+  - Key: "Greedy Charlie"
+    Names:
+      - Text: "Greedy Charlie"
+    Hints:
+      - "Someone from the Mausoleum of the Giants"
+  - Key: "Priest Hidlyda"
+    Names:
+      - Text: "Priest Hidlyda"
+    Hints:
+      - "Someone from the Spring in the Sky"
+  - Key: "Moger"
+    Names:
+      - Text: "Moger"
+    Hints:
+      - "Someone from the Surface"
+  - Key: "Priest Triton"
+    Names:
+      - Text: "Priest Triton"
+    Hints:
+      - "Someone from the Chamber of Extinction"
+  - Key: "Mr. Fishman (Original)"
+    Names:
+      - Text: "Mr. Fishman (Original)"
+    Hints:
+      - "Someone from the Spring in the Sky"
+  - Key: "8bit Elder"
+    Names:
+      - Text: "8bit Elder"
+    Hints:
+      - "Someone from the Surface"
+  - Key: "Hiner"
+    Names:
+      - Text: "Hiner"
+    Hints:
+      - "Someone from the Surface"
+  - Key: "Mr. Fishman (Alt)"
+    Names:
+      - Text: "Mr. Fishman (Alt)"
+    Hints:
+      - "Someone from the Spring in the Sky"
+  - Key: "Priest Gailious"
+    Names:
+      - Text: "Priest Gailious"
+    Hints:
+      - "Someone from the Inferno Cavern"
+  - Key: "Kingvalley II"
+    Names:
+      - Text: "Kingvalley II"
+    Hints:
+      - "Someone from the Temple of Moonlight"
+  - Key: "Priest Jaguarfiv"
+    Names:
+      - Text: "Priest Jaguarfiv"
+    Hints:
+      - "Someone from the Twin Labyrinths"
+  - Key: "Philosopher Alsedana"
+    Names:
+      - Text: "Philosopher Alsedana"
+    Hints:
+      - "Someone from the Temple of Moonlight"
+  - Key: "Mud Man Qubert"
+    Names:
+      - Text: "Mud Man Qubert"
+    Hints:
+      - "Someone from the Chamber of Birth"
+  - Key: "duplex"
+    Names:
+      - Text: "duplex"
+    Hints:
+      - "Someone from the Gate of Illusion"
+  - Key: "Yiegah Kungfu"
+    Names:
+      - Text: "Yiegah Kungfu"
+    Hints:
+      - "Someone from the Twin Labyrinths"
+  - Key: "Priest Zarnac"
+    Names:
+      - Text: "Priest Zarnac"
+    Hints:
+      - "Someone from the Gate of Guidance"
+  - Key: "Usas VI"
+    Names:
+      - Text: "Usas VI"
+    Hints:
+      - "Someone from the Mausoleum of the Giants"
+  - Key: "Nebur"
+    Names:
+      - Text: "Nebur"
+    Hints:
+      - "Someone from the Surface"
+  - Key: "Arrogant Sturdy Snake"
+    Names:
+      - Text: "Arrogant Sturdy Snake"
+    Hints:
+      - "Someone from the Twin Labyrinths"
+  - Key: "Priest Ashgine"
+    Names:
+      - Text: "Priest Ashgine"
+    Hints:
+      - "Someone from the Chamber of Birth"
+  - Key: "Energetic Belmont"
+    Names:
+      - Text: "Energetic Belmont"
+    Hints:
+      - "Someone from the Tower of the Goddess"
+  - Key: "Priest Romancis"
+    Names:
+      - Text: "Priest Romancis"
+    Hints:
+      - "Someone from the Inferno Cavern"
+  - Key: "Elder Xelpud"
+    Names:
+      - Text: "Elder Xelpud"
+    Hints:
+      - "Someone from the Surface"
+  - Key: "Priest Alest"
+    Names:
+      - Text: "Priest Alest"
+    Hints:
+      - "Someone from the Gate of Illusion"
+  - Key: "Yiear Kungfu"
+    Names:
+      - Text: "Yiear Kungfu"
+    Hints:
+      - "Someone from the Twin Labyrinths"
+  - Key: "Priest Aramo"
+    Names:
+      - Text: "Priest Aramo"
+    Hints:
+      - "Someone from the Chamber of Extinction"
+  - Key: "Tailor Dracuet"
+    Names:
+      - Text: "Tailor Dracuet"
+    Hints:
+      - "Someone from the Hell Temple"
+  - Key: "Mr. Slushfund"
+    Names:
+      - Text: "Mr. Slushfund"
+    Hints:
+      - "Someone from the Gate of Illusion"
+  - Key: "Affected Knimare"
+    Names:
+      - Text: "Affected Knimare"
+    Hints:
+      - "Someone from the Endless Corridor"
+  - Key: "Priest Xanado"
+    Names:
+      - Text: "Priest Xanado"
+    Hints:
+      - "Someone from the Mausoleum of the Giants"
+  - Key: "Penadvent of ghost"
+    Names:
+      - Text: "Penadvent of ghost"
+    Hints:
+      - "Someone from the Gate of Guidance"
+  - Key: "Samieru"
+    Names:
+      - Text: "Samieru"
+    Hints:
+      - "Someone from the Temple of Moonlight"
+  - Key: "Philosopher Giltoriyo"
+    Names:
+      - Text: "Philosopher Giltoriyo"
+    Hints:
+      - "Someone from the Spring in the Sky"
+  - Key: "Arrogant Metagear"
+    Names:
+      - Text: "Arrogant Metagear"
+    Hints:
+      - "Someone from the Twin Labyrinths"
+  - Key: "Operator Combaker"
+    Names:
+      - Text: "Operator Combaker"
+    Hints:
+      - "Someone from the Chamber of Extinction"
+  - Key: "Hot-blooded Nemesistwo"
+    Names:
+      - Text: "Hot-blooded Nemesistwo"
+    Hints:
+      - "Someone from the Inferno Cavern"
+  - Key: "Philosopher Samaranta"
+    Names:
+      - Text: "Philosopher Samaranta"
+    Hints:
+      - "Someone from the Tower of the Goddess"
+Locations:
+  - Key: "Modro location"
+    Names:
+      - Text: "Modro location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Naramura location"
+    Names:
+      - Text: "Naramura location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Sidro location"
+    Names:
+      - Text: "Sidro location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Priest Laydoc location"
+    Names:
+      - Text: "Priest Laydoc location"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "The Fairy Queen location"
+    Names:
+      - Text: "The Fairy Queen location"
+    Hints:
+      - "somewhere in the Endless Corridor"
+    Region: "Endless Corridor"
+  - Key: "Giant Mopiran location"
+    Names:
+      - Text: "Giant Mopiran location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Mulbruk location"
+    Names:
+      - Text: "Mulbruk location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Former Mekuri Master location"
+    Names:
+      - Text: "Former Mekuri Master location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Giant Thexde location"
+    Names:
+      - Text: "Giant Thexde location"
+    Hints:
+      - "somewhere in the Graveyard of the Giants"
+    Region: "Graveyard of the Giants"
+  - Key: "Kingvalley I location"
+    Names:
+      - Text: "Kingvalley I location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Mechanical Efspi location"
+    Names:
+      - Text: "Mechanical Efspi location"
+    Hints:
+      - "somewhere in the Tower of Ruin"
+    Region: "Tower of Ruin"
+  - Key: "Philosopher Fobos location"
+    Names:
+      - Text: "Philosopher Fobos location"
+    Hints:
+      - "somewhere in the Dimensional Corridor"
+    Region: "Dimensional Corridor"
+  - Key: "Mover Athleland location"
+    Names:
+      - Text: "Mover Athleland location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Shalom III location"
+    Names:
+      - Text: "Shalom III location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Priest Madomono location"
+    Names:
+      - Text: "Priest Madomono location"
+    Hints:
+      - "somewhere in the Temple of the Sun"
+    Region: "Temple of the Sun"
+  - Key: "Greedy Charlie location"
+    Names:
+      - Text: "Greedy Charlie location"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "Priest Hidlyda location"
+    Names:
+      - Text: "Priest Hidlyda location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Moger location"
+    Names:
+      - Text: "Moger location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Priest Triton location"
+    Names:
+      - Text: "Priest Triton location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Mr. Fishman (Original) location"
+    Names:
+      - Text: "Mr. Fishman (Original) location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "8bit Elder location"
+    Names:
+      - Text: "8bit Elder location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Hiner location"
+    Names:
+      - Text: "Hiner location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Mr. Fishman (Alt) location"
+    Names:
+      - Text: "Mr. Fishman (Alt) location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Priest Gailious location"
+    Names:
+      - Text: "Priest Gailious location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Kingvalley II location"
+    Names:
+      - Text: "Kingvalley II location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Priest Jaguarfiv location"
+    Names:
+      - Text: "Priest Jaguarfiv location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Philosopher Alsedana location"
+    Names:
+      - Text: "Philosopher Alsedana location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Mud Man Qubert location"
+    Names:
+      - Text: "Mud Man Qubert location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "duplex location"
+    Names:
+      - Text: "duplex location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Yiegah Kungfu location"
+    Names:
+      - Text: "Yiegah Kungfu location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Priest Zarnac location"
+    Names:
+      - Text: "Priest Zarnac location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Usas VI location"
+    Names:
+      - Text: "Usas VI location"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "Nebur location"
+    Names:
+      - Text: "Nebur location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Arrogant Sturdy Snake location"
+    Names:
+      - Text: "Arrogant Sturdy Snake location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Priest Ashgine location"
+    Names:
+      - Text: "Priest Ashgine location"
+    Hints:
+      - "somewhere in the Chamber of Birth"
+    Region: "Chamber of Birth"
+  - Key: "Energetic Belmont location"
+    Names:
+      - Text: "Energetic Belmont location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
+  - Key: "Priest Romancis location"
+    Names:
+      - Text: "Priest Romancis location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Elder Xelpud location"
+    Names:
+      - Text: "Elder Xelpud location"
+    Hints:
+      - "somewhere on the Surface"
+    Region: "Surface"
+  - Key: "Priest Alest location"
+    Names:
+      - Text: "Priest Alest location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Yiear Kungfu location"
+    Names:
+      - Text: "Yiear Kungfu location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Priest Aramo location"
+    Names:
+      - Text: "Priest Aramo location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Tailor Dracuet location"
+    Names:
+      - Text: "Tailor Dracuet location"
+    Hints:
+      - "somewhere in the Hell Temple"
+    Region: "Hell Temple"
+  - Key: "Mr. Slushfund location"
+    Names:
+      - Text: "Mr. Slushfund location"
+    Hints:
+      - "somewhere in the Gate of Illusion"
+    Region: "Gate of Illusion"
+  - Key: "Affected Knimare location"
+    Names:
+      - Text: "Affected Knimare location"
+    Hints:
+      - "somewhere in the Endless Corridor"
+    Region: "Endless Corridor"
+  - Key: "Priest Xanado location"
+    Names:
+      - Text: "Priest Xanado location"
+    Hints:
+      - "somewhere in the Mausoleum of the Giants"
+    Region: "Mausoleum of the Giants"
+  - Key: "Penadvent of ghost location"
+    Names:
+      - Text: "Penadvent of ghost location"
+    Hints:
+      - "somewhere in the Gate of Guidance"
+    Region: "Gate of Guidance"
+  - Key: "Samieru location"
+    Names:
+      - Text: "Samieru location"
+    Hints:
+      - "somewhere in the Temple of Moonlight"
+    Region: "Temple of Moonlight"
+  - Key: "Philosopher Giltoriyo location"
+    Names:
+      - Text: "Philosopher Giltoriyo location"
+    Hints:
+      - "somewhere in the Spring in the Sky"
+    Region: "Spring in the Sky"
+  - Key: "Arrogant Metagear location"
+    Names:
+      - Text: "Arrogant Metagear location"
+    Hints:
+      - "somewhere in the Twin Labyrinths"
+    Region: "Twin Labyrinths"
+  - Key: "Operator Combaker location"
+    Names:
+      - Text: "Operator Combaker location"
+    Hints:
+      - "somewhere in the Chamber of Extinction"
+    Region: "Chamber of Extinction"
+  - Key: "Hot-blooded Nemesistwo location"
+    Names:
+      - Text: "Hot-blooded Nemesistwo location"
+    Hints:
+      - "somewhere in the Inferno Cavern"
+    Region: "Inferno Cavern"
+  - Key: "Philosopher Samaranta location"
+    Names:
+      - Text: "Philosopher Samaranta location"
+    Hints:
+      - "somewhere in the Tower of the Goddess"
+    Region: "Tower of the Goddess"
