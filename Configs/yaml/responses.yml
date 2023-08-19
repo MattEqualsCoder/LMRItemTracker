@@ -102,6 +102,14 @@ HintNpcLocation:
   - Text: "You can find {0} at {1}"
   - Text: "{1} houses {0}"
   
+# Lines for what a seal will unlock
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the seal
+# {1} is replaced with the list of locations
+SpoilerSealLocations:
+  - Text: "With the {0} you can unlock {1}"
+  - Text: "The {0} will get you access to {1}"
+  
 # Lines for when asking for a hint when hints are disabled
 # Type: Weighted Possibilities
 NeedToEnableHints:

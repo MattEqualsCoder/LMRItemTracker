@@ -9,17 +9,23 @@ public class ChoiceService
 {
     private TrackerConfig _trackerConfig;
     
+    private readonly List<string> _sealChoices = new List<string>()
+        { "Origin Seal", "Birth Seal", "Life Seal", "Death Seal" };
+    
     private const string ItemKeyValue = "ItemKey";
     private const string LocationKeyValue = "LocationKey";
     private const string RegionKeyValue = "RegionKey";
     private const string PredictionKeyValue = "PredictionKey";
     private const string NpcKeyValue = "NpcKey";
+    private const string SealKeyValue = "SealKey";
 
     public string ItemKey => ItemKeyValue;
     public string LocationKey => LocationKeyValue;
     public string RegionKey => RegionKeyValue;
     public string PredictionKey => PredictionKeyValue;
     public string NpcKey => NpcKeyValue;
+    public string SealKey => SealKeyValue;
+    
 
     public ChoiceService(ConfigService configService)
     {
@@ -146,6 +152,18 @@ public class ChoiceService
         return choices;
     }
     
+    public Choices GetSealNames()
+    {
+        var choices = new Choices();
+        
+        foreach (var seal in _sealChoices)
+        {
+            choices.Add(new SemanticResultValue(seal, seal));
+        }
+
+        return choices;
+    }
+    
     public ItemConfig GetItemFromResult(RecognitionResult result, out string itemName)
     {
         itemName = (string)result.Semantics[ItemKey].Value;
@@ -189,5 +207,10 @@ public class ChoiceService
         var key = (string)result.Semantics[LocationKey].Value;
         var location = _trackerConfig.NpcConfig.Locations.FirstOrDefault(x => x.Key == key);
         return location ?? throw new KeyNotFoundException($"Could not find recognized prediction '{key}' (\"{result.Text}\")");
+    }
+    
+    public string GetSealFromResult(RecognitionResult result)
+    {
+        return (string)result.Semantics[SealKey].Value;
     }
 }

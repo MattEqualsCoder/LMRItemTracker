@@ -1,9 +1,9 @@
-﻿using LMRItemTracker.Configs;
+﻿using System;
+using LMRItemTracker.Configs;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Speech.Recognition;
 
 namespace LMRItemTracker.VoiceTracker;
 
@@ -17,6 +17,10 @@ public class HintService
     private readonly Dictionary<string, string> _npcLocations = new();
     private readonly Dictionary<string, string> _locationNpcs = new();
     private readonly Dictionary<string, int> _hintsGiven = new();
+    private readonly Dictionary<string, List<string>> _sealLocations = new();
+
+    private readonly List<string> _seals = new List<string>()
+        { "Origin Seal", "Birth Seal", "Life Seal", "Death Seal" };
     private string? _randomizerPath;
     private bool _hintsEnabled;
     private bool _spoilersEnabled;
@@ -148,6 +152,26 @@ public class HintService
                 }
             }
         );
+        
+        voiceService.AddCommand("seal hints",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .Append("what is the ")
+                .Append(choices.SealKey, choices.GetSealNames())
+                .Append("used for?"),
+            result =>
+            {
+                var seal = choices.GetSealFromResult(result);
+                if (_spoilersEnabled)
+                {
+                    GiveSealSpoiler(seal);
+                }
+                else
+                {
+                    _ttsService.Say(_trackerConfig.Responses.NeedToEnableHints);
+                }
+            }
+        );
     }
 
     public TrackerService? TrackerService { get; set; }
@@ -217,11 +241,16 @@ public class HintService
         _logger.LogInformation("Parsing spoiler file {Path}", path);
         _locationItems.Clear();
         _itemLocations.Clear();
+        _sealLocations.Clear();
+        _npcLocations.Clear();
+        _locationNpcs.Clear();
         var lines = File.ReadLines(path);
         var currentShopName = "";
         var parsingItems = false;
         var parsingShops = false;
         var parsingNpcs = false;
+        var currentSeal = "";
+        
         foreach (var line in lines)
         {
             var trimmedLine = line.Trim();
@@ -231,6 +260,7 @@ public class HintService
                 parsingItems = true;
                 parsingShops = false;
                 parsingNpcs = false;
+                currentSeal = "";
             }
             else if (trimmedLine.StartsWith("Shops:"))
             {
@@ -238,6 +268,7 @@ public class HintService
                 parsingItems = false;
                 parsingShops = true;
                 parsingNpcs = false;
+                currentSeal = "";
             }
             else if (trimmedLine.StartsWith("NPCs:"))
             {
@@ -245,12 +276,22 @@ public class HintService
                 parsingItems = false;
                 parsingShops = false;
                 parsingNpcs = true;
+                currentSeal = "";
             }
-            else if (trimmedLine is "Transitions:" or "Backside Doors:" or "Origin Seal:" or "Birth Seal:" or "Life Seal:" or "Death Seal:")
+            else if (trimmedLine is "Origin Seal:" or "Birth Seal:" or "Life Seal:" or "Death Seal:")
             {
                 parsingItems = false;
                 parsingShops = false;
                 parsingNpcs = false;
+                currentSeal = trimmedLine.Replace(":", "");
+                _sealLocations[currentSeal] = new List<string>();
+            }
+            else if (trimmedLine is "Transitions:" or "Backside Doors:")
+            {
+                parsingItems = false;
+                parsingShops = false;
+                parsingNpcs = false;
+                currentSeal = "";
             }
             else if (parsingItems && trimmedLine.Contains(" location"))
             {
@@ -276,6 +317,10 @@ public class HintService
                 var location = parts[1].Trim();
                 _locationNpcs[location] = npc;
                 _npcLocations[npc] = location;
+            }
+            else if (!string.IsNullOrEmpty(currentSeal) && !string.IsNullOrEmpty(trimmedLine))
+            {
+                _sealLocations[currentSeal].Add(trimmedLine);
             }
         }
     }
@@ -605,6 +650,20 @@ public class HintService
             var locations = string.Join(" and ", ankhLocations.Select(x => x!.Names?.ToString() ?? x.Key));
             _ttsService.Say(_trackerConfig.Responses.AnkhJewelLocations, locations);
         }
+    }
+    
+    private void GiveSealSpoiler(string seal)
+    {
+        if (!_sealLocations.ContainsKey(seal))
+        {
+            _ttsService.Say(_trackerConfig.Responses.ItemLocationNotFound);
+        }
+
+        var sealLocations = string.Join("; ", _sealLocations[seal]).Replace(",", "");
+        var index = sealLocations.LastIndexOf(";", StringComparison.Ordinal);
+        sealLocations = sealLocations.Insert(index + 2, "and ");
+        
+        _ttsService.Say(_trackerConfig.Responses.SpoilerSealLocations, seal, sealLocations);
     }
     
     

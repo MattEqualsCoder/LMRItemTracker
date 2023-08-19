@@ -1,4 +1,32 @@
-﻿Npcs:
+﻿# Config file for npcs found in the game. This config file has a list of NPCs and a list of locations the NPCs can be at.
+# The locations use the same fields as found in locations.yml
+
+# NPC Fields
+# ------
+# Key (string): Unique name of the npc found in the spoiler text file
+# Names (weighted possibilities): Different names tracker will refer to an npc by when speaking
+# Hints (list of strings): A list of generic ways to refer to an npc when a person is asking what is at a location.
+#     When asking for hints, Tracker will start at the first one, then will go down the list when asking for more hints.
+
+# Example
+# - Key: "w-main-flail"
+#   Type: NiceToHave
+#   SpoilerFileName: "Flail Whip"
+#   Hints:
+#     - "Some sort of weapon"
+#     - "It's like a combination of two things"
+#   Names:
+#     - Text: "Flail whip"
+#     - Text: "Flailing whip"
+#       Weight: 0.1
+#   ArticledNames:
+#     - Text: "The Flail Whip"
+#   OnTracked:
+#     - Text: "Whip it good"
+#     - Text: "Watch where you flail that thing around"
+#       Weight: 0.1
+
+Npcs:
   - Key: "Modro"
     Names:
       - Text: "Modro"
