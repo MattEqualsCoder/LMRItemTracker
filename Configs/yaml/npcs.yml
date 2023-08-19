@@ -9,22 +9,11 @@
 #     When asking for hints, Tracker will start at the first one, then will go down the list when asking for more hints.
 
 # Example
-# - Key: "w-main-flail"
-#   Type: NiceToHave
-#   SpoilerFileName: "Flail Whip"
-#   Hints:
-#     - "Some sort of weapon"
-#     - "It's like a combination of two things"
-#   Names:
-#     - Text: "Flail whip"
-#     - Text: "Flailing whip"
-#       Weight: 0.1
-#   ArticledNames:
-#     - Text: "The Flail Whip"
-#   OnTracked:
-#     - Text: "Whip it good"
-#     - Text: "Watch where you flail that thing around"
-#       Weight: 0.1
+# - Key: "Modro"
+#    Names:
+#      - Text: "Modro"
+#    Hints:
+#      - "Someone from the Surface"
 
 Npcs:
   - Key: "Modro"
