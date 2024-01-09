@@ -182,3 +182,13 @@ UnrecognizedLine:
 # Type: Weighted Possibilities
 IdleMessage:
 - Text: "Are we going to be here all day?"
+  
+# Lines for clearing the most recent items
+# Type: Weighted Possibilities
+ClearedRecentItems:
+- Text: "Cleared recent items"
+  
+# Lines for getting an item that was recently cleared
+# Type: Weighted Possibilities
+GotClearedItem:
+  - Text: "Oh, did you lose that?"

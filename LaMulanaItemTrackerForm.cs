@@ -29,6 +29,7 @@ namespace LMRItemTracker
             _voiceRecognitionService = voiceService;
             _services = services;
             _chatModule = chatModule;
+            _trackerService.TrackerForm = this;
         }
 
         private void ScaleImages(Control parent)
@@ -812,6 +813,11 @@ namespace LMRItemTracker
             }
         }
 
+        public void Log(string message)
+        {
+            _logger.LogInformation(message);
+        }
+
         private void UpdatePanelControls(Control panel, Control foundControl, Control blankControl, bool isAdd)
         {
             if (isAdd)
@@ -941,11 +947,18 @@ namespace LMRItemTracker
             _trackerService.SetInGame(started);
         }
 
+        public List<string> LastItems { get; set; } = new();
+        
         internal void UpdateLastItem(string flagName)
         {
             if(gameStarted)
             {
                 _logger.LogInformation("updateLastItem: {Name}", flagName);
+                LastItems.Insert(0, flagName);
+                if (LastItems.Count > 3)
+                {
+                    LastItems.RemoveRange(3, 4 - LastItems.Count);
+                }
                 lastItemPanel.Invoke(new Action(() =>
                 {
                     System.Drawing.Bitmap? lastItemImage = getFoundImage(flagName);
@@ -2916,7 +2929,7 @@ namespace LMRItemTracker
             UpdateShowLastItem();
         }
 
-        private void clearLastItem(object sender, EventArgs e)
+        public void ClearRecentItems()
         {
             lastItem1.Invoke(new Action(() =>
             {
@@ -2936,6 +2949,11 @@ namespace LMRItemTracker
                 lastItem3.BackgroundImage = null;
                 lastItem3.Refresh();
             }));
+        }
+
+        private void clearLastItem(object sender, EventArgs e)
+        {
+            ClearRecentItems();
         }
 
         private void changeLanguage(object sender, EventArgs e)

@@ -30,6 +30,8 @@ public class ResponseConfig : MergeableConfig
     public SchrodingersString AnkhJewelLocations { get; set; } = new();
     public SchrodingersString UnrecognizedLine { get; set; } = new();
     public SchrodingersString IdleMessage { get; set; } = new();
+    public SchrodingersString ClearedRecentItems { get; set; } = new();
+    public SchrodingersString GotClearedItem { get; set; } = new();
     public string NoSeedFolderFound = "No valid randomized seed folder found";
     public string NoRandomizerPath = "No randomizer path specifield"; 
     public string InvalidRandomizerPath = "No randomizer jar file found in directory";

@@ -16,10 +16,12 @@ public class TrackerService
     private readonly HintService _hintService;
     private readonly MetaService _metaService;
     private readonly Dictionary<string, int> _itemCounts = new();
+    private List<string> _previousLastItems = new();
     private bool _inGame;
     private bool _isWaitingOnStartGame;
     private bool _justDied;
     private bool _firstStart = true;
+    private int _countToResetLastItems = 0;
 
     public TrackerService(TextToSpeechService ttsService, VoiceRecognitionService voiceService, ConfigService configService, HintService hintService, MetaService metaService, ILogger<TrackerService> logger)
     {
@@ -44,20 +46,24 @@ public class TrackerService
             });
         }
         
-        /*voiceService.AddCommand("test",
+        voiceService.AddCommand("item hints",
             new GrammarBuilder()
                 .Append("Hey tracker, ")
-                .OneOf("initiate test"),
+                .OneOf("clear the recent items", "clear recent items"),
             result =>
             {
-                _inGame = true;
-                SetItemCount("ankh-jewels", 1);
-                SetItemCount("ankh-jewels", 2);
-                SetItemCount("ankh-jewels", 1);
-                SetItemCount("ankh-jewels", 2);
+                if (TrackerForm == null)
+                {
+                    return;
+                }
+
+                _countToResetLastItems = 3;
+                _previousLastItems.AddRange(TrackerForm.LastItems);
+                TrackerForm.ClearRecentItems();
+                _ttsService.Say(_config.Responses.ClearedRecentItems);
             }
-        );*/
-        
+        );
+
         _logger.LogInformation("Voice tracker loaded");
     }
 
@@ -74,6 +80,8 @@ public class TrackerService
         _voiceService.Disable();
         _logger.LogInformation("Voice tracker disabled");
     }
+    
+    public LaMulanaItemTrackerForm? TrackerForm { get; set; }
 
     public void UpdateRandomizerPath(string path)
     {
@@ -120,6 +128,20 @@ public class TrackerService
         }
         _logger.LogInformation("Tracked {ItemName} | {Value}", itemName, hasItem);
         if (!hasItem || !_inGame) return;
+
+        if (_previousLastItems.Contains(itemName))
+        {
+            _ttsService.Say(_config.Responses.GotClearedItem);
+        }
+        else if (_countToResetLastItems > 0)
+        {
+            _countToResetLastItems--;
+            if (_countToResetLastItems <= 0)
+            {
+                _previousLastItems.Clear();
+            }
+        }
+        
         _metaService.UpdateIdleTimer();
         _ttsService.SayFallback(item.OnTracked, _config.Responses.BasicItemTracked, item.Names, item.ArticledNames);
     }
