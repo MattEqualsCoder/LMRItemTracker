@@ -145,4 +145,5 @@ ContentTracked:
     # {4} is replaced with the number of people who voted for the losing choice
     # {5} is replaced with the number of points spent on the losing choice
     # {6} is replaced with the name of someone who voted on the losting choice
+  # DurationSeconds: Number of seconds the prediction poll should last (defaults to 120 seconds)
 Predictions:

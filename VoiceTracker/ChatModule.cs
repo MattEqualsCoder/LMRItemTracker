@@ -149,7 +149,7 @@ namespace LMRItemTracker.VoiceTracker
             }
 
             _currentPredictionConfig = config;
-            _currentPrediction = await _chatClient.CreatePredictionAsync(title!, new List<string>() { options.Good, options.Bad }, 120);
+            _currentPrediction = await _chatClient.CreatePredictionAsync(title!, new List<string>() { options.Good, options.Bad }, config.DurationSeconds);
             if (_currentPrediction?.IsPredictionSuccessful != true)
             {
                 _logger.LogError("Error creating prediction poll");

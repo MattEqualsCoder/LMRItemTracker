@@ -13,4 +13,5 @@ public class TwitchPredictionConfig : MergeableConfig
     public SchrodingersString PredictionTitles { get; set; } = new();
     public List<TwitchPredictionOption> PredictionOptions { get; set; } = new();
     public SchrodingersString ResolvedResponses { get; set; } = new();
+    public int DurationSeconds { get; set; } = 120;
 }
