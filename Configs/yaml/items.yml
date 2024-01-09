@@ -1354,3 +1354,31 @@ Items:
       - Text: "death-tracker"
     ArticledNames:
       - Text: "the death-tracker"
+  - Key: "50coins"
+    Type: NiceToHave
+    SpoilerFileName: "Coin (50)"
+    Names: 
+      - Text: "50 coins"
+    ArticledNames:
+      - Text: "50 coins"
+  - Key: "80coins"
+    Type: NiceToHave
+    SpoilerFileName: "Coin (80)"
+    Names:
+      - Text: "80 coins"
+    ArticledNames:
+      - Text: "80 coins"
+  - Key: "100coins"
+    Type: NiceToHave
+    SpoilerFileName: "Coin (100)"
+    Names:
+      - Text: "100 coins"
+    ArticledNames:
+      - Text: "100 coins"
+  - Key: "300coins"
+    Type: NiceToHave
+    SpoilerFileName: "Coin (300)"
+    Names:
+      - Text: "300 coins"
+    ArticledNames:
+      - Text: "300 coins"
