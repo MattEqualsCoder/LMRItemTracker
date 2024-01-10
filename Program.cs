@@ -42,12 +42,14 @@ namespace LMRItemTracker
         {
             if (!name.StartsWith("byte-") && !name.StartsWith("word-") && !"flags-1".Equals(name))
                 return;
-
+            
             string displayname;
             if (!remakenames.TryGetValue(name, out displayname))
+            {
+                laMulanaItemTrackerForm.Log($"{name} changed: {old} -> {cur}");
                 return;
-
-
+            }
+                
             string format = "";
             if (cur is byte || cur is sbyte)
                 format = ":x2";
@@ -56,7 +58,7 @@ namespace LMRItemTracker
             else if (cur is uint || cur is int)
                 format = ":x8";
             System.Console.WriteLine("{0} {1,15} := {2" + format + "} to {3" + format + "}", name, displayname, old, cur);
-
+            
             if (displayname.Equals("death-tracker"))
             {
                 if (((uint)old & 0x1000000) == 0 && (((uint)cur & 0x1000000) == 16777216))
@@ -67,6 +69,10 @@ namespace LMRItemTracker
             else if (displayname.StartsWith("boss-"))
             {
                 laMulanaItemTrackerForm.toggleBoss(displayname, (byte)cur >= (byte)3);
+            }
+            else if (displayname.StartsWith("miniboss-"))
+            {
+                laMulanaItemTrackerForm.toggleMiniboss(displayname, (byte)cur >= (byte)2);
             }
             else if (displayname.Equals("rosetta-count"))
             {

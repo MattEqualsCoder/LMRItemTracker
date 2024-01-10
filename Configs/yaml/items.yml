@@ -1382,3 +1382,8 @@ Items:
       - Text: "300 coins"
     ArticledNames:
       - Text: "300 coins"
+  - Key: "miniboss-peryton"
+    Names:
+      - Text: "Peryton"
+    ArticledNames:
+      - Text: "the Peryton"

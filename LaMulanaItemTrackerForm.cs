@@ -1041,6 +1041,12 @@ namespace LMRItemTracker
             _trackerService.SetBossState(itemName, isAdd);
         }
 
+        public void toggleMiniboss(string itemName, bool isAdd)
+        {
+            _logger.LogInformation("toggleMiniboss: {Name} | {Value}", itemName, isAdd);
+            _trackerService.SetBossState(itemName, isAdd);
+        }
+
         public void ToggleWhip(Boolean isAdd)
         {
             whip.ToggleState(isAdd, 2);
