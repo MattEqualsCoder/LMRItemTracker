@@ -21,6 +21,7 @@ public class TrackerService
     private readonly MetaService _metaService;
     private readonly Dictionary<string, int> _itemCounts = new();
     private readonly Dictionary<string, bool> _regionStates = new();
+    private readonly Dictionary<string, bool> _bosses = new();
     private List<string> _previousLastItems = new();
     private List<Action> _undoActions = new();
     private bool _inGame;
@@ -289,6 +290,11 @@ public class TrackerService
             _logger.LogWarning("Boss {BossName} not found", bossName);
             return;
         }
+        if (_bosses.ContainsKey(bossName) && _bosses[bossName] == defeated)
+        {
+            return;
+        }
+        _bosses[bossName] = defeated;
         _logger.LogInformation("Tracked {BossName} | {Value}", bossName, defeated);
         if (!defeated || !_inGame) return;
         _metaService.UpdateIdleTimer();
