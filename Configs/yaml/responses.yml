@@ -191,4 +191,21 @@ ClearedRecentItems:
 # Lines for getting an item that was recently cleared
 # Type: Weighted Possibilities
 GotClearedItem:
-  - Text: "Oh, did you lose that?"
+- Text: "Oh, did you lose that?"
+
+# Lines for setting a region as cleared in the region list
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the region
+ClearedRegion:
+- Text: "Clearing {0}"
+
+# Lines for setting a region as no longer cleared in the region list
+# Type: Weighted Possibilities
+# {0} is replaced with the name of the region
+UnclearedRegion:
+- Text: "Marking {0} as uncleared"
+
+# Lines for undoing a previous action
+# Type: Weighted Possibilities
+Undo:
+- Text: "Undoing that for you"

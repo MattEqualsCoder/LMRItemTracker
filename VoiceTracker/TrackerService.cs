@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Speech.Recognition;
 using System.Threading.Tasks;
 using Humanizer;
 using LMRItemTracker.Configs;
@@ -16,14 +20,16 @@ public class TrackerService
     private readonly HintService _hintService;
     private readonly MetaService _metaService;
     private readonly Dictionary<string, int> _itemCounts = new();
+    private readonly Dictionary<string, bool> _regionStates = new();
     private List<string> _previousLastItems = new();
+    private List<Action> _undoActions = new();
     private bool _inGame;
     private bool _isWaitingOnStartGame;
     private bool _justDied;
     private bool _firstStart = true;
     private int _countToResetLastItems = 0;
 
-    public TrackerService(TextToSpeechService ttsService, VoiceRecognitionService voiceService, ConfigService configService, HintService hintService, MetaService metaService, ILogger<TrackerService> logger)
+    public TrackerService(TextToSpeechService ttsService, VoiceRecognitionService voiceService, ConfigService configService, HintService hintService, MetaService metaService, ILogger<TrackerService> logger, ChoiceService choices)
     {
         _ttsService = ttsService;
         _voiceService = voiceService;
@@ -45,6 +51,8 @@ public class TrackerService
                 _ttsService.Say(customPrompt.Responses);
             });
         }
+
+        ResetRegions();
         
         voiceService.AddCommand("item hints",
             new GrammarBuilder()
@@ -64,6 +72,71 @@ public class TrackerService
             }
         );
 
+        voiceService.AddCommand("clear region",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("clear", "clear all locations from")
+                .Append(choices.RegionKey, choices.GetRegionNames()),
+            result =>
+            {
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
+                SetRegionState(regionConfig, true);
+            }
+        );
+
+        voiceService.AddCommand("clear region 2",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("mark", "set")
+                .Append(choices.RegionKey, choices.GetRegionNames())
+                .OneOf("as all cleared"),
+            result =>
+            {
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
+                SetRegionState(regionConfig, true);
+            }
+        );
+
+        voiceService.AddCommand("region hints",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("unclear", "unclear all locations from")
+                .Append(choices.RegionKey, choices.GetRegionNames()),
+            result =>
+            {
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
+                SetRegionState(regionConfig, false);
+            }
+        );
+
+        voiceService.AddCommand("clear region 2",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("mark", "set")
+                .Append(choices.RegionKey, choices.GetRegionNames())
+                .OneOf("as not cleared"),
+            result =>
+            {
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
+                SetRegionState(regionConfig, false);
+            }
+        );
+
+        voiceService.AddCommand("undo",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("undo that", "control z"),
+            result =>
+            {
+                if (_undoActions.Any())
+                {
+                    _ttsService.Say(_config.Responses.Undo);
+                    _undoActions[0].Invoke();
+                    _undoActions.RemoveAt(0);
+                }
+            }
+        );
+
         _logger.LogInformation("Voice tracker loaded");
     }
 
@@ -79,6 +152,15 @@ public class TrackerService
         _ttsService.Muted = true;
         _voiceService.Disable();
         _logger.LogInformation("Voice tracker disabled");
+    }
+
+    public void ResetRegions()
+    {
+        foreach (var region in _config.Regions.Regions)
+        {
+            _regionStates[region.Key] = false;
+            TrackerForm?.UpdateRegion(region.Key, false);
+        }
     }
     
     public LaMulanaItemTrackerForm? TrackerForm { get; set; }
@@ -212,6 +294,45 @@ public class TrackerService
         _metaService.UpdateIdleTimer();
         _ttsService.SayFallback(boss.OnTracked, _config.Responses.BossDefeated, boss.Names);
         
+    }
+
+    private void SetRegionState(RegionConfig region, bool isCleared, bool addUndo = true)
+    {
+        if (_regionStates[region.Key] == isCleared || TrackerForm == null)
+        {
+            return;
+        }
+
+        _regionStates[region.Key] = isCleared;
+        TrackerForm?.UpdateRegion(region.Key, isCleared);
+
+        if (isCleared)
+        {
+            _ttsService.Say(_config.Responses.ClearedRegion, region.Names);
+        }
+        else
+        {
+            _ttsService.Say(_config.Responses.UnclearedRegion, region.Names);
+        }
+
+        if (addUndo)
+        {
+            AddUndoAction(new Action(() =>
+            {
+                SetRegionState(region, !isCleared, false);
+            }));
+        }
+        
+    }
+
+    private void AddUndoAction(Action action)
+    {
+        _undoActions.Insert(0, action);
+
+        if (_undoActions.Count > 5)
+        {
+            _undoActions.RemoveAt(5);
+        }
     }
 
     public bool CanTrack => _configService.LoadedSuccessfully;

@@ -32,6 +32,9 @@ public class ResponseConfig : MergeableConfig
     public SchrodingersString IdleMessage { get; set; } = new();
     public SchrodingersString ClearedRecentItems { get; set; } = new();
     public SchrodingersString GotClearedItem { get; set; } = new();
+    public SchrodingersString ClearedRegion { get; set; } = new();
+    public SchrodingersString UnclearedRegion { get; set; } = new();
+    public SchrodingersString Undo { get; set; } = new();
     public string NoSeedFolderFound = "No valid randomized seed folder found";
     public string NoRandomizerPath = "No randomizer path specifield"; 
     public string InvalidRandomizerPath = "No randomizer jar file found in directory";

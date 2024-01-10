@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using LMRItemTracker.VoiceTracker;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using LMRItemTracker.Configs;
 
 namespace LMRItemTracker
 {
@@ -18,8 +19,10 @@ namespace LMRItemTracker
         private readonly VoiceRecognitionService _voiceRecognitionService;
         private readonly IServiceProvider _services;
         private readonly ChatModule _chatModule;
+        private readonly TrackerConfig _config;
+        private readonly Dictionary<string, Label> _regionLabels = new();
 
-        public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService, HintService hintService, VoiceRecognitionService voiceService, IServiceProvider services, ChatModule chatModule)
+        public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService, HintService hintService, VoiceRecognitionService voiceService, IServiceProvider services, ChatModule chatModule, ConfigService configService)
         {
             flagListener = new();
             _logger = logger;
@@ -30,6 +33,7 @@ namespace LMRItemTracker
             _services = services;
             _chatModule = chatModule;
             _trackerService.TrackerForm = this;
+            _config = configService.Config;
         }
 
         private void ScaleImages(Control parent)
@@ -1168,6 +1172,26 @@ namespace LMRItemTracker
             UpdateCount(deathCount, Properties.Settings.Default.DeathCount, int.MaxValue);
         }
 
+        public void UpdateRegion(string region, bool isCleared)
+        {
+
+            if (isCleared)
+            {
+                _regionLabels[region].Invoke(() =>
+                {
+                    _regionLabels[region].Font = new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout);
+                });
+                
+            }
+            else
+            {
+                _regionLabels[region].Invoke(() =>
+                {
+                    _regionLabels[region].Font = new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold);
+                });
+            }
+        }
+
         private void LaMulanaItemTrackerForm_Load(object sender, EventArgs e)
         {
             if(Properties.Settings.Default.UpgradeRequired)
@@ -1189,12 +1213,24 @@ namespace LMRItemTracker
             InitializePossibleItems();
             InitializeMenuOptions();
 
+            foreach (var region in _config.Regions.Regions)
+            {
+                Label regionLabel = new Label();
+                regionLabel.Text = region.Key;
+                regionLabel.Margin = new Padding(0, 0, 0, 0);
+                regionLabel.Size = new System.Drawing.Size(160, 16);
+                regionLabel.Font = new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold);
+                regionsFlowPanel.Controls.Add(regionLabel);
+                _regionLabels.Add(region.Key, regionLabel);
+            }
+
             UpdateAlwaysOnTop();
             UpdateFormSize();
             UpdateFormColor();
             UpdateTextColor();
             UpdateBackgroundMode();
             UpdateShowLastItem();
+            UpdateShowRegions();
             UpdateShowDeathCount();
             InitializeFormPanels();
 
@@ -2718,6 +2754,13 @@ namespace LMRItemTracker
             showLastItemToolStripMenuItem.Checked = Properties.Settings.Default.ShowLastItem;
         }
 
+        private void UpdateShowRegions()
+        {
+            regionsLabel.Visible = Properties.Settings.Default.ShowRegions;
+            regionsFlowPanel.Visible = Properties.Settings.Default.ShowRegions;
+            showRegionsToolStripMenuItem.Checked = Properties.Settings.Default.ShowRegions;
+        }
+
         private void UpdateAlwaysOnTop()
         {
             TopMost = Properties.Settings.Default.AlwaysOnTop;
@@ -2787,6 +2830,7 @@ namespace LMRItemTracker
             deathCount.ForeColor = Properties.Settings.Default.TextColor;
             labelContent.ForeColor = Properties.Settings.Default.TextColor;
             labelContentCount.ForeColor = Properties.Settings.Default.TextColor;
+            regionsLabel.ForeColor = Properties.Settings.Default.TextColor;
 
             mapCount.UpdateTextColor();
             ankhJewelCount.UpdateTextColor();
@@ -2801,6 +2845,11 @@ namespace LMRItemTracker
             pistolAmmoCount.UpdateTextColor();
 
             skullWallCount.UpdateTextColor();
+
+            foreach (var label in _regionLabels.Values)
+            {
+                label.ForeColor = Properties.Settings.Default.TextColor;
+            }
         }
 
         private void SaveSettings(object sender, EventArgs e)
@@ -2833,6 +2882,7 @@ namespace LMRItemTracker
             UpdateFormColor();
             UpdateTextColor();
             UpdateShowLastItem();
+            UpdateShowRegions();
             InitializeFormPanels();
             Redraw();
             Refresh();
@@ -3112,6 +3162,17 @@ namespace LMRItemTracker
         private void connectToChatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _chatModule.Connect();
+        }
+
+        private void resetRegionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _trackerService.ResetRegions();
+        }
+
+        private void showRegionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ShowRegions = !Properties.Settings.Default.ShowRegions;
+            UpdateShowRegions();
         }
     }
 }
