@@ -28,7 +28,6 @@ public class TrackerService
     private bool _isWaitingOnStartGame;
     private bool _justDied;
     private bool _firstStart = true;
-    private int _countToResetLastItems = 0;
 
     public TrackerService(TextToSpeechService ttsService, VoiceRecognitionService voiceService, ConfigService configService, HintService hintService, MetaService metaService, ILogger<TrackerService> logger, ChoiceService choices)
     {
@@ -66,8 +65,6 @@ public class TrackerService
                     return;
                 }
 
-                _countToResetLastItems = 3;
-                _previousLastItems.AddRange(TrackerForm.LastItems);
                 TrackerForm.ClearRecentItems();
                 _ttsService.Say(_config.Responses.ClearedRecentItems);
             }
@@ -216,14 +213,6 @@ public class TrackerService
         {
             _ttsService.Say(_config.Responses.GotClearedItem);
         }
-        else if (_countToResetLastItems > 0)
-        {
-            _countToResetLastItems--;
-            if (_countToResetLastItems <= 0)
-            {
-                _previousLastItems.Clear();
-            }
-        }
         
         _metaService.UpdateIdleTimer();
         _ttsService.SayFallback(item.OnTracked, _config.Responses.BasicItemTracked, item.Names, item.ArticledNames);
@@ -271,6 +260,12 @@ public class TrackerService
         }
         _justDied = true;
         _inGame = false;
+
+        if (TrackerForm != null)
+        {
+            _previousLastItems.AddRange(TrackerForm.LastItems);    
+        }
+        
         _metaService.UpdateIdleTimer();
         _logger.LogInformation("Tracked death {Value}", amount);
         _ttsService.Say(_config.Responses.PlayerDied.GetRollupResponse(amount), amount, amount.ToOrdinalWords());
@@ -284,7 +279,7 @@ public class TrackerService
         {
             return;
         }
-        var boss = _config.Items.FirstOrDefault(x => x.Key == bossName);
+        var boss = _config.BossConfig.FirstOrDefault(x => x.Key == bossName);
         if (boss == null)
         {
             _logger.LogWarning("Boss {BossName} not found", bossName);

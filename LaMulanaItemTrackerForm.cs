@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Linq;
 using LMRItemTracker.VoiceTracker;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ namespace LMRItemTracker
         private readonly IServiceProvider _services;
         private readonly ChatModule _chatModule;
         private readonly TrackerConfig _config;
+        private readonly HintService _hintService;
         private readonly Dictionary<string, Label> _regionLabels = new();
 
         public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService, HintService hintService, VoiceRecognitionService voiceService, IServiceProvider services, ChatModule chatModule, ConfigService configService)
@@ -34,6 +36,7 @@ namespace LMRItemTracker
             _chatModule = chatModule;
             _trackerService.TrackerForm = this;
             _config = configService.Config;
+            _hintService = hintService;
         }
 
         private void ScaleImages(Control parent)
@@ -815,6 +818,11 @@ namespace LMRItemTracker
             {
                 _trackerService.SetItemState(flagName, isAdd);
             }
+            else if (flagName.StartsWith("w-jewel-"))
+            {
+                _trackerService.SetItemState(flagName, isAdd);
+                _hintService.ToggleAnkhJewel(flagName, isAdd);
+            }
         }
 
         public void Log(string message)
@@ -961,7 +969,7 @@ namespace LMRItemTracker
                 LastItems.Insert(0, flagName);
                 if (LastItems.Count > 3)
                 {
-                    LastItems.RemoveRange(3, 4 - LastItems.Count);
+                    LastItems = LastItems.Take(3).ToList();
                 }
                 lastItemPanel.Invoke(new Action(() =>
                 {
@@ -1045,10 +1053,18 @@ namespace LMRItemTracker
             _trackerService.SetBossState(itemName, isAdd);
         }
 
-        public void toggleMiniboss(string itemName, bool isAdd)
+        public void toggleMiniboss(string itemName, short value)
         {
-            _logger.LogInformation("toggleMiniboss: {Name} | {Value}", itemName, isAdd);
-            _trackerService.SetBossState(itemName, isAdd);
+            var boss = _config.BossConfig.Get(itemName);
+            if (boss != null)
+            {
+                _logger.LogInformation("toggleMiniboss: {Name} | {Value}", itemName, value);
+                _trackerService.SetBossState(itemName, value >= boss.KilledValue);    
+            }
+            else
+            {
+                _logger.LogWarning("No config found for miniboss {Key}", itemName);
+            }
         }
 
         public void ToggleWhip(Boolean isAdd)
@@ -1153,7 +1169,7 @@ namespace LMRItemTracker
             {
                 ankhJewelPanel.Item.Collected = newCount != 0;
                 ankhJewelPanel.UpdateCount(newCount);
-                _trackerService.SetItemCount(flagName, newCount);
+               // _trackerService.SetItemCount(flagName, newCount);
             }
         }
 

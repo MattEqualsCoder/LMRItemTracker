@@ -25,7 +25,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -66,7 +67,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Humanizer, Version=2.14.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
@@ -292,6 +293,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs\BossConfig.cs" />
+    <Compile Include="Configs\BossesConfig.cs" />
     <Compile Include="Configs\CustomConfig.cs" />
     <Compile Include="Configs\CustomPrompt.cs" />
     <Compile Include="Configs\ItemsConfig.cs" />
@@ -1241,6 +1244,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Configs\yaml\npcs.yml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Configs\yaml\bosses.yml" />
   </ItemGroup>
   <Import Project="EyeOfTruth.Shared\EyeOfTruth.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,7 +12,7 @@ namespace LMRItemTracker.Configs;
 
 public class ConfigService
 {
-    public TrackerConfig Config { get; set; } = new(null, null, null, null, null, null, null);
+    public TrackerConfig Config { get; set; } = new(null, null, null, null, null, null, null, null);
     
     private static readonly IDeserializer s_deserializer = new DeserializerBuilder()
         .WithNamingConvention(PascalCaseNamingConvention.Instance)
@@ -57,7 +57,8 @@ public class ConfigService
         var custom = LoadBuiltInYamlFile<CustomConfig>("custom.yml");
         var twitch = LoadBuiltInYamlFile<TwitchConfig>("twitch.yml");
         var npcs = LoadBuiltInYamlFile<NpcsConfig>("npcs.yml");
-        return new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs);
+        var bosses = LoadBuiltInYamlFile<BossesConfig>("bosses.yml");
+        return new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs, bosses);
     }
     
     private T? LoadBuiltInYamlFile<T>(string filename)
@@ -105,12 +106,13 @@ public class ConfigService
         var custom = LoadUserYamlFile<CustomConfig>(path + Path.DirectorySeparatorChar + "custom.yml");
         var twitch = LoadUserYamlFile<TwitchConfig>(path + Path.DirectorySeparatorChar + "twitch.yml");
         var npcs = LoadUserYamlFile<NpcsConfig>(path + Path.DirectorySeparatorChar + "npcs.yml");
-        if (items == null && locations == null && regions == null && responses == null && custom == null && twitch == null && npcs == null)
+        var bosses = LoadUserYamlFile<BossesConfig>(path + Path.DirectorySeparatorChar + "bosses.yml");
+        if (items == null && locations == null && regions == null && responses == null && custom == null && twitch == null && npcs == null && bosses == null)
         {
             config = null;
             return false;
         }
-        config = new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs);
+        config = new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs, bosses);
         return true;
     }
     

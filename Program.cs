@@ -43,10 +43,11 @@ namespace LMRItemTracker
             if (!name.StartsWith("byte-") && !name.StartsWith("word-") && !"flags-1".Equals(name))
                 return;
             
+            laMulanaItemTrackerForm.Log($"{name} changed: {old} -> {cur}");
+            
             string displayname;
             if (!remakenames.TryGetValue(name, out displayname))
             {
-                laMulanaItemTrackerForm.Log($"{name} changed: {old} -> {cur}");
                 return;
             }
                 
@@ -72,7 +73,7 @@ namespace LMRItemTracker
             }
             else if (displayname.StartsWith("miniboss-"))
             {
-                laMulanaItemTrackerForm.toggleMiniboss(displayname, (byte)cur >= (byte)2);
+                laMulanaItemTrackerForm.toggleMiniboss(displayname, (short)cur);
             }
             else if (displayname.Equals("rosetta-count"))
             {

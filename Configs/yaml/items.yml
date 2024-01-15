@@ -892,47 +892,6 @@ Items:
       - Text: "La-Mulana Software"
     ArticledNames:
       - Text: "the La-Mulana Software"
-  - Key: "boss-amphisbaena"
-    Names:
-      - Text: "Amphisbaena"
-    ArticledNames:
-      - Text: "the Amphisbaena"
-      - Text: "King Konda"
-  - Key: "boss-sakit"
-    Names:
-      - Text: "Sakit"
-    ArticledNames:
-      - Text: "the Sakit"
-  - Key: "boss-ellmac"
-    Names:
-      - Text: "Ellmac"
-    ArticledNames:
-      - Text: "the Ellmac"
-  - Key: "boss-bahamut"
-    Names:
-      - Text: "Bahamut"
-    ArticledNames:
-      - Text: "the Bahamut"
-  - Key: "boss-viy"
-    Names:
-      - Text: "Viy"
-    ArticledNames:
-      - Text: "the Viy"
-  - Key: "boss-palenque"
-    Names:
-      - Text: "Palenque"
-    ArticledNames:
-      - Text: "the Palenque"
-  - Key: "boss-baphomet"
-    Names:
-      - Text: "Baphomet"
-    ArticledNames:
-      - Text: "the Baphomet"
-  - Key: "boss-tiamat"
-    Names:
-      - Text: "Tiamat"
-    ArticledNames:
-      - Text: "the Tiamat"
   - Key: "w-treasures"
     Type: PotentiallyProgression
     SpoilerFileName: "Treasures"
@@ -1382,8 +1341,3 @@ Items:
       - Text: "300 coins"
     ArticledNames:
       - Text: "300 coins"
-  - Key: "miniboss-peryton"
-    Names:
-      - Text: "Peryton"
-    ArticledNames:
-      - Text: "the Peryton"
