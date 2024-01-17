@@ -22,10 +22,3 @@
 #        - Text: Did you reset just so you can bully the fish again?
 
 MemoryResponses:
-  byte-197:
-    - Key: gyonin
-      Value: 1
-      PreviousValue: 0
-      SayOnce: True
-      Responses:
-        - Text: Stop bullying the fish
