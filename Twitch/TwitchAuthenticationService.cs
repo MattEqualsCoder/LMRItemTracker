@@ -104,9 +104,9 @@ namespace LMRItemTracker.Twitch
             var user = await _twitchChatAPI.MakeApiCallAsync<TwitchUser>("users", HttpMethod.Get, cancellationToken);
             return user == null ? null : new()
             {
-                Name = user.Login,
-                DisplayName = user.DisplayName,
-                Id = user.Id
+                Name = user.Login ?? "",
+                DisplayName = user.DisplayName ?? "",
+                Id = user.Id ?? ""
             };
         }
     }

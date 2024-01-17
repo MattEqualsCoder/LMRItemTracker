@@ -3,9 +3,12 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using LMRItemTracker.VoiceTracker;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using LMRItemTracker.Configs;
 
 namespace LMRItemTracker
 {
@@ -18,8 +21,11 @@ namespace LMRItemTracker
         private readonly VoiceRecognitionService _voiceRecognitionService;
         private readonly IServiceProvider _services;
         private readonly ChatModule _chatModule;
+        private readonly TrackerConfig _config;
+        private readonly HintService _hintService;
+        private readonly Dictionary<string, Label> _regionLabels = new();
 
-        public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService, HintService hintService, VoiceRecognitionService voiceService, IServiceProvider services, ChatModule chatModule)
+        public LaMulanaItemTrackerForm(ILogger<LaMulanaItemTrackerForm> logger, TrackerService trackerService, HintService hintService, VoiceRecognitionService voiceService, IServiceProvider services, ChatModule chatModule, ConfigService configService)
         {
             flagListener = new();
             _logger = logger;
@@ -29,6 +35,9 @@ namespace LMRItemTracker
             _voiceRecognitionService = voiceService;
             _services = services;
             _chatModule = chatModule;
+            _trackerService.TrackerForm = this;
+            _config = configService.Config;
+            _hintService = hintService;
         }
 
         private void ScaleImages(Control parent)
@@ -810,6 +819,26 @@ namespace LMRItemTracker
             {
                 _trackerService.SetItemState(flagName, isAdd);
             }
+            else if (flagName.StartsWith("w-jewel-"))
+            {
+                _trackerService.SetItemState(flagName, isAdd);
+                _hintService.ToggleAnkhJewel(flagName, isAdd);
+            }
+        }
+
+        public void LogMessage(string message)
+        {
+            _logger.LogInformation(message);
+        }
+        
+        public void LogWarning(string message)
+        {
+            _logger.LogWarning(message);
+        }
+        
+        public void LogError(Exception? e, string? message)
+        {
+            _logger.LogError(e, message);
         }
 
         private void UpdatePanelControls(Control panel, Control foundControl, Control blankControl, bool isAdd)
@@ -941,11 +970,18 @@ namespace LMRItemTracker
             _trackerService.SetInGame(started);
         }
 
+        public List<string> LastItems { get; set; } = new();
+        
         internal void UpdateLastItem(string flagName)
         {
             if(gameStarted)
             {
                 _logger.LogInformation("updateLastItem: {Name}", flagName);
+                LastItems.Insert(0, flagName);
+                if (LastItems.Count > 3)
+                {
+                    LastItems = LastItems.Take(3).ToList();
+                }
                 lastItemPanel.Invoke(new Action(() =>
                 {
                     System.Drawing.Bitmap? lastItemImage = getFoundImage(flagName);
@@ -1026,6 +1062,20 @@ namespace LMRItemTracker
                 tiamat.ToggleState(isAdd);
             }
             _trackerService.SetBossState(itemName, isAdd);
+        }
+
+        public void toggleMiniboss(string itemName, byte value)
+        {
+            var boss = _config.BossConfig.Get(itemName);
+            if (boss != null)
+            {
+                _logger.LogInformation("toggleMiniboss: {Name} | {Value}", itemName, value);
+                _trackerService.SetBossState(itemName, value >= (byte)boss.KilledValue);    
+            }
+            else
+            {
+                _logger.LogWarning("No config found for miniboss {Key}", itemName);
+            }
         }
 
         public void ToggleWhip(Boolean isAdd)
@@ -1130,7 +1180,7 @@ namespace LMRItemTracker
             {
                 ankhJewelPanel.Item.Collected = newCount != 0;
                 ankhJewelPanel.UpdateCount(newCount);
-                _trackerService.SetItemCount(flagName, newCount);
+               // _trackerService.SetItemCount(flagName, newCount);
             }
         }
 
@@ -1147,6 +1197,26 @@ namespace LMRItemTracker
                 Properties.Settings.Default.DeathCount -= 1;
             }
             UpdateCount(deathCount, Properties.Settings.Default.DeathCount, int.MaxValue);
+        }
+
+        public void UpdateRegion(string region, bool isCleared)
+        {
+
+            if (isCleared)
+            {
+                _regionLabels[region].Invoke(() =>
+                {
+                    _regionLabels[region].Font = new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout);
+                });
+                
+            }
+            else
+            {
+                _regionLabels[region].Invoke(() =>
+                {
+                    _regionLabels[region].Font = new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold);
+                });
+            }
         }
 
         private void LaMulanaItemTrackerForm_Load(object sender, EventArgs e)
@@ -1170,12 +1240,24 @@ namespace LMRItemTracker
             InitializePossibleItems();
             InitializeMenuOptions();
 
+            foreach (var region in _config.Regions.Regions)
+            {
+                Label regionLabel = new Label();
+                regionLabel.Text = region.Key;
+                regionLabel.Margin = new Padding(0, 0, 0, 0);
+                regionLabel.Size = new System.Drawing.Size(160, 16);
+                regionLabel.Font = new System.Drawing.Font("Arial", 9, System.Drawing.FontStyle.Bold);
+                regionsFlowPanel.Controls.Add(regionLabel);
+                _regionLabels.Add(region.Key, regionLabel);
+            }
+
             UpdateAlwaysOnTop();
             UpdateFormSize();
             UpdateFormColor();
             UpdateTextColor();
             UpdateBackgroundMode();
             UpdateShowLastItem();
+            UpdateShowRegions();
             UpdateShowDeathCount();
             InitializeFormPanels();
 
@@ -2699,6 +2781,13 @@ namespace LMRItemTracker
             showLastItemToolStripMenuItem.Checked = Properties.Settings.Default.ShowLastItem;
         }
 
+        private void UpdateShowRegions()
+        {
+            regionsLabel.Visible = Properties.Settings.Default.ShowRegions;
+            regionsFlowPanel.Visible = Properties.Settings.Default.ShowRegions;
+            showRegionsToolStripMenuItem.Checked = Properties.Settings.Default.ShowRegions;
+        }
+
         private void UpdateAlwaysOnTop()
         {
             TopMost = Properties.Settings.Default.AlwaysOnTop;
@@ -2768,6 +2857,7 @@ namespace LMRItemTracker
             deathCount.ForeColor = Properties.Settings.Default.TextColor;
             labelContent.ForeColor = Properties.Settings.Default.TextColor;
             labelContentCount.ForeColor = Properties.Settings.Default.TextColor;
+            regionsLabel.ForeColor = Properties.Settings.Default.TextColor;
 
             mapCount.UpdateTextColor();
             ankhJewelCount.UpdateTextColor();
@@ -2782,6 +2872,11 @@ namespace LMRItemTracker
             pistolAmmoCount.UpdateTextColor();
 
             skullWallCount.UpdateTextColor();
+
+            foreach (var label in _regionLabels.Values)
+            {
+                label.ForeColor = Properties.Settings.Default.TextColor;
+            }
         }
 
         private void SaveSettings(object sender, EventArgs e)
@@ -2814,6 +2909,7 @@ namespace LMRItemTracker
             UpdateFormColor();
             UpdateTextColor();
             UpdateShowLastItem();
+            UpdateShowRegions();
             InitializeFormPanels();
             Redraw();
             Refresh();
@@ -2916,7 +3012,7 @@ namespace LMRItemTracker
             UpdateShowLastItem();
         }
 
-        private void clearLastItem(object sender, EventArgs e)
+        public void ClearRecentItems()
         {
             lastItem1.Invoke(new Action(() =>
             {
@@ -2936,6 +3032,16 @@ namespace LMRItemTracker
                 lastItem3.BackgroundImage = null;
                 lastItem3.Refresh();
             }));
+        }
+
+        public void ValueChanged(string memory, string value, string previousValue)
+        {
+            _trackerService.ValueChanged(memory, value, previousValue);
+        }
+
+        private void clearLastItem(object sender, EventArgs e)
+        {
+            ClearRecentItems();
         }
 
         private void changeLanguage(object sender, EventArgs e)
@@ -3088,6 +3194,17 @@ namespace LMRItemTracker
         private void connectToChatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _chatModule.Connect();
+        }
+
+        private void resetRegionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _trackerService.ResetRegions();
+        }
+
+        private void showRegionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ShowRegions = !Properties.Settings.Default.ShowRegions;
+            UpdateShowRegions();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace LMRItemTracker.Configs;
 
 public class TwitchPredictionConfig : MergeableConfig
 {
-    public override string Key { get; set; }
+    public override string Key { get; set; } = "";
     public List<string> StartPrompts { get; set; } = new();
     public List<string> ResolveGoodPrompts { get; set; } = new();
     public List<string> ResolveBadPrompts { get; set; } = new();
@@ -13,4 +13,5 @@ public class TwitchPredictionConfig : MergeableConfig
     public SchrodingersString PredictionTitles { get; set; } = new();
     public List<TwitchPredictionOption> PredictionOptions { get; set; } = new();
     public SchrodingersString ResolvedResponses { get; set; } = new();
+    public int DurationSeconds { get; set; } = 120;
 }

@@ -892,47 +892,6 @@ Items:
       - Text: "La-Mulana Software"
     ArticledNames:
       - Text: "the La-Mulana Software"
-  - Key: "boss-amphisbaena"
-    Names:
-      - Text: "Amphisbaena"
-    ArticledNames:
-      - Text: "the Amphisbaena"
-      - Text: "King Konda"
-  - Key: "boss-sakit"
-    Names:
-      - Text: "Sakit"
-    ArticledNames:
-      - Text: "the Sakit"
-  - Key: "boss-ellmac"
-    Names:
-      - Text: "Ellmac"
-    ArticledNames:
-      - Text: "the Ellmac"
-  - Key: "boss-bahamut"
-    Names:
-      - Text: "Bahamut"
-    ArticledNames:
-      - Text: "the Bahamut"
-  - Key: "boss-viy"
-    Names:
-      - Text: "Viy"
-    ArticledNames:
-      - Text: "the Viy"
-  - Key: "boss-palenque"
-    Names:
-      - Text: "Palenque"
-    ArticledNames:
-      - Text: "the Palenque"
-  - Key: "boss-baphomet"
-    Names:
-      - Text: "Baphomet"
-    ArticledNames:
-      - Text: "the Baphomet"
-  - Key: "boss-tiamat"
-    Names:
-      - Text: "Tiamat"
-    ArticledNames:
-      - Text: "the Tiamat"
   - Key: "w-treasures"
     Type: PotentiallyProgression
     SpoilerFileName: "Treasures"
@@ -1354,3 +1313,31 @@ Items:
       - Text: "death-tracker"
     ArticledNames:
       - Text: "the death-tracker"
+  - Key: "50coins"
+    Type: NiceToHave
+    SpoilerFileName: "Coin (50)"
+    Names: 
+      - Text: "50 coins"
+    ArticledNames:
+      - Text: "50 coins"
+  - Key: "80coins"
+    Type: NiceToHave
+    SpoilerFileName: "Coin (80)"
+    Names:
+      - Text: "80 coins"
+    ArticledNames:
+      - Text: "80 coins"
+  - Key: "100coins"
+    Type: NiceToHave
+    SpoilerFileName: "Coin (100)"
+    Names:
+      - Text: "100 coins"
+    ArticledNames:
+      - Text: "100 coins"
+  - Key: "300coins"
+    Type: NiceToHave
+    SpoilerFileName: "Coin (300)"
+    Names:
+      - Text: "300 coins"
+    ArticledNames:
+      - Text: "300 coins"

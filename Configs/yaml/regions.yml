@@ -46,9 +46,7 @@ Regions:
 - Key: "Temple of Moonlight"
   Names:
   - Text: "Temple of Moonlight"
-- Key: "temple of the moonlight"
-  Names:
-  - Text: "temple of the moonlight"
+  - Text: "Temple of the Moonlight"
 - Key: "Temple of the Sun"
   Names:
   - Text: "Temple of the Sun"

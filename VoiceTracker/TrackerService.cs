@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Speech.Recognition;
 using System.Threading.Tasks;
 using Humanizer;
 using LMRItemTracker.Configs;
@@ -16,12 +20,18 @@ public class TrackerService
     private readonly HintService _hintService;
     private readonly MetaService _metaService;
     private readonly Dictionary<string, int> _itemCounts = new();
+    private readonly Dictionary<string, bool> _regionStates = new();
+    private readonly Dictionary<string, bool> _bosses = new();
+    private readonly MemoryResponseConfig _memoryResponses = new();
+    private readonly HashSet<MemoryResponses> _previousMemoryResponses = new();
+    private List<string> _previousLastItems = new();
+    private List<Action> _undoActions = new();
     private bool _inGame;
     private bool _isWaitingOnStartGame;
     private bool _justDied;
     private bool _firstStart = true;
 
-    public TrackerService(TextToSpeechService ttsService, VoiceRecognitionService voiceService, ConfigService configService, HintService hintService, MetaService metaService, ILogger<TrackerService> logger)
+    public TrackerService(TextToSpeechService ttsService, VoiceRecognitionService voiceService, ConfigService configService, HintService hintService, MetaService metaService, ILogger<TrackerService> logger, ChoiceService choices)
     {
         _ttsService = ttsService;
         _voiceService = voiceService;
@@ -30,7 +40,8 @@ public class TrackerService
         _config = configService.Config;
         _hintService = hintService;
         _metaService = metaService;
-        
+        _memoryResponses = _config.MemoryConfig;
+
         if (!CanTrack)
         {
             return;
@@ -43,21 +54,90 @@ public class TrackerService
                 _ttsService.Say(customPrompt.Responses);
             });
         }
+
+        ResetRegions();
         
-        /*voiceService.AddCommand("test",
+        voiceService.AddCommand("item hints",
             new GrammarBuilder()
                 .Append("Hey tracker, ")
-                .OneOf("initiate test"),
+                .OneOf("clear the recent items", "clear recent items"),
             result =>
             {
-                _inGame = true;
-                SetItemCount("ankh-jewels", 1);
-                SetItemCount("ankh-jewels", 2);
-                SetItemCount("ankh-jewels", 1);
-                SetItemCount("ankh-jewels", 2);
+                if (TrackerForm == null)
+                {
+                    return;
+                }
+
+                TrackerForm.ClearRecentItems();
+                _ttsService.Say(_config.Responses.ClearedRecentItems);
             }
-        );*/
-        
+        );
+
+        voiceService.AddCommand("clear region",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("clear", "clear all locations from")
+                .Append(choices.RegionKey, choices.GetRegionNames()),
+            result =>
+            {
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
+                SetRegionState(regionConfig, true);
+            }
+        );
+
+        voiceService.AddCommand("clear region 2",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("mark", "set")
+                .Append(choices.RegionKey, choices.GetRegionNames())
+                .OneOf("as all cleared"),
+            result =>
+            {
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
+                SetRegionState(regionConfig, true);
+            }
+        );
+
+        voiceService.AddCommand("region hints",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("unclear", "unclear all locations from")
+                .Append(choices.RegionKey, choices.GetRegionNames()),
+            result =>
+            {
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
+                SetRegionState(regionConfig, false);
+            }
+        );
+
+        voiceService.AddCommand("clear region 2",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("mark", "set")
+                .Append(choices.RegionKey, choices.GetRegionNames())
+                .OneOf("as not cleared"),
+            result =>
+            {
+                var regionConfig = choices.GetRegionFromResult(result, out string locationName);
+                SetRegionState(regionConfig, false);
+            }
+        );
+
+        voiceService.AddCommand("undo",
+            new GrammarBuilder()
+                .Append("Hey tracker, ")
+                .OneOf("undo that", "control z"),
+            result =>
+            {
+                if (_undoActions.Any())
+                {
+                    _ttsService.Say(_config.Responses.Undo);
+                    _undoActions[0].Invoke();
+                    _undoActions.RemoveAt(0);
+                }
+            }
+        );
+
         _logger.LogInformation("Voice tracker loaded");
     }
 
@@ -74,6 +154,17 @@ public class TrackerService
         _voiceService.Disable();
         _logger.LogInformation("Voice tracker disabled");
     }
+
+    public void ResetRegions()
+    {
+        foreach (var region in _config.Regions.Regions)
+        {
+            _regionStates[region.Key] = false;
+            TrackerForm?.UpdateRegion(region.Key, false);
+        }
+    }
+    
+    public LaMulanaItemTrackerForm? TrackerForm { get; set; }
 
     public void UpdateRandomizerPath(string path)
     {
@@ -120,6 +211,12 @@ public class TrackerService
         }
         _logger.LogInformation("Tracked {ItemName} | {Value}", itemName, hasItem);
         if (!hasItem || !_inGame) return;
+
+        if (_previousLastItems.Contains(itemName))
+        {
+            _ttsService.Say(_config.Responses.GotClearedItem);
+        }
+        
         _metaService.UpdateIdleTimer();
         _ttsService.SayFallback(item.OnTracked, _config.Responses.BasicItemTracked, item.Names, item.ArticledNames);
     }
@@ -166,6 +263,12 @@ public class TrackerService
         }
         _justDied = true;
         _inGame = false;
+
+        if (TrackerForm != null)
+        {
+            _previousLastItems.AddRange(TrackerForm.LastItems);    
+        }
+        
         _metaService.UpdateIdleTimer();
         _logger.LogInformation("Tracked death {Value}", amount);
         _ttsService.Say(_config.Responses.PlayerDied.GetRollupResponse(amount), amount, amount.ToOrdinalWords());
@@ -179,17 +282,91 @@ public class TrackerService
         {
             return;
         }
-        var boss = _config.Items.FirstOrDefault(x => x.Key == bossName);
+        var boss = _config.BossConfig.FirstOrDefault(x => x.Key == bossName);
         if (boss == null)
         {
             _logger.LogWarning("Boss {BossName} not found", bossName);
             return;
         }
+        if (_bosses.ContainsKey(bossName) && _bosses[bossName] == defeated)
+        {
+            return;
+        }
+        _bosses[bossName] = defeated;
         _logger.LogInformation("Tracked {BossName} | {Value}", bossName, defeated);
         if (!defeated || !_inGame) return;
         _metaService.UpdateIdleTimer();
         _ttsService.SayFallback(boss.OnTracked, _config.Responses.BossDefeated, boss.Names);
         
+    }
+    
+    public void ValueChanged(string memory, string value, string previousValue)
+    {
+        _logger.LogInformation("Memory address {Memory} changed from {Previous} to {New}", memory, previousValue, value);
+
+        var response = _memoryResponses.GetMemoryResponses(memory, value, previousValue);
+        
+        if (response == null)
+        {
+            return;
+        }
+
+        if (response.SayOnce)
+        {
+            if (_previousMemoryResponses.Contains(response))
+            {
+                return;
+            }
+        }
+
+        if (response.ResponsesOnRepeat?.Any() == true && _previousMemoryResponses.Contains(response))
+        {
+            _ttsService.Say(response.ResponsesOnRepeat);
+        }
+        else
+        {
+            _previousMemoryResponses.Add(response);
+            _ttsService.Say(response.Responses);
+        }
+    }
+
+    private void SetRegionState(RegionConfig region, bool isCleared, bool addUndo = true)
+    {
+        if (_regionStates[region.Key] == isCleared || TrackerForm == null)
+        {
+            return;
+        }
+
+        _regionStates[region.Key] = isCleared;
+        TrackerForm?.UpdateRegion(region.Key, isCleared);
+
+        if (isCleared)
+        {
+            _ttsService.Say(_config.Responses.ClearedRegion, region.Names);
+        }
+        else
+        {
+            _ttsService.Say(_config.Responses.UnclearedRegion, region.Names);
+        }
+
+        if (addUndo)
+        {
+            AddUndoAction(new Action(() =>
+            {
+                SetRegionState(region, !isCleared, false);
+            }));
+        }
+        
+    }
+
+    private void AddUndoAction(Action action)
+    {
+        _undoActions.Insert(0, action);
+
+        if (_undoActions.Count > 5)
+        {
+            _undoActions.RemoveAt(5);
+        }
     }
 
     public bool CanTrack => _configService.LoadedSuccessfully;

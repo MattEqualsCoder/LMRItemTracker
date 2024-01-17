@@ -1,0 +1,137 @@
+﻿# Config file for bosses and minibosses found in the game
+
+# Fields
+# ------
+# Key (string): Unique internal tracker name for bosses. Used for merging the same item between different config files. Do not modify.
+# Names (weighted possibilities): Different names tracker will refer to the boss by when speaking
+
+# Example
+# - Key: "boss-amphisbaena"
+#   Names:
+#     - Text: "Amphisbaena"
+#     - Text: "Amphy"
+#       Weight: 0.1
+
+
+Bosses:
+  - Key: "boss-amphisbaena"
+    Names:
+      - Text: "Amphisbaena"
+  - Key: "boss-sakit"
+    Names:
+      - Text: "Sakit"
+  - Key: "boss-ellmac"
+    Names:
+      - Text: "Ellmac"
+  - Key: "boss-bahamut"
+    Names:
+      - Text: "Bahamut"
+  - Key: "boss-viy"
+    Names:
+      - Text: "Viy"
+  - Key: "boss-palenque"
+    Names:
+      - Text: "Palenque"
+  - Key: "boss-baphomet"
+    Names:
+      - Text: "Baphomet"
+  - Key: "boss-tiamat"
+    Names:
+      - Text: "Tiamat"
+  - Key: "miniboss-peryton"
+    Names:
+      - Text: "Peryton"
+  - Key: "miniboss-zu"
+    Names:
+      - Text: "Zu"
+  - Key: "miniboss-ghostlord"
+    Names:
+      - Text: "ghost lord"
+  - Key: "miniboss-anubis"
+    Names:
+      - Text: "anubis"
+  - Key: "miniboss-argus"
+    Names:
+      - Text: "argus"
+  - Key: "miniboss-buer"
+    Names:
+      - Text: "buer"
+  - Key: "miniboss-centimani"
+    Names:
+      - Text: "centimani"
+  - Key: "miniboss-ba"
+    Names:
+      - Text: "ba"
+  - Key: "miniboss-pazuzu"
+    Names:
+      - Text: "pazuzu"
+    KilledValue: 3
+  - Key: "miniboss-chi-you"
+    Names:
+      - Text: "Chi You"
+  - Key: "miniboss-kamaitachi"
+    Names:
+      - Text: "kamaitachi"
+  - Key: "miniboss-nuckelavee"
+    Names:
+      - Text: "nuckelavee"
+  - Key: "miniboss-nuwa"
+    Names:
+      - Text: "nuwa"
+  - Key: "miniboss-oxheadandhorseface"
+    Names:
+      - Text: "ox head and horse face"
+  - Key: "miniboss-red-skeletonse"
+    Names:
+      - Text: "red skeletons"
+  - Key: "miniboss-skanda"
+    Names:
+      - Text: "skanda"
+    KilledValue: 2
+  - Key: "miniboss-the-boss"
+    Names:
+      - Text: "the boss"
+    KilledValue: 3
+  - Key: "miniboss-thunderbird"
+    Names:
+      - Text: "thunderbird"
+  - Key: "miniboss-vimana"
+    Names:
+      - Text: "vimana"
+  - Key: "miniboss-beezelbub"
+    Names:
+      - Text: "Beezelbub"
+  - Key: "miniboss-girtablilu"
+    Names:
+      - Text: "Girtablilu"
+  - Key: "miniboss-kuusarikku"
+    Names:
+      - Text: "Kuusarikku"
+  - Key: "miniboss-kulullu"
+    Names:
+      - Text: "Kulullu"
+  - Key: "miniboss-urmahlullu"
+    Names:
+      - Text: "Urmahlullu"
+  - Key: "miniboss-mushnahhu"
+    Names:
+      - Text: "Mushnahhu"
+  - Key: "miniboss-ushumgallu"
+    Names:
+      - Text: "Ushumgallu"
+  - Key: "miniboss-umu-dabrutu"
+    Names:
+      - Text: "dabrutu"
+      - Text: "not ridley"
+  - Key: "miniboss-mushussu"
+    Names:
+      - Text: "Mushussu"
+  - Key: "miniboss-ugallu"
+    Names:
+      - Text: "Ugallu"
+  - Key: "miniboss-lahamu"
+    Names:
+      - Text: "Lahamu"
+  - Key: "miniboss-ushum"
+    Names:
+      - Text: "Ushum"

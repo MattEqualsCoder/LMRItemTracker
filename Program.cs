@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System.ComponentModel;
 using System.IO;
 using LMRItemTracker.EyeOfTruth.Shared;
+using Serilog.Core;
 
 namespace LMRItemTracker
 {
@@ -42,12 +43,17 @@ namespace LMRItemTracker
         {
             if (!name.StartsWith("byte-") && !name.StartsWith("word-") && !"flags-1".Equals(name))
                 return;
-
+            
+            laMulanaItemTrackerForm.ValueChanged(name, cur.ToString(), old.ToString());
+            
             string displayname;
             if (!remakenames.TryGetValue(name, out displayname))
+            {
                 return;
-
-
+            }
+            
+            laMulanaItemTrackerForm.LogMessage($"{name} ({displayname}) changed: {old} -> {cur}");
+                
             string format = "";
             if (cur is byte || cur is sbyte)
                 format = ":x2";
@@ -55,8 +61,15 @@ namespace LMRItemTracker
                 format = ":x4";
             else if (cur is uint || cur is int)
                 format = ":x8";
-            System.Console.WriteLine("{0} {1,15} := {2" + format + "} to {3" + format + "}", name, displayname, old, cur);
-
+            try
+            {
+                System.Console.WriteLine("{0} {1,15} := {2" + format + "} to {3" + format + "}", name, displayname, old, cur);
+            }
+            catch (Exception e)
+            {
+                laMulanaItemTrackerForm.LogError(e, "Unable to print record");
+            }
+            
             if (displayname.Equals("death-tracker"))
             {
                 if (((uint)old & 0x1000000) == 0 && (((uint)cur & 0x1000000) == 16777216))
@@ -67,6 +80,10 @@ namespace LMRItemTracker
             else if (displayname.StartsWith("boss-"))
             {
                 laMulanaItemTrackerForm.toggleBoss(displayname, (byte)cur >= (byte)3);
+            }
+            else if (displayname.StartsWith("miniboss-"))
+            {
+                laMulanaItemTrackerForm.toggleMiniboss(displayname, (byte)cur);
             }
             else if (displayname.Equals("rosetta-count"))
             {
@@ -208,6 +225,12 @@ namespace LMRItemTracker
             byte[] rbytes_old = new byte[0x1000], rbytes_new;
             byte[] rwords_old = new byte[510], rwords_new;
             remakenames = loadnames(namesXml);
+
+            foreach (var row in remakenames)
+            {
+                laMulanaItemTrackerForm.LogMessage($"{row.Key} = {row.Value}");
+            }
+            
             int startupCounter = 1;
             laMulanaItemTrackerForm.SetGameStarted(false);
 
@@ -259,7 +282,7 @@ namespace LMRItemTracker
                                 }
                                 catch (Exception ex)
                                 {
-                                    System.Console.WriteLine(ex.StackTrace);
+                                    laMulanaItemTrackerForm.LogError(ex, "Exception in changed");
                                 }
                         for (int i = 0; i < 510; i += 2)
                         {
@@ -272,7 +295,7 @@ namespace LMRItemTracker
                                 }
                                 catch (Exception ex)
                                 {
-                                    System.Console.WriteLine(ex.StackTrace);
+                                    laMulanaItemTrackerForm.LogError(ex, "Exception in changed");
                                 }
                         }
                         rbytes_old = rbytes_new;
@@ -288,14 +311,16 @@ namespace LMRItemTracker
                     if (e.NativeErrorCode == 5 && e.TargetSite.ToString().StartsWith("Microsoft.Win32.SafeHandles.SafeProcessHandle OpenProcess"))
                     {
                         if (!warnedaboutaccess)
-                            System.Console.WriteLine("Unable to access LaMulanaWin.exe, please check the compatibility settings\n"
-                                + "and uncheck \"Run this program as an administrator\" if it is checked.");
+                        {
+                            laMulanaItemTrackerForm.LogError(e, "Unable to access LaMulanaWin.exe, please check the compatibility settings\n"
+                                                                 + "and uncheck \"Run this program as an administrator\" if it is checked.");
+                        }
                         warnedaboutaccess = true;
                     }
                 }
                 catch (Exception ex)
                 {
-                    System.Console.WriteLine(ex.StackTrace);
+                    laMulanaItemTrackerForm.LogError(ex, "Unknown exception");
                 }
 
                 TimeSpan sleeptime = sleeptarget - DateTime.UtcNow;

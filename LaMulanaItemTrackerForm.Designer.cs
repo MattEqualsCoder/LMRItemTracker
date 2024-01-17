@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace LMRItemTracker
 {
@@ -222,7 +223,11 @@ namespace LMRItemTracker
             this.palenque = new LMRItemTracker.TrackerBox();
             this.baphomet = new LMRItemTracker.TrackerBox();
             this.tiamat = new LMRItemTracker.TrackerBox();
+            this.regionsLabel = new System.Windows.Forms.Label();
+            this.regionsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.itemColorDialog = new System.Windows.Forms.ColorDialog();
+            this.showRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hermesBoots)).BeginInit();
@@ -373,7 +378,7 @@ namespace LMRItemTracker
             this.voiceTrackerToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(340, 24);
+            this.menu.Size = new System.Drawing.Size(379, 24);
             this.menu.TabIndex = 109;
             this.menu.Text = "Settings";
             // 
@@ -442,7 +447,9 @@ namespace LMRItemTracker
             this.showDeathCountToolStripMenuItem,
             this.clearDeathCountToolStripMenuItem,
             this.showLastItemToolStripMenuItem,
-            this.clearLastItemToolStripMenuItem});
+            this.clearLastItemToolStripMenuItem,
+            this.showRegionsToolStripMenuItem,
+            this.resetRegionsToolStripMenuItem});
             this.layoutToolStripMenuItem.Name = "layoutToolStripMenuItem";
             this.layoutToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.layoutToolStripMenuItem.Text = "Layout";
@@ -457,7 +464,7 @@ namespace LMRItemTracker
             this.addItemPanel5ToolStripMenuItem,
             this.addItemPanel6ToolStripMenuItem});
             this.addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
-            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addItemToolStripMenuItem.Text = "Add Item";
             // 
             // addItemPanel1ToolStripMenuItem
@@ -499,7 +506,7 @@ namespace LMRItemTracker
             // removeItemToolStripMenuItem
             // 
             this.removeItemToolStripMenuItem.Name = "removeItemToolStripMenuItem";
-            this.removeItemToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.removeItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeItemToolStripMenuItem.Text = "Remove Item";
             // 
             // uncollectedItemsToolStripMenuItem
@@ -510,7 +517,7 @@ namespace LMRItemTracker
             this.noImageToolStripMenuItem,
             this.hideImageToolStripMenuItem});
             this.uncollectedItemsToolStripMenuItem.Name = "uncollectedItemsToolStripMenuItem";
-            this.uncollectedItemsToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.uncollectedItemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uncollectedItemsToolStripMenuItem.Text = "Uncollected Items";
             // 
             // shadedImageToolStripMenuItem
@@ -544,42 +551,42 @@ namespace LMRItemTracker
             // alwaysOnTopToolStripMenuItem
             // 
             this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
-            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.alwaysOnTopToolStripMenuItem.Text = "Always on Top";
             this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.toggleTopMost);
             // 
             // showAmmoCountToolStripMenuItem
             // 
             this.showAmmoCountToolStripMenuItem.Name = "showAmmoCountToolStripMenuItem";
-            this.showAmmoCountToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.showAmmoCountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showAmmoCountToolStripMenuItem.Text = "Show Ammo Count";
             this.showAmmoCountToolStripMenuItem.Click += new System.EventHandler(this.toggleAmmoCount);
             // 
             // showDeathCountToolStripMenuItem
             // 
             this.showDeathCountToolStripMenuItem.Name = "showDeathCountToolStripMenuItem";
-            this.showDeathCountToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.showDeathCountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showDeathCountToolStripMenuItem.Text = "Show Death Count";
             this.showDeathCountToolStripMenuItem.Click += new System.EventHandler(this.toggleDeathCount);
             // 
             // clearDeathCountToolStripMenuItem
             // 
             this.clearDeathCountToolStripMenuItem.Name = "clearDeathCountToolStripMenuItem";
-            this.clearDeathCountToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.clearDeathCountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearDeathCountToolStripMenuItem.Text = "Clear Death Count";
             this.clearDeathCountToolStripMenuItem.Click += new System.EventHandler(this.resetDeathCount);
             // 
             // showLastItemToolStripMenuItem
             // 
             this.showLastItemToolStripMenuItem.Name = "showLastItemToolStripMenuItem";
-            this.showLastItemToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.showLastItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showLastItemToolStripMenuItem.Text = "Show Recent Items";
             this.showLastItemToolStripMenuItem.Click += new System.EventHandler(this.toggleShowLastItem);
             // 
             // clearLastItemToolStripMenuItem
             // 
             this.clearLastItemToolStripMenuItem.Name = "clearLastItemToolStripMenuItem";
-            this.clearLastItemToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.clearLastItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearLastItemToolStripMenuItem.Text = "Clear Recent Items";
             this.clearLastItemToolStripMenuItem.Click += new System.EventHandler(this.clearLastItem);
             // 
@@ -792,12 +799,14 @@ namespace LMRItemTracker
             this.mainPanel.Controls.Add(this.flowLayoutPanel5);
             this.mainPanel.Controls.Add(this.flowLayoutPanel6);
             this.mainPanel.Controls.Add(this.bossPanel);
+            this.mainPanel.Controls.Add(this.regionsLabel);
+            this.mainPanel.Controls.Add(this.regionsFlowPanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.mainPanel.Size = new System.Drawing.Size(340, 758);
+            this.mainPanel.Size = new System.Drawing.Size(379, 792);
             this.mainPanel.TabIndex = 111;
             this.mainPanel.DoubleClick += new System.EventHandler(this.SelectFormColor);
             // 
@@ -3015,15 +3024,53 @@ namespace LMRItemTracker
             this.tiamat.TabIndex = 19;
             this.tiamat.TabStop = false;
             // 
+            // regionsLabel
+            // 
+            this.regionsLabel.AutoSize = true;
+            this.regionsLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.mainPanel.SetFlowBreak(this.regionsLabel, true);
+            this.regionsLabel.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.regionsLabel.Location = new System.Drawing.Point(10, 758);
+            this.regionsLabel.Margin = new System.Windows.Forms.Padding(0, 10, 5, 0);
+            this.regionsLabel.Name = "regionsLabel";
+            this.regionsLabel.Size = new System.Drawing.Size(62, 16);
+            this.regionsLabel.TabIndex = 121;
+            this.regionsLabel.Text = "Regions:";
+            // 
+            // regionsFlowPanel
+            // 
+            this.regionsFlowPanel.AutoSize = true;
+            this.regionsFlowPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.mainPanel.SetFlowBreak(this.regionsFlowPanel, true);
+            this.regionsFlowPanel.Location = new System.Drawing.Point(10, 774);
+            this.regionsFlowPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.regionsFlowPanel.Name = "regionsFlowPanel";
+            this.regionsFlowPanel.Size = new System.Drawing.Size(0, 0);
+            this.regionsFlowPanel.TabIndex = 122;
+            // 
             // itemColorDialog
             // 
             this.itemColorDialog.AnyColor = true;
             this.itemColorDialog.SolidColorOnly = true;
             // 
+            // showRegionsToolStripMenuItem
+            // 
+            this.showRegionsToolStripMenuItem.Name = "showRegionsToolStripMenuItem";
+            this.showRegionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showRegionsToolStripMenuItem.Text = "Show Regions";
+            this.showRegionsToolStripMenuItem.Click += new System.EventHandler(this.showRegionsToolStripMenuItem_Click);
+            // 
+            // resetRegionsToolStripMenuItem
+            // 
+            this.resetRegionsToolStripMenuItem.Name = "resetRegionsToolStripMenuItem";
+            this.resetRegionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetRegionsToolStripMenuItem.Text = "Reset Regions";
+            this.resetRegionsToolStripMenuItem.Click += new System.EventHandler(this.resetRegionsToolStripMenuItem_Click);
+            // 
             // LaMulanaItemTrackerForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(340, 783);
+            this.ClientSize = new System.Drawing.Size(379, 874);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menu);
             this.HelpButton = true;
@@ -3199,16 +3246,16 @@ namespace LMRItemTracker
         [STAThread]
         static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.File(LogPath, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 10)
+                .WriteTo.Debug()
+                .CreateLogger();
+            
             var _host = Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging =>
                 {
-                    logging.AddFile($"%LocalAppData%\\LMRItemTracker\\lmr-tracker-{DateTime.UtcNow:yyyyMMdd}.log",
-                        options =>
-                        {
-                            options.Append = true;
-                            options.FileSizeLimitBytes = 1024 * 1024 * 20;
-                            options.MaxRollingFiles = 5;
-                        });
+                    logging.AddSerilog(dispose: true);
                 })
                 .ConfigureServices((context, services) => ConfigureServices(services))
                 .Start();
@@ -3404,5 +3451,15 @@ namespace LMRItemTracker
         private FlowLayoutPanel flowLayoutPanel8;
         private Label labelContent;
         private Label labelContentCount;
+        private Label regionsLabel;
+        private FlowLayoutPanel regionsFlowPanel;
+        private ToolStripMenuItem showRegionsToolStripMenuItem;
+        private ToolStripMenuItem resetRegionsToolStripMenuItem;
+        
+#if DEBUG
+        private static string LogPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LMRItemTracker", "lmr-tracker-debug-.log");
+#else
+        private static string LogPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LMRItemTracker", "lmr-tracker-.log");
+#endif
     }
 }

@@ -18,12 +18,14 @@ public class HintService
     private readonly Dictionary<string, string> _locationNpcs = new();
     private readonly Dictionary<string, int> _hintsGiven = new();
     private readonly Dictionary<string, List<string>> _sealLocations = new();
+    private readonly HashSet<string> _gatheredAnkhJewels = new();
 
     private readonly List<string> _seals = new List<string>()
         { "Origin Seal", "Birth Seal", "Life Seal", "Death Seal" };
     private string? _randomizerPath;
     private bool _hintsEnabled;
     private bool _spoilersEnabled;
+    private int _ankhCounter = -1;
     
     public HintService(ConfigService configService, VoiceRecognitionService voiceService, TextToSpeechService ttsService, ILogger<HintService> logger, ChoiceService choices)
     {
@@ -139,7 +141,7 @@ public class HintService
         voiceService.AddCommand("ankh hints",
             new GrammarBuilder()
                 .Append("Hey tracker, ")
-                .OneOf("where can I find the ankh jewels", "where are the ankh jewels"),
+                .OneOf("where can I find the ankh jewels", "where are the ankh jewels", "where is an ankh jewel"),
             result =>
             {
                 if (_hintsEnabled || _spoilersEnabled)
@@ -371,6 +373,26 @@ public class HintService
         _ttsService.Say(_trackerConfig.Responses.DisabledHintsAndSpoilers);
     }
 
+    public void ToggleAnkhJewel(string ankhJewel, bool state)
+    {
+        if (state)
+        {
+            _gatheredAnkhJewels.Add(ankhJewel);
+            var ankhItems = _trackerConfig.Items
+                .Where(x => x.Type == ItemType.AnkhJewel)
+                .ToList();
+            foreach (var ankh in ankhItems)
+            {
+                _hintsGiven[ankh.Key] = 0;
+                _ankhCounter = -1;
+            }
+        }
+        else
+        {
+            _gatheredAnkhJewels.Remove(ankhJewel);
+        }
+    }
+
     private void GiveItemHint(ItemConfig item)
     {
         var itemSpoilerName = item.SpoilerFileName;
@@ -598,58 +620,27 @@ public class HintService
             _ttsService.Say(_trackerConfig.Responses.RegionItems, region.Names, itemNames);
         }
     }
-    
+
     private void GiveAnkhHints()
     {
-        var ankhLocations = _trackerConfig.Items
-            .Where(x => x.Type == ItemType.AnkhJewel)
-            .Select(x => _itemLocations[x.SpoilerFileName])
-            .Select(x => _trackerConfig.Locations.Get(x)!)
+        var ankhItems = _trackerConfig.Items
+            .Where(x => x.Type == ItemType.AnkhJewel && !_gatheredAnkhJewels.Contains(x.Key))
             .ToList();
         
-        if (_hintsEnabled)
+        if (!ankhItems.Any())
         {
-            var badLocationRegions = ankhLocations.Where(x => _trackerConfig.Regions.Get(x.Region) == null)
-                .Select(x => x.Region);
-            
-            var ankhRegionCounts = ankhLocations.Select(x => _trackerConfig.Regions.Get(x.Region)!)
-                .GroupBy(x => x)
-                .ToList();
-
-            if (!ankhRegionCounts.Any())
-            {
-                _logger.LogWarning("Could not find any ankh jewels in the spoiler log");
-                _ttsService.Say(_trackerConfig.Responses.ItemLocationNotFound);
-            }
-            
-            if (!_hintsGiven.TryGetValue("ankh-jewels", out var value))
-            {
-                value = 0;
-            }
-            
-            if (ankhRegionCounts.Count <= value)
-            {
-                _ttsService.Say(_trackerConfig.Responses.NoHintsAvailable, "ankh jewels");
-                return;
-            }
-
-            var group = ankhRegionCounts[value];
-            _ttsService.Say(_trackerConfig.Responses.HintAnkhJewel, group.Key.Names, group.Count() > 1 ? $"{group.Count()} ankh jewels" : "an ankh jewel");
-            _hintsGiven["ankh-jewels"] = value + 1;
+            _logger.LogWarning("Could not find any ankh jewels in the spoiler log");
+            _ttsService.Say(_trackerConfig.Responses.ItemLocationNotFound);
         }
-        else if (_spoilersEnabled)
+
+        if (_ankhCounter < 0)
         {
-            
-
-            if (!ankhLocations.Any())
-            {
-                _logger.LogWarning("Could not find any ankh jewels in the spoiler log");
-                _ttsService.Say(_trackerConfig.Responses.ItemLocationNotFound);
-            }
-            
-            var locations = string.Join(" and ", ankhLocations.Select(x => x!.Names?.ToString() ?? x.Key));
-            _ttsService.Say(_trackerConfig.Responses.AnkhJewelLocations, locations);
+            var rnd = new Random();
+            _ankhCounter = rnd.Next(0, ankhItems.Count);
         }
+        
+        GiveItemHint(ankhItems[_ankhCounter]);
+        _ankhCounter = (_ankhCounter + 1) % ankhItems.Count;
     }
     
     private void GiveSealSpoiler(string seal)

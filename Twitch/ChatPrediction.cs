@@ -8,7 +8,7 @@ namespace LMRItemTracker.Twitch
 {
     public class ChatPrediction
     {
-        public string Id { get; set; }
+        public string Id { get; set; } = "";
         public bool IsPredictionComplete { get; set; }
         public bool IsPredictionSuccessful { get; set; }
         public Dictionary<string, string> OutcomeIds { get; set; } = new();

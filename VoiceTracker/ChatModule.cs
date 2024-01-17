@@ -116,11 +116,11 @@ namespace LMRItemTracker.VoiceTracker
         }
 
         public event EventHandler? ContentUpdated;
-        
-        public string TwitchUsername { get; set; }
-        public string TwitchAuthToken { get; set; }
-        public string TwitchChannel { get; set; }
-        public string TwitchUserId { get; set; }
+
+        public string TwitchUsername { get; set; } = "";
+        public string TwitchAuthToken { get; set; } = "";
+        public string TwitchChannel { get; set; } = "";
+        public string TwitchUserId { get; set; } = "";
         public int Content { get; private set; }
 
         public async Task StartPredictionPoll(TwitchPredictionConfig config)
@@ -149,7 +149,7 @@ namespace LMRItemTracker.VoiceTracker
             }
 
             _currentPredictionConfig = config;
-            _currentPrediction = await _chatClient.CreatePredictionAsync(title!, new List<string>() { options.Good, options.Bad }, 120);
+            _currentPrediction = await _chatClient.CreatePredictionAsync(title!, new List<string>() { options.Good, options.Bad }, config.DurationSeconds);
             if (_currentPrediction?.IsPredictionSuccessful != true)
             {
                 _logger.LogError("Error creating prediction poll");

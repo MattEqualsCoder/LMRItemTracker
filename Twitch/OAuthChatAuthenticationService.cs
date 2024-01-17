@@ -19,8 +19,8 @@ namespace LMRItemTracker.Twitch
         public abstract Uri GetOAuthUrl(Uri redirectUri);
 
         private string? _accessToken = null;
-        private string? _localUrl = "http://localhost:42069";
-        private HttpListener listener;
+        private string _localUrl = "http://localhost:42069";
+        private HttpListener? _listener;
 
         public virtual async Task<string?> GetTokenInteractivelyAsync(CancellationToken cancellationToken)
         {
@@ -31,9 +31,9 @@ namespace LMRItemTracker.Twitch
             {
 
                 // Create a Http server and start listening for incoming connections
-                listener = new HttpListener();
-                listener.Prefixes.Add(_localUrl + "/");
-                listener.Start();
+                _listener = new HttpListener();
+                _listener.Prefixes.Add(_localUrl + "/");
+                _listener.Start();
                 Receive();
 
                 var authUrl = GetOAuthUrl(new Uri(_localUrl));
@@ -50,10 +50,11 @@ namespace LMRItemTracker.Twitch
 
                 await Task.Delay(1000);
 
-                listener.Close();
+                _listener.Close();
             }
-            catch (Exception e) 
+            catch
             {
+                // do nothing
             }
 
             return _accessToken;
@@ -65,14 +66,14 @@ namespace LMRItemTracker.Twitch
 
         private void Receive()
         {
-            listener.BeginGetContext(new AsyncCallback(ListenerCallback), listener);
+            _listener?.BeginGetContext(ListenerCallback, _listener);
         }
 
         private void ListenerCallback(IAsyncResult result)
         {
-            if (listener.IsListening)
+            if (_listener?.IsListening == true)
             {
-                var context = listener.EndGetContext(result);
+                var context = _listener.EndGetContext(result);
                 var request = context.Request;
                 var responseText = "You can now close this browser";
                 if (request.QueryString.Count == 0)

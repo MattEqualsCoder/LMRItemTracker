@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using TwitchLib.Client;
 using TwitchLib.Client.Exceptions;
@@ -201,11 +200,16 @@ namespace LMRItemTracker.Twitch
 
             var pollApiResponse = await _chatApi.MakeApiCallAsync<TwitchPrediction, TwitchPrediction>("predictions", prediction, HttpMethod.Post, default);
 
+            if (pollApiResponse?.Id == null)
+            {
+                return null;
+            }
+            
             return new ChatPrediction()
             {
-                Id = pollApiResponse?.Id,
-                IsPredictionSuccessful = pollApiResponse?.IsSuccessful == true && !string.IsNullOrEmpty(pollApiResponse?.Id),
-                OutcomeIds = pollApiResponse?.IsSuccessful == true ? pollApiResponse.Outcomes.ToDictionary(x => x.Title, x => x.Id) : new Dictionary<string, string>()
+                Id = pollApiResponse.Id,
+                IsPredictionSuccessful = pollApiResponse.IsSuccessful && !string.IsNullOrEmpty(pollApiResponse.Id),
+                OutcomeIds = pollApiResponse.IsSuccessful ? pollApiResponse.Outcomes!.ToDictionary(x => x.Title ?? "", x => x.Id ?? "") : new Dictionary<string, string>()
             };
         }
 
@@ -265,30 +269,30 @@ namespace LMRItemTracker.Twitch
             {
                 return new()
                 {
-                    Id = pollApiResponse.Id,
+                    Id = pollApiResponse.Id ?? "",
                     IsPredictionComplete = pollApiResponse.IsPredictionComplete,
                     IsPredictionSuccessful = pollApiResponse.IsPredictionSuccessful,
-                    OutcomeIds = pollApiResponse.Outcomes.ToDictionary(x => x.Title, x => x.Id),
+                    OutcomeIds = pollApiResponse.Outcomes?.ToDictionary(x => x.Title ?? "", x => x.Id ?? "") ?? new Dictionary<string, string>(),
                 };
             }
             else
             {
                 var winningId = pollApiResponse.WinningOutcomeId;
-                var winningResults = pollApiResponse.Outcomes.First(x => x.Id == winningId);
-                var losingResults = pollApiResponse.Outcomes.First(x => x.Id != winningId);
+                var winningResults = pollApiResponse.Outcomes?.First(x => x.Id == winningId);
+                var losingResults = pollApiResponse.Outcomes?.First(x => x.Id != winningId);
 
                 var winnerNames = new List<string>();
                 var loserNames = new List<string>();
                 
                 try
                 {
-                    if (winningResults.TopPredictors != null)
+                    if (winningResults?.TopPredictors != null)
                     {
                         winnerNames = winningResults.TopPredictors.Select(x => x.DisplayName)
                             .Where(x => !string.IsNullOrEmpty(x)).Cast<string>().ToList();
                     }
                     
-                    if (losingResults.TopPredictors != null)
+                    if (losingResults?.TopPredictors != null)
                     {
                         loserNames = losingResults.TopPredictors.Select(x => x.DisplayName)
                             .Where(x => !string.IsNullOrEmpty(x)).Cast<string>().ToList();
@@ -304,13 +308,13 @@ namespace LMRItemTracker.Twitch
                     Id = pollApiResponse.Id!,
                     IsPredictionComplete = true,
                     IsPredictionSuccessful = true,
-                    OutcomeIds = pollApiResponse.Outcomes.ToDictionary(x => x.Title, x => x.Id),
-                    WinningChoice = winningResults.Title,
-                    WinningCount = winningResults.UserCount,
-                    PointsWon = winningResults.ChannelPointsSpent,
+                    OutcomeIds = pollApiResponse.Outcomes?.ToDictionary(x => x.Title ?? "", x => x.Id ?? "") ?? new Dictionary<string, string>(),
+                    WinningChoice = winningResults?.Title ?? "",
+                    WinningCount = winningResults?.UserCount,
+                    PointsWon = winningResults?.ChannelPointsSpent,
                     Winners = winnerNames,
-                    LosingCount = losingResults.UserCount,
-                    PointsLost = losingResults.ChannelPointsSpent,
+                    LosingCount = losingResults?.UserCount,
+                    PointsLost = losingResults?.ChannelPointsSpent,
                     Losers = loserNames
                 };
             }

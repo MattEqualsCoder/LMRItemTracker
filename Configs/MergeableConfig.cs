@@ -197,6 +197,50 @@ public abstract class MergeableConfig
                 var otherValue = property.GetValue(other) as List<NpcConfig>;
                 Merge(thisValue ?? new List<NpcConfig>(), otherValue ?? new List<NpcConfig>());
             }
+            else if (property.PropertyType == typeof(List<BossConfig>))
+            {
+                var thisValue = property.GetValue(this) as List<BossConfig>;
+                var otherValue = property.GetValue(other) as List<BossConfig>;
+                Merge(thisValue ?? new List<BossConfig>(), otherValue ?? new List<BossConfig>());
+            }
+            else if (property.PropertyType == typeof(Dictionary<string, List<MemoryResponses>>))
+            {
+                var thisValue = (Dictionary<string, List<MemoryResponses>>?)property.GetValue(this);
+                var otherValue = (Dictionary<string, List<MemoryResponses>>?)property.GetValue(other);
+
+                if (thisValue != null && otherValue != null)
+                {
+                    foreach (var otherData in otherValue)
+                    {
+                        if (thisValue.ContainsKey(otherData.Key) && thisValue[otherData.Key] != null)
+                        {
+                            var thisList = thisValue[otherData.Key];
+                            var otherList = otherValue[otherData.Key];
+                            foreach (var otherData2 in otherList)
+                            {
+                                if (thisList.Any(x => x.Key == otherData2.Key))
+                                {
+                                    var thisValue2 = thisList.First(x => x.Key == otherData2.Key);
+                                    var otherValue2 = otherList.First(x => x.Key == otherData2.Key);
+                                    thisValue2.Responses.Merge(otherValue2.Responses);
+                                }
+                                else
+                                {
+                                    thisList.Add(otherList.First(x => x.Key == otherData2.Key));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            thisValue[otherData.Key] = otherData.Value;
+                        }
+                    }
+                }
+                else if (thisValue == null)
+                {
+                    property.SetValue(this, otherValue);
+                }
+            }
             else if (property.PropertyType == typeof(RollupResponses))
             {
                 var thisValue = property.GetValue(this) as RollupResponses;
