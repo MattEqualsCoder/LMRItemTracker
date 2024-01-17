@@ -1,4 +1,19 @@
-﻿Bosses:
+﻿# Config file for bosses and minibosses found in the game
+
+# Fields
+# ------
+# Key (string): Unique internal tracker name for bosses. Used for merging the same item between different config files. Do not modify.
+# Names (weighted possibilities): Different names tracker will refer to the boss by when speaking
+
+# Example
+# - Key: "boss-amphisbaena"
+#   Names:
+#     - Text: "Amphisbaena"
+#     - Text: "Amphy"
+#       Weight: 0.1
+
+
+Bosses:
   - Key: "boss-amphisbaena"
     Names:
       - Text: "Amphisbaena"
@@ -29,9 +44,9 @@
   - Key: "miniboss-zu"
     Names:
       - Text: "Zu"
-  - Key: "miniboss-ghost"
+  - Key: "miniboss-ghostlord"
     Names:
-      - Text: "ghost"
+      - Text: "ghost lord"
   - Key: "miniboss-anubis"
     Names:
       - Text: "anubis"
@@ -51,9 +66,6 @@
     Names:
       - Text: "pazuzu"
     KilledValue: 3
-  - Key: "miniboss-gyonin"
-    Names:
-      - Text: "gyonin"
   - Key: "miniboss-chi-you"
     Names:
       - Text: "Chi You"
@@ -86,3 +98,40 @@
   - Key: "miniboss-vimana"
     Names:
       - Text: "vimana"
+  - Key: "miniboss-beezelbub"
+    Names:
+      - Text: "Beezelbub"
+  - Key: "miniboss-girtablilu"
+    Names:
+      - Text: "Girtablilu"
+  - Key: "miniboss-kuusarikku"
+    Names:
+      - Text: "Kuusarikku"
+  - Key: "miniboss-kulullu"
+    Names:
+      - Text: "Kulullu"
+  - Key: "miniboss-urmahlullu"
+    Names:
+      - Text: "Urmahlullu"
+  - Key: "miniboss-mushnahhu"
+    Names:
+      - Text: "Mushnahhu"
+  - Key: "miniboss-ushumgallu"
+    Names:
+      - Text: "Ushumgallu"
+  - Key: "miniboss-umu-dabrutu"
+    Names:
+      - Text: "dabrutu"
+      - Text: "not ridley"
+  - Key: "miniboss-mushussu"
+    Names:
+      - Text: "Mushussu"
+  - Key: "miniboss-ugallu"
+    Names:
+      - Text: "Ugallu"
+  - Key: "miniboss-lahamu"
+    Names:
+      - Text: "Lahamu"
+  - Key: "miniboss-ushum"
+    Names:
+      - Text: "Ushum"

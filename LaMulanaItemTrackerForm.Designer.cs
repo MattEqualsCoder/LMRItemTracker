@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace LMRItemTracker
 {
@@ -3245,16 +3246,16 @@ namespace LMRItemTracker
         [STAThread]
         static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.File(LogPath, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 10)
+                .WriteTo.Debug()
+                .CreateLogger();
+            
             var _host = Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging =>
                 {
-                    logging.AddFile($"%LocalAppData%\\LMRItemTracker\\lmr-tracker-{DateTime.UtcNow:yyyyMMdd}.log",
-                        options =>
-                        {
-                            options.Append = true;
-                            options.FileSizeLimitBytes = 1024 * 1024 * 20;
-                            options.MaxRollingFiles = 5;
-                        });
+                    logging.AddSerilog(dispose: true);
                 })
                 .ConfigureServices((context, services) => ConfigureServices(services))
                 .Start();
@@ -3454,5 +3455,11 @@ namespace LMRItemTracker
         private FlowLayoutPanel regionsFlowPanel;
         private ToolStripMenuItem showRegionsToolStripMenuItem;
         private ToolStripMenuItem resetRegionsToolStripMenuItem;
+        
+#if DEBUG
+        private static string LogPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LMRItemTracker", "lmr-tracker-debug-.log");
+#else
+        private static string LogPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LMRItemTracker", "lmr-tracker-.log");
+#endif
     }
 }

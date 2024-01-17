@@ -12,7 +12,7 @@ namespace LMRItemTracker.Configs;
 
 public class ConfigService
 {
-    public TrackerConfig Config { get; set; } = new(null, null, null, null, null, null, null, null);
+    public TrackerConfig Config { get; set; } = new(null, null, null, null, null, null, null, null, null);
     
     private static readonly IDeserializer s_deserializer = new DeserializerBuilder()
         .WithNamingConvention(PascalCaseNamingConvention.Instance)
@@ -58,7 +58,8 @@ public class ConfigService
         var twitch = LoadBuiltInYamlFile<TwitchConfig>("twitch.yml");
         var npcs = LoadBuiltInYamlFile<NpcsConfig>("npcs.yml");
         var bosses = LoadBuiltInYamlFile<BossesConfig>("bosses.yml");
-        return new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs, bosses);
+        var memory = LoadBuiltInYamlFile<MemoryResponseConfig>("memory.yml");
+        return new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs, bosses, memory);
     }
     
     private T? LoadBuiltInYamlFile<T>(string filename)
@@ -107,12 +108,13 @@ public class ConfigService
         var twitch = LoadUserYamlFile<TwitchConfig>(path + Path.DirectorySeparatorChar + "twitch.yml");
         var npcs = LoadUserYamlFile<NpcsConfig>(path + Path.DirectorySeparatorChar + "npcs.yml");
         var bosses = LoadUserYamlFile<BossesConfig>(path + Path.DirectorySeparatorChar + "bosses.yml");
-        if (items == null && locations == null && regions == null && responses == null && custom == null && twitch == null && npcs == null && bosses == null)
+        var memory = LoadUserYamlFile<MemoryResponseConfig>(path + Path.DirectorySeparatorChar + "memory.yml");
+        if (items == null && locations == null && regions == null && responses == null && custom == null && twitch == null && npcs == null && bosses == null && memory == null)
         {
             config = null;
             return false;
         }
-        config = new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs, bosses);
+        config = new TrackerConfig(items, locations, regions, responses, custom, twitch, npcs, bosses, memory);
         return true;
     }
     

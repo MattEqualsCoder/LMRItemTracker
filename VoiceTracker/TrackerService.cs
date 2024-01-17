@@ -22,6 +22,8 @@ public class TrackerService
     private readonly Dictionary<string, int> _itemCounts = new();
     private readonly Dictionary<string, bool> _regionStates = new();
     private readonly Dictionary<string, bool> _bosses = new();
+    private readonly MemoryResponseConfig _memoryResponses = new();
+    private readonly HashSet<MemoryResponses> _previousMemoryResponses = new();
     private List<string> _previousLastItems = new();
     private List<Action> _undoActions = new();
     private bool _inGame;
@@ -38,7 +40,8 @@ public class TrackerService
         _config = configService.Config;
         _hintService = hintService;
         _metaService = metaService;
-        
+        _memoryResponses = _config.MemoryConfig;
+
         if (!CanTrack)
         {
             return;
@@ -295,6 +298,36 @@ public class TrackerService
         _metaService.UpdateIdleTimer();
         _ttsService.SayFallback(boss.OnTracked, _config.Responses.BossDefeated, boss.Names);
         
+    }
+    
+    public void ValueChanged(string memory, string value, string previousValue)
+    {
+        _logger.LogInformation("Memory address {Memory} changed from {Previous} to {New}", memory, previousValue, value);
+
+        var response = _memoryResponses.GetMemoryResponses(memory, value, previousValue);
+        
+        if (response == null)
+        {
+            return;
+        }
+
+        if (response.SayOnce)
+        {
+            if (_previousMemoryResponses.Contains(response))
+            {
+                return;
+            }
+        }
+
+        if (response.ResponsesOnRepeat?.Any() == true && _previousMemoryResponses.Contains(response))
+        {
+            _ttsService.Say(response.ResponsesOnRepeat);
+        }
+        else
+        {
+            _previousMemoryResponses.Add(response);
+            _ttsService.Say(response.Responses);
+        }
     }
 
     private void SetRegionState(RegionConfig region, bool isCleared, bool addUndo = true)

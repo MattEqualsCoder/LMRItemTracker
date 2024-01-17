@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using LMRItemTracker.VoiceTracker;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
@@ -825,9 +826,19 @@ namespace LMRItemTracker
             }
         }
 
-        public void Log(string message)
+        public void LogMessage(string message)
         {
             _logger.LogInformation(message);
+        }
+        
+        public void LogWarning(string message)
+        {
+            _logger.LogWarning(message);
+        }
+        
+        public void LogError(Exception? e, string? message)
+        {
+            _logger.LogError(e, message);
         }
 
         private void UpdatePanelControls(Control panel, Control foundControl, Control blankControl, bool isAdd)
@@ -1053,13 +1064,13 @@ namespace LMRItemTracker
             _trackerService.SetBossState(itemName, isAdd);
         }
 
-        public void toggleMiniboss(string itemName, short value)
+        public void toggleMiniboss(string itemName, byte value)
         {
             var boss = _config.BossConfig.Get(itemName);
             if (boss != null)
             {
                 _logger.LogInformation("toggleMiniboss: {Name} | {Value}", itemName, value);
-                _trackerService.SetBossState(itemName, value >= boss.KilledValue);    
+                _trackerService.SetBossState(itemName, value >= (byte)boss.KilledValue);    
             }
             else
             {
@@ -3021,6 +3032,11 @@ namespace LMRItemTracker
                 lastItem3.BackgroundImage = null;
                 lastItem3.Refresh();
             }));
+        }
+
+        public void ValueChanged(string memory, string value, string previousValue)
+        {
+            _trackerService.ValueChanged(memory, value, previousValue);
         }
 
         private void clearLastItem(object sender, EventArgs e)

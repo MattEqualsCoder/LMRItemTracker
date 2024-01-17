@@ -13,9 +13,10 @@ public class TrackerConfig
     public TwitchConfig TwitchConfig { get; set; } = new();
     public NpcsConfig NpcConfig { get; set; } = new();
     public BossesConfig BossConfig { get; set; } = new();
+    public MemoryResponseConfig MemoryConfig { get; set; } = new();
 
     public TrackerConfig(ItemsConfig? items, LocationsConfig? locations, RegionsConfig? regions, ResponseConfig? responses,
-        CustomConfig? customConfig, TwitchConfig? twitchConfig, NpcsConfig? npcConfig, BossesConfig? bossConfig)
+        CustomConfig? customConfig, TwitchConfig? twitchConfig, NpcsConfig? npcConfig, BossesConfig? bossConfig, MemoryResponseConfig? memoryConfig)
     {
         if (items != null)
             Items = items;
@@ -33,6 +34,8 @@ public class TrackerConfig
             NpcConfig = npcConfig;
         if (bossConfig != null)
             BossConfig = bossConfig;
+        if (memoryConfig != null)
+            MemoryConfig = memoryConfig;
     }
 
     public void Merge(TrackerConfig other)
@@ -45,5 +48,6 @@ public class TrackerConfig
         TwitchConfig.Merge(other.TwitchConfig);
         NpcConfig.Merge(other.NpcConfig);
         BossConfig.Merge(other.BossConfig);
+        MemoryConfig.Merge(other.MemoryConfig);
     }
 }

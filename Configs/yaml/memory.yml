@@ -1,0 +1,31 @@
+﻿# Config file for tracker responding to specific memory changes. This is a dictionary of memory addresses and different
+# responses to different memory values.
+
+# Fields
+# ------
+# Key (string): Unique internal tracker name for items. Used for merging the same item between different config files. Do not modify.
+# Value (string): The new value detected in memory
+# PreviousValue (string, optional): The previous value detected in memory
+# SayOnce (True/False): If the line should only be said the first time it comes up
+# Responses (weighted possibilities): Tracker's responses when detecting the memory change
+# ResponsesOnRepeat (weighted possibilities, optional): Tracker's responses when detecting the memory change for a second time
+
+# Example
+#   byte-197:
+#    - Key: gyonin
+#      Value: 1
+#      PreviousValue: 0
+#      SayOnce: False
+#      Responses:
+#        - Text: Stop bullying the fish
+#      ResponsesOnRepeat:
+#        - Text: Did you reset just so you can bully the fish again?
+
+MemoryResponses:
+  byte-197:
+    - Key: gyonin
+      Value: 1
+      PreviousValue: 0
+      SayOnce: True
+      Responses:
+        - Text: Stop bullying the fish

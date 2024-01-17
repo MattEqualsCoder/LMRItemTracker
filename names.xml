@@ -210,14 +210,13 @@
 	<item id="flags-1" value="death-tracker" />
 	<item id="byte-1d8" value="miniboss-peryton" />
     <item id="byte-1e2" value="miniboss-zu" />
-    <item id="byte-162" value="miniboss-ghost" />
+    <item id="byte-162" value="miniboss-ghostlord" />
     <item id="byte-26c" value="miniboss-anubis" />
     <item id="byte-148" value="miniboss-argus" />
     <item id="byte-17a" value="miniboss-buer" />
     <item id="byte-1c6" value="miniboss-centimani" />
     <item id="byte-23b" value="miniboss-ba" />
     <item id="byte-1af" value="miniboss-pazuzu" />
-    <item id="byte-197" value="miniboss-gyonin" />
     <item id="byte-237" value="miniboss-chi-you" />
     <item id="byte-254" value="miniboss-kamaitachi" />
     <item id="byte-191" value="miniboss-nuckelavee" />
@@ -228,4 +227,16 @@
     <item id="byte-7f1" value="miniboss-the-boss" />
     <item id="byte-28e" value="miniboss-thunderbird" />
     <item id="byte-27f" value="miniboss-vimana" />
+    <item id="byte-2df" value="miniboss-beezelbub" />
+    <item id="byte-2c3" value="miniboss-girtablilu"/>
+    <item id="byte-2c4" value="miniboss-kulullu"/>
+    <item id="byte-2c5" value="miniboss-kuusarikku"/>
+    <item id="byte-2c6" value="miniboss-urmahlullu"/>
+    <item id="byte-2c7" value="miniboss-ugallu"/>
+    <item id="byte-2c8" value="miniboss-ushum"/>
+    <item id="byte-2c9" value="miniboss-lahamu"/>
+    <item id="byte-2ca" value="miniboss-mushnahhu"/>
+    <item id="byte-2cb" value="miniboss-umu-dabrutu"/>
+    <item id="byte-2cc" value="miniboss-ushumgallu"/>
+    <item id="byte-2d4" value="miniboss-mushussu"/>
 </items>
