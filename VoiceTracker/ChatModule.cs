@@ -116,11 +116,11 @@ namespace LMRItemTracker.VoiceTracker
         }
 
         public event EventHandler? ContentUpdated;
-        
-        public string TwitchUsername { get; set; }
-        public string TwitchAuthToken { get; set; }
-        public string TwitchChannel { get; set; }
-        public string TwitchUserId { get; set; }
+
+        public string TwitchUsername { get; set; } = "";
+        public string TwitchAuthToken { get; set; } = "";
+        public string TwitchChannel { get; set; } = "";
+        public string TwitchUserId { get; set; } = "";
         public int Content { get; private set; }
 
         public async Task StartPredictionPoll(TwitchPredictionConfig config)
