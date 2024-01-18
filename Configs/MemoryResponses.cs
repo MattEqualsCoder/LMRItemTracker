@@ -6,6 +6,8 @@ public class MemoryResponses : MergeableConfig
     public string Value { get; set; } = "";
     public string? PreviousValue { get; set; }
     public bool SayOnce { get; set; }
+    public string? FilterMemoryLocation { get; set; }
+    public string? FilterMemoryValue { get; set; }
     public SchrodingersString Responses { get; set; } = new();
     public SchrodingersString? ResponsesOnRepeat { get; set; }
 }

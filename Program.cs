@@ -52,9 +52,9 @@ namespace LMRItemTracker
                 return;
             }
             
-            laMulanaItemTrackerForm.LogMessage($"{name} ({displayname}) changed: {old} -> {cur}");
+            // laMulanaItemTrackerForm.LogMessage($"{name} ({displayname}) changed: {old} -> {cur}");
                 
-            string format = "";
+            /*string format = "";
             if (cur is byte || cur is sbyte)
                 format = ":x2";
             else if (cur is ushort || cur is short)
@@ -68,7 +68,7 @@ namespace LMRItemTracker
             catch (Exception e)
             {
                 laMulanaItemTrackerForm.LogError(e, "Unable to print record");
-            }
+            }*/
             
             if (displayname.Equals("death-tracker"))
             {

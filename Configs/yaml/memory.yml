@@ -7,8 +7,13 @@
 # Value (string): The new value detected in memory
 # PreviousValue (string, optional): The previous value detected in memory
 # SayOnce (True/False): If the line should only be said the first time it comes up
+# FilterMemoryLocation (string, optional)
+# FilterMemoryValue (string, optional): If both FilterMemoryLocation and FilterMemoryValue are both set, tracker will
+#     only say this response if the other memory location specified in FilterMemoryLocation has the value of 
+#     FilterMemoryValue
 # Responses (weighted possibilities): Tracker's responses when detecting the memory change
 # ResponsesOnRepeat (weighted possibilities, optional): Tracker's responses when detecting the memory change for a second time
+
 
 # Example
 #   byte-197:
@@ -16,9 +21,12 @@
 #      Value: 1
 #      PreviousValue: 0
 #      SayOnce: False
+#      FilterMemoryLocation: byte-196
+#      FilterMemoryValue: 1
 #      Responses:
 #        - Text: Stop bullying the fish
 #      ResponsesOnRepeat:
 #        - Text: Did you reset just so you can bully the fish again?
 
 MemoryResponses:
+  

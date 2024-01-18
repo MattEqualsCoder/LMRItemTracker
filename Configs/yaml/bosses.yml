@@ -4,12 +4,17 @@
 # ------
 # Key (string): Unique internal tracker name for bosses. Used for merging the same item between different config files. Do not modify.
 # Names (weighted possibilities): Different names tracker will refer to the boss by when speaking
+# OnTracked (weighted possibilities): Custom responses for tracker to say when the boss is defeated
 
 # Example
 # - Key: "boss-amphisbaena"
 #   Names:
 #     - Text: "Amphisbaena"
 #     - Text: "Amphy"
+#       Weight: 0.1
+#   OnTracked:
+#     - Text: "Everyone say goodbye to Amphisbaena"
+#     - Text: "Amphisbaena is no longer part of this world"
 #       Weight: 0.1
 
 

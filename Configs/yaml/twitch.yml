@@ -9,7 +9,7 @@ RecognizedGreetings:
   - ^tracker!+$
   - '\bT R A C K E R\b'
 
-# Lines for giving a hint at where ankh jewels are
+# Lines for when tracker connects to Twitch chat
 # Type: Weighted Possibilities
 WhenConnected:
   - Text: "Hey chat"

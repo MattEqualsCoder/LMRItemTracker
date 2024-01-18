@@ -38,7 +38,7 @@ public class TextToSpeechService : IDisposable
         }
 
         var line = text.Format(args);
-        if (string.IsNullOrWhiteSpace(line)) return false;
+        if (string.IsNullOrEmpty(line)) return false;
         Say(line!);
         return true;
     }

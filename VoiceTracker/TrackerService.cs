@@ -24,6 +24,7 @@ public class TrackerService
     private readonly Dictionary<string, bool> _bosses = new();
     private readonly MemoryResponseConfig _memoryResponses = new();
     private readonly HashSet<MemoryResponses> _previousMemoryResponses = new();
+    private readonly Dictionary<string, string> _memoryValues = new();
     private List<string> _previousLastItems = new();
     private List<Action> _undoActions = new();
     private bool _inGame;
@@ -302,9 +303,16 @@ public class TrackerService
     
     public void ValueChanged(string memory, string value, string previousValue)
     {
+        if (memory == "flags-1")
+        {
+            return;
+        }
+        
         _logger.LogInformation("Memory address {Memory} changed from {Previous} to {New}", memory, previousValue, value);
 
-        var response = _memoryResponses.GetMemoryResponses(memory, value, previousValue);
+        _memoryValues[memory] = value;
+        
+        var response = _memoryResponses.GetMemoryResponses(memory, value, previousValue, _memoryValues);
         
         if (response == null)
         {
